@@ -1,18 +1,35 @@
-using NUnit.Framework;
+using System;
+using MetricsManager.Controllers;
+using Microsoft.AspNetCore.Mvc;
+using Xunit;
 
 namespace MetricsManagerTests
 {
-    public class Tests
+    public class CpuControllerUnitTests
     {
-        [SetUp]
-        public void Setup()
+        private CpuMetricsController controller;
+
+        public CpuControllerUnitTests()
         {
+            controller = new CpuMetricsController();
         }
 
-        [Test]
-        public void Test1()
+        [Fact]
+        public void GetMetricsFromAgent_ReturnsOk()
         {
-            Assert.Pass();
+            //Arrange
+            var agentId = 1;
+            var fromTime = TimeSpan.FromSeconds(0);
+            var toTime = TimeSpan.FromSeconds(100);
+
+            //Act
+            var result = controller.GetMetricsFromAgent(agentId, fromTime, toTime);
+
+            // Assert
+            _ = Assert.IsAssignableFrom<IActionResult>(result);
         }
     }
 }
+
+
+
