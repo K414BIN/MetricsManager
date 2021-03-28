@@ -12,13 +12,13 @@ namespace MetricsAgent.Controllers
     public class CpuMetricsController : ControllerBase
     {
         [HttpGet("from/{fromTime}/to/{toTime}")]
-        public IActionResult GetMetricsFromAllCluster([FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
+        public IActionResult GetMetricsFrom([FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
         {
             return Ok();
         }
 
         [HttpGet("from/{fromTime}/to/{toTime}/percentiles/{percentile}")]
-        public IActionResult GetMetricsByPercentileFromAllCluster([FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime,
+        public IActionResult GetMetricsByPercentileFrom([FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime,
             [FromRoute] Percentile percentile)
         {
             return Ok();

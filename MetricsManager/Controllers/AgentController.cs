@@ -48,7 +48,7 @@ namespace MetricsManager.Controllers
             return Ok(_holder.ListAgents.ToArray());
         }
 
-        [HttpGet("list-activeagents")]
+        [HttpGet("list-active-agents")]
         public IActionResult ListActiveAgenstById()
         {
             return Ok(_holder.ListActiveAgents.ToArray());
