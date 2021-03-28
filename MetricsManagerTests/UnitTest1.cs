@@ -102,10 +102,27 @@ namespace MetricsManagerTests
             // Assert
             _ = Assert.IsAssignableFrom<IActionResult>(result);
         }
+
+        [Fact]
+        public void GetMetricsByPercentileFromAgent_ReturnsOk()
+        {
+
+            //Arrange
+            var agentId = 1;
+            var fromTime = TimeSpan.FromSeconds(0);
+            var toTime = TimeSpan.FromSeconds(100);
+            var capacity = Percentile.P95;
+
+            //Act
+            var result = controller.GetMetricsByPercentileFromAgent(agentId, fromTime, toTime, capacity);
+
+            // Assert
+            _ = Assert.IsAssignableFrom<IActionResult>(result);
+        }
     }
 
     public class NetworkControllerUnitTests
-    {
+        {
         private NetworkMetricsController controller;
 
         public NetworkControllerUnitTests()
