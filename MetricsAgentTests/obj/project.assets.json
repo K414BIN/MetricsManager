@@ -1648,6 +1648,19 @@
         "build": {
           "build/netcoreapp2.1/xunit.runner.visualstudio.props": {}
         }
+      },
+      "MetricsAgent/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/MetricsAgent.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MetricsAgent.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       }
     }
   },
@@ -5611,10 +5624,16 @@
         "xunit.runner.visualstudio.2.4.3.nupkg.sha512",
         "xunit.runner.visualstudio.nuspec"
       ]
+    },
+    "MetricsAgent/1.0.0": {
+      "type": "project",
+      "path": "../MetricsAgent/MetricsAgent.csproj",
+      "msbuildProject": "../MetricsAgent/MetricsAgent.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "MetricsAgent >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 16.7.1",
       "coverlet.collector >= 1.3.0",
       "xunit >= 2.4.1",
@@ -5647,7 +5666,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\akradioman3\\source\\repos\\MetricsAgent\\MetricsAgent.csproj": {
+              "projectPath": "C:\\Users\\akradioman3\\source\\repos\\MetricsAgent\\MetricsAgent.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
