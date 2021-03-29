@@ -10,11 +10,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FD6AC712-985F-4C86-858B-40DAF2BD2C76}"
 	ProjectSection(SolutionItems) = preProject
 		Enums.cs = Enums.cs
+		nlog.config = nlog.config
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetricsManagerTests", "..\MetricsManagerTests\MetricsManagerTests.csproj", "{AC422431-164A-483A-BF69-6125882D7694}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetricsManagerTests", "..\MetricsManagerTests\MetricsManagerTests.csproj", "{AC422431-164A-483A-BF69-6125882D7694}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetricsAgentTests", "..\MetricsAgentTests\MetricsAgentTests.csproj", "{20C6A68A-16D6-4A4B-B8FC-DF4F773DF2E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetricsAgentTests", "..\MetricsAgentTests\MetricsAgentTests.csproj", "{20C6A68A-16D6-4A4B-B8FC-DF4F773DF2E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
