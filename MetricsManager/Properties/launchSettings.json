@@ -16,7 +16,19 @@
                 "ASPNETCORE_ENVIRONMENT": "Development"
             }
         }
-    }
+    },
+    
+        "Logging": {
+            "IncludeScopes": false,
+            "LogLevel": {
+                "Default": "Trace",
+                "Microsoft": "Warning",
+                "Microsoft.Hosting.Lifetime": "Information"
+            }
+        },
+        "AllowedHosts": "*"
+    
+
 }
 
 
