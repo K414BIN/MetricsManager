@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NLog.Web;
+using MainLibrary;
 
 namespace MetricsManager
 {

@@ -9,6 +9,7 @@ using MetricsAgent.Requests;
 using MetricsAgent.Responses;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace MetricsAgent.Controllers
 {
@@ -16,11 +17,18 @@ namespace MetricsAgent.Controllers
     [ApiController]
     public class CpuMetricsController : ControllerBase
     {
-        private ICpuMetricsRepository repository;
+        private readonly ILogger<CpuMetricsController> _logger;
+
+        public CpuMetricsController(ILogger<CpuMetricsController> logger)
+        {
+            _logger = logger;
+            _logger.LogDebug(1, "NLog встроен в CpuMetricsController");
+        }
+        private ICpuMetricsRepository _repository;
 
         public CpuMetricsController(ICpuMetricsRepository repository)
         {
-            this.repository = repository;
+            _repository = repository;
         }
 
         [HttpGet("sql-test")]
@@ -40,80 +48,36 @@ namespace MetricsAgent.Controllers
             }
         }
 
-        [HttpGet("sql-read-write-test")]
-        public IActionResult TryToInsertAndRead()
+        [HttpDelete("delete")]
+        public IActionResult Delete([FromRoute] int id)
         {
-            // Создаем строку подключения в виде базы данных в оперативной памяти
-            string connectionString = "Data Source=:memory:";
+            _repository.Delete(id);
+            return Ok();
+        }
 
-            // создаем соединение с базой данных
-            using (var connection = new SQLiteConnection(connectionString))
-            {
-                // открываем соединение
-                connection.Open();
+        [HttpPut("update")]
+        public IActionResult Update([FromBody] CpuMetricUpdateRequest request)
+        {
+            // что-то пошло не так это надо доделать
+            var result = new CpuMetric{Value = request.Value,Time=request.Time};
+            var response =_repository.GetById(request.Id);
 
-                // создаем объект через который будут выполняться команды к базе данных
-                using (var command = new SQLiteCommand(connection))
-                {
-                    // задаем новый текст команды для выполнения
-                    // удаляем таблицу с метриками если она существует в базе данных
-                    command.CommandText = "DROP TABLE IF EXISTS cpumetrics";
-                    // отправляем запрос в базу данных
-                    command.ExecuteNonQuery();
+            _repository.Update(result); 
 
-                    // создаем таблицу с метриками
-                    command.CommandText = @"CREATE TABLE cpumetrics(id INTEGER PRIMARY KEY,
-                    value INT, time INT)";
-                    command.ExecuteNonQuery();
-
-                    // создаем запрос на вставку данных
-                    command.CommandText = "INSERT INTO cpumetrics(value, time) VALUES(10,1)";
-                    command.ExecuteNonQuery();
-                    command.CommandText = "INSERT INTO cpumetrics(value, time) VALUES(50,2)";
-                    command.ExecuteNonQuery();
-                    command.CommandText = "INSERT INTO cpumetrics(value, time) VALUES(75,4)";
-                    command.ExecuteNonQuery();
-                    command.CommandText = "INSERT INTO cpumetrics(value, time) VALUES(90,5)";
-                    command.ExecuteNonQuery();
-
-                    // создаем строку для выборки данных из базы
-                    // LIMIT 3 обозначает, что мы достанем только 3 записи
-                    string readQuery = "SELECT * FROM cpumetrics LIMIT 3";
-
-                    // создаем массив, в который запишем объекты с данными из базы данных
-                    var returnArray = new CpuMetric[3];
-                    // изменяем текст команды на наш запрос чтения
-                    command.CommandText = readQuery;
-
-                    // создаем читалку из базы данных
-                    using (SQLiteDataReader reader = command.ExecuteReader())
-                    {
-                        // счетчик для того, чтобы записать объект в правильное место в массиве
-                        var counter = 0;
-                        // цикл будет выполняться до тех пор, пока есть что читать из базы данных
-                        while (reader.Read())
-                        {
-                            // создаем объект и записываем его в массив
-                            returnArray[counter] = new CpuMetric
-                            {
-                                Id = reader.GetInt32(0), // читаем данные полученные из базы данных
-                                Value = reader.GetInt32(1), // преобразуя к целочисленному типу
-                                Time = TimeSpan.FromSeconds(reader.GetInt32(2))
-                            };
-                            // увеличиваем значение счетчика
-                            counter++;
-                        }
-                    }
-                    // оборачиваем массив с данными в объект ответа и возвращаем пользователю 
-                    return Ok(returnArray);
-                }
-            }
+            return Ok();
+        }
+        
+        [HttpGet("getbyid")]
+        public IActionResult GetById([FromRoute] int id)
+        {
+            _repository.GetById(id);
+            return Ok();
         }
 
         [HttpPost("create")]
         public IActionResult Create([FromBody] CpuMetricCreateRequest request)
         {
-           repository.Create(new CpuMetric
+           _repository.Create(new CpuMetric
             {
                 Time = request.Time,
                 Value = request.Value
@@ -125,11 +89,11 @@ namespace MetricsAgent.Controllers
         [HttpGet("all")]
         public IActionResult GetAll()
         {
-            var metrics = repository.GetAll();
+            var metrics = _repository.GetAll();
 
             var response = new AllCpuMetricsResponse()
             {
-                Metrics = new List<DAL.Models.CpuMetric>()
+                Metrics = new List<CpuMetric>()
             };
 
             foreach (var metric in metrics)
@@ -138,6 +102,12 @@ namespace MetricsAgent.Controllers
             }
 
             return Ok(response);
+        }
+
+        [HttpGet("from/{fromTime}/to/{toTime}")]
+        public IActionResult GetMetricsCpu([FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
+        {
+            return Ok();
         }
 
     }

@@ -8,19 +8,35 @@ using MetricsAgent.DAL.Interfaces;
 using MetricsAgent.Requests;
 using MainLibrary;
 using MetricsAgent.DAL.Models;
+using Microsoft.Extensions.Logging;
 
 namespace MetricsAgentTests
 {
     public class CpuMetricsControllerUnitTests
     {
         private CpuMetricsController controller;
-        private Mock<ICpuMetricsRepository> mock;
+        private readonly Mock<ICpuMetricsRepository> _mock;
+        private  Mock<ILogger<CpuMetricsControllerUnitTests>> _mocklogger;
 
         public CpuMetricsControllerUnitTests()
         {
-            mock = new Mock<ICpuMetricsRepository>();
+            _mock = new Mock<ICpuMetricsRepository>();
+            _mocklogger = new Mock<ILogger<CpuMetricsControllerUnitTests>>();
+            controller = new CpuMetricsController(_mock.Object);
+        }
 
-            controller = new CpuMetricsController(mock.Object);
+        [Fact]
+        public void GetMetricsFrom_ReturnsOk()
+        {
+            //Arrange
+            var fromTime = TimeSpan.FromSeconds(0);
+            var toTime = TimeSpan.FromSeconds(100);
+
+            //Act
+            var result = controller.GetMetricsCpu(fromTime, toTime);
+
+            // Assert
+            _ = Assert.IsAssignableFrom<IActionResult>(result);
         }
 
         [Fact]
@@ -28,24 +44,42 @@ namespace MetricsAgentTests
         {
             // устанавливаем параметр заглушки
             // в заглушке прописываем что в репозиторий прилетит CpuMetric объект
-            mock.Setup(repository => repository.Create(It.IsAny<CpuMetric>())).Verifiable();
+            _mock.Setup(repository => repository.Create(It.IsAny<CpuMetric>())).Verifiable();
 
             // выполняем действие на контроллере
             var result = controller.Create(new CpuMetricCreateRequest { Time = TimeSpan.FromSeconds(1), Value = 50 });
 
             // проверяем заглушку на то, что пока работал контроллер
             // действительно вызвался метод Create репозитория с нужным типом объекта в параметре
-            mock.Verify(repository => repository.Create(It.IsAny<CpuMetric>()), Times.AtMostOnce());
+            _mock.Verify(repository => repository.Create(It.IsAny<CpuMetric>()), Times.AtMostOnce());
         }
     }
 
     public class NetworkControllerUnitTests
         {
         private NetworkMetricsController controller;
-
+        private readonly Mock<INetworkMetricsRepository> _mock;
+        private Mock<ILogger<NetworkControllerUnitTests>> _mocklogger;
+        
         public NetworkControllerUnitTests()
         {
-            controller = new NetworkMetricsController();
+            _mock = new Mock<INetworkMetricsRepository>();
+            controller = new NetworkMetricsController(_mock.Object);
+            _mocklogger = new Mock<ILogger<NetworkControllerUnitTests>>();
+            
+        }
+        [Fact]
+        public void Create_ShouldCall_Create_From_Repository()
+        {
+          
+            _mock.Setup(repository => repository.Create(It.IsAny< NetworkMetric>())).Verifiable();
+
+            // выполняем действие на контроллере
+            var result = controller.Create(new NetworkMetricCreateRequest { Time = TimeSpan.FromSeconds(1), Value = 50 });
+
+            // проверяем заглушку на то, что пока работал контроллер
+            // действительно вызвался метод Create репозитория с нужным типом объекта в параметре
+            _mock.Verify(repository => repository.Create(It.IsAny<NetworkMetric>()), Times.AtMostOnce());
         }
 
         [Fact]
@@ -65,10 +99,15 @@ namespace MetricsAgentTests
     public class HddControllerUnitTests
     {
         private HddMetricsController controller;
+        private readonly Mock<IHddMetricsRepository> _mock;
+        private Mock<ILogger<HddControllerUnitTests>> _mocklogger;
 
+     
         public HddControllerUnitTests()
         {
-            controller = new HddMetricsController();
+            _mocklogger = new Mock<ILogger<HddControllerUnitTests>>();
+            controller = new HddMetricsController(_mock.Object);
+            _mock = new Mock<IHddMetricsRepository>();
         }
 
         [Fact]
@@ -87,10 +126,14 @@ namespace MetricsAgentTests
     public class RamControllerUnitTests
     {
         private RamMetricsController controller;
+        private Mock<ILogger<RamControllerUnitTests>> _mocklogger;
+        private readonly Mock<IRamMetricsRepository> _mock;
 
         public RamControllerUnitTests()
         {
-            controller = new RamMetricsController();
+            _mock = new Mock<IRamMetricsRepository>();
+            _mocklogger = new Mock<ILogger<RamControllerUnitTests>>();
+            controller = new RamMetricsController(_mock.Object);
         }
 
         [Fact]
@@ -109,10 +152,14 @@ namespace MetricsAgentTests
     public class DotNetControllerUnitTests
     {
         private DotNetMetricsController controller;
+        private Mock<IDotNetMetricsRepository> _mock;
+        private Mock<ILogger<DotNetControllerUnitTests>> _mocklogger;
 
         public DotNetControllerUnitTests()
         {
-            controller = new DotNetMetricsController();
+            controller = new DotNetMetricsController(_mock.Object);
+            _mock = new Mock<IDotNetMetricsRepository>();
+            _mocklogger = new Mock<ILogger<DotNetControllerUnitTests>>();
         }
 
         [Fact]

@@ -1,9 +1,8 @@
 ﻿using System;
 
-
 namespace MetricsAgent.DAL.Models
 {
-    public class CpuMetric
+    public class NetworkMetric
     {
         public int Id { get; set; }
 

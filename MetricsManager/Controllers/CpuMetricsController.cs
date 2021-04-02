@@ -18,9 +18,14 @@ namespace MetricsManager.Controllers
         }
 
         [HttpGet("agent/{agentId}/from/{fromTime}/to/{toTime}")]
-        public IActionResult GetMetricsFromAgent([FromRoute] int agentId, [FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
+        public IActionResult GetMetricsCpuFromAgent([FromRoute] int agentId, [FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
         {
-            _logger.LogInformation("Привет! Это наше первое сообщение в лог");
+            return Ok();
+        }
+
+        [HttpGet("from/{fromTime}/to/{toTime}")]
+        public IActionResult GetMetricsCpu([FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
+        {
             return Ok();
         }
     }
