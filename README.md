@@ -14,9 +14,8 @@
 в) протестировано в Postman`e корректная работа MetricsAgent c CpuMetricsController;
 г) не удалены методы [HttpGet("sql-test")] и [HttpGet("sql-read-write-test")].
    ( Я не понял их надо удалить или можно оставить, потому что в дальнейшем они не используются)
-д) не созданы пространства имен MetricsAgent.DAL,MetricsAgent.Models, MetricsAgent.Responses и MetricsAgent.Requests;
-   ( Я не увидел особого смысла нагружать еще директиву using, но если надо я переделаю, как в методичке)
-е) создан и протестирован Moq-тест для CpuMetricsController.
+д) созданы пространства имен MetricsAgent.DAL,MetricsAgent.Models, MetricsAgent.Responses и MetricsAgent.Requests;
+е) создан и протестирован Moq-тест для CpuMetricsController;
+ё) создано и протестировано логирование для CpuMetricsController;
+ж) создан и добавлен в решение новый проект MainLibrary, который содержит общие файлы ресурсов, классов, интерфейсов и пр.
 
- Выполнено на данный момент: 
-ё) создано и протестировано логирование для CpuMetricsController.
