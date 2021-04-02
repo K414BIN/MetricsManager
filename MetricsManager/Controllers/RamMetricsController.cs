@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MainLibrary;
 
 namespace MetricsManager.Controllers
 {
@@ -13,13 +14,13 @@ namespace MetricsManager.Controllers
     {
 
         [HttpGet("agent/{agentId}/available/memoryinGb/{memoryingb}")]
-        public IActionResult GetMetricsAvailabeMemoryFromAgent([FromRoute] int agentId, [FromRoute] MemoryInGB memoryInGB)
+        public IActionResult GetMetricsAvailabeMemoryFromAgent([FromRoute] int agentId, [FromRoute] MemoryInGb memoryInGB)
         {
             return Ok();
         }
 
         [HttpGet("available/memoryinGb/{memoryingb}")]
-        public IActionResult GetMetricsAvailabeMemory([FromRoute] MemoryInGB memoryInGB)
+        public IActionResult GetMetricsAvailabeMemory([FromRoute] MemoryInGb memoryInGB)
         {
             return Ok();
         }

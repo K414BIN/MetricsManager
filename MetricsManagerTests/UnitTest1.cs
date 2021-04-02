@@ -1,11 +1,13 @@
 using System;
+using MainLibrary;
 using MetricsManager.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Xunit;
+using MetricsManager;
 
 namespace MetricsManagerTests
 {
-   
+
     public class HddControllerUnitTests
     {
         private HddMetricsController controller;
@@ -20,9 +22,10 @@ namespace MetricsManagerTests
         {
             //Arrange
             var agentId = 1;
+            var whichMemory = MemoryInGb.FreeLeft;
 
             //Act
-            var result = controller.GetMetricsFreeLeftMemoryFromAgent(agentId, MemoryInGB.FreeLeft);
+            var result = controller.GetMetricsFreeLeftMemoryFromAgent(agentId, whichMemory);
 
             // Assert
             _ = Assert.IsAssignableFrom<IActionResult>(result);
@@ -43,7 +46,7 @@ namespace MetricsManagerTests
         {
             //Arrange
             var agentId = 1;
-            var whichMemory= MemoryInGB.FreeLeft;
+            var whichMemory= MemoryInGb.FreeLeft;
 
             //Act
             var result = controller.GetMetricsAvailabeMemoryFromAgent(agentId, whichMemory);
@@ -73,48 +76,6 @@ namespace MetricsManagerTests
 
             //Act
             var result = controller.GetMetricsErrorsCountFromAgent(agentId, fromTime, toTime, kindOfErrors);
-
-            // Assert
-            _ = Assert.IsAssignableFrom<IActionResult>(result);
-        }
-    }
-
-    public class CpuControllerUnitTests
-    {
-        private CpuMetricsController controller;
-
-        public CpuControllerUnitTests()
-        {
-            controller = new CpuMetricsController();
-        }
-
-        [Fact]
-        public void GetMetricsFromAgent_ReturnsOk()
-        {
-            //Arrange
-            var agentId = 1;
-            var fromTime = TimeSpan.FromSeconds(0);
-            var toTime = TimeSpan.FromSeconds(100);
-
-            //Act
-            var result = controller.GetMetricsFromAgent(agentId, fromTime, toTime);
-
-            // Assert
-            _ = Assert.IsAssignableFrom<IActionResult>(result);
-        }
-
-        [Fact]
-        public void GetMetricsByPercentileFromAgent_ReturnsOk()
-        {
-
-            //Arrange
-            var agentId = 1;
-            var fromTime = TimeSpan.FromSeconds(0);
-            var toTime = TimeSpan.FromSeconds(100);
-            var capacity = Percentile.P95;
-
-            //Act
-            var result = controller.GetMetricsByPercentileFromAgent(agentId, fromTime, toTime, capacity);
 
             // Assert
             _ = Assert.IsAssignableFrom<IActionResult>(result);

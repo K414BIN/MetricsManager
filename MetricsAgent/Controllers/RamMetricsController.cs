@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MainLibrary;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,7 +13,7 @@ namespace MetricsAgent.Controllers
     public class RamMetricsController : ControllerBase
     {
         [HttpGet("available/memoryinGb/{memoryingb}")]
-        public IActionResult GetMetricsAvailabeMemory([FromRoute] MemoryInGB memoryInGB)
+        public IActionResult GetMetricsAvailabeMemory([FromRoute] MemoryInGb memoryInGB)
         {
             return Ok();
         }

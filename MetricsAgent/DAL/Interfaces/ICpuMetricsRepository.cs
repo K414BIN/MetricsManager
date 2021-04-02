@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
-using System.Linq;
-using System.Threading.Tasks;
+using MainLibrary;
 using MetricsAgent.Controllers;
+using MetricsAgent.DAL.Models;
 
-namespace MetricsAgent
+namespace MetricsAgent.DAL.Interfaces
 {
 
     // маркировочный интерфейс

@@ -4,6 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 using Xunit;
 using Moq;
 using MetricsAgent;
+using MetricsAgent.DAL.Interfaces;
+using MetricsAgent.Requests;
+using MainLibrary;
+using MetricsAgent.DAL.Models;
 
 namespace MetricsAgentTests
 {
@@ -71,7 +75,7 @@ namespace MetricsAgentTests
         public void GetMetricsFrom_ReturnsOk()
         { 
             //Arrange
-            var whichMemory = MemoryInGB.FreeLeft;
+            var whichMemory = MemoryInGb.FreeLeft;
 
             //Act
             var result = controller.GetMetricsFreeLeftMemory(whichMemory);
@@ -93,7 +97,7 @@ namespace MetricsAgentTests
         public void GetMetricsFrom_ReturnsOk()
         {
             //Arrange
-            var whichMemory = MemoryInGB.FreeLeft;
+            var whichMemory = MemoryInGb.FreeLeft;
 
             //Act
             var result = controller.GetMetricsAvailabeMemory(whichMemory);

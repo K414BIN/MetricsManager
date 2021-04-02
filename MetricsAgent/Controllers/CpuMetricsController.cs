@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Linq;
+using MetricsAgent.DAL.Models;
 using System.Threading.Tasks;
+using MetricsAgent.DAL.Interfaces;
+using MetricsAgent.Requests;
+using MetricsAgent.Responses;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -77,7 +81,7 @@ namespace MetricsAgent.Controllers
                     string readQuery = "SELECT * FROM cpumetrics LIMIT 3";
 
                     // создаем массив, в который запишем объекты с данными из базы данных
-                    var returnArray = new CpuMetricDto[3];
+                    var returnArray = new CpuMetric[3];
                     // изменяем текст команды на наш запрос чтения
                     command.CommandText = readQuery;
 
@@ -90,7 +94,7 @@ namespace MetricsAgent.Controllers
                         while (reader.Read())
                         {
                             // создаем объект и записываем его в массив
-                            returnArray[counter] = new CpuMetricDto
+                            returnArray[counter] = new CpuMetric
                             {
                                 Id = reader.GetInt32(0), // читаем данные полученные из базы данных
                                 Value = reader.GetInt32(1), // преобразуя к целочисленному типу
@@ -109,7 +113,7 @@ namespace MetricsAgent.Controllers
         [HttpPost("create")]
         public IActionResult Create([FromBody] CpuMetricCreateRequest request)
         {
-            repository.Create(new CpuMetric
+           repository.Create(new CpuMetric
             {
                 Time = request.Time,
                 Value = request.Value
@@ -125,12 +129,12 @@ namespace MetricsAgent.Controllers
 
             var response = new AllCpuMetricsResponse()
             {
-                Metrics = new List<CpuMetricDto>()
+                Metrics = new List<DAL.Models.CpuMetric>()
             };
 
             foreach (var metric in metrics)
             {
-                response.Metrics.Add(new CpuMetricDto { Time = metric.Time, Value = metric.Value, Id = metric.Id });
+                response.Metrics.Add(new DAL.Models.CpuMetric { Time = metric.Time, Value = metric.Value, Id = metric.Id });
             }
 
             return Ok(response);

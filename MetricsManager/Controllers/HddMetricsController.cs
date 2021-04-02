@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MainLibrary;
 
 namespace MetricsManager.Controllers
 {
@@ -12,13 +13,13 @@ namespace MetricsManager.Controllers
     public class HddMetricsController : ControllerBase
     {
         [HttpGet("agent/{agentId}/left/memoryinGb/{memoryingb}")]
-        public IActionResult GetMetricsFreeLeftMemoryFromAgent([FromRoute] int agentId, [FromRoute] MemoryInGB memoryInGB)
+        public IActionResult GetMetricsFreeLeftMemoryFromAgent([FromRoute] int agentId, [FromRoute] MemoryInGb memoryInGB)
         {
             return Ok();
         }
 
         [HttpGet("left/memoryinGb/{memoryingb}")]
-        public IActionResult GetMetricsFreeLeftMemory([FromRoute] MemoryInGB memoryInGB)
+        public IActionResult GetMetricsFreeLeftMemory([FromRoute] MemoryInGb memoryInGB)
         {
             return Ok();
         }

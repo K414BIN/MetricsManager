@@ -8,5 +8,13 @@
     <PackageReference Include="System.Data.SQLite.Core" Version="1.0.113.7" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DAL\Repositories\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MainLibrary\MainLibrary.csproj" />
+  </ItemGroup>
+
 
 </Project>
