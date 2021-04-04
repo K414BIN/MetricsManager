@@ -64,7 +64,7 @@ namespace MetricsAgent
                 command.CommandText = "DROP TABLE IF EXISTS networkmetrics";
                 command.ExecuteNonQuery();
 
-                command.CommandText = @"CREATE TABLE DotNetmetrics(id INTEGER PRIMARY KEY, value INT)";
+                command.CommandText = @"CREATE TABLE dotnetmetrics(id INTEGER PRIMARY KEY, value INT)";
                 command.ExecuteNonQuery();
 
                 command.CommandText = @"CREATE TABLE rammetrics(id INTEGER PRIMARY KEY, value INT)";
@@ -90,7 +90,7 @@ namespace MetricsAgent
                 command.ExecuteNonQuery();
 
                 //заполняем таблицу NetworkMetrics
-                command.CommandText = "INSERT INTO Networkmetrics(value, time) VALUES(10,1)";
+                command.CommandText = "INSERT INTO networkmetrics(value, time) VALUES(10,1)";
                 command.ExecuteNonQuery();
                 command.CommandText = "INSERT INTO networkmetrics(value, time) VALUES(50,2)";
                 command.ExecuteNonQuery();
@@ -110,11 +110,11 @@ namespace MetricsAgent
                 command.ExecuteNonQuery();
 
                 //заполняем таблицу RamMetrics
-                command.CommandText = "INSERT INTO Rammetrics(value) VALUES(10)";
+                command.CommandText = "INSERT INTO rammetrics(value) VALUES(10)";
                 command.ExecuteNonQuery();
-                command.CommandText = "INSERT INTO Rammetrics(value) VALUES(50)";
+                command.CommandText = "INSERT INTO rammetrics(value) VALUES(50)";
                 command.ExecuteNonQuery();
-                command.CommandText = "INSERT INTO Rammetrics(value) VALUES(75)";
+                command.CommandText = "INSERT INTO rammetrics(value) VALUES(75)";
                 command.ExecuteNonQuery();
                 command.CommandText = "INSERT INTO rammetrics(value) VALUES(90)";
                 command.ExecuteNonQuery();

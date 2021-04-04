@@ -25,3 +25,9 @@ a) удален метод [HttpGet("sql-read-write-test")];
 в) отвалились тесты для MetricsManager;
 г) не смог сделать правильно метод Update в  NetworkMetricsController и  CpuMetricsController;
 д) для контроллеров  HddMetricsController, RamMetricsController и  DotNetMetricsController в проекте MetricsAgent не написаны требуемые методы.
+
+ Выполнено на данный момент: 
+
+a) исправлены синтаксичексие ошибки;
+б) отвалились тесты для MetricsManager и часть MtericAgent;
+в) в DotNetMetricsController в проекте MetricsAgent не написаны требуемые методы.

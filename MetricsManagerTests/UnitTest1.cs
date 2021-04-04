@@ -4,6 +4,7 @@ using MetricsManager.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Xunit;
 using MetricsManager;
+using Microsoft.Extensions.Logging;
 
 namespace MetricsManagerTests
 {
@@ -14,6 +15,7 @@ namespace MetricsManagerTests
 
         public HddControllerUnitTests()
         {
+
             controller = new HddMetricsController();
         }
 

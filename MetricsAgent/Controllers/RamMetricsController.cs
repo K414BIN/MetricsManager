@@ -88,6 +88,7 @@ namespace MetricsAgent.Controllers
         [HttpGet("getbyid")]
         public IActionResult GetById([FromRoute] int id)
         {
+            // что-то пошло не так это надо доделать
             _repository.GetById(id);
             return Ok();
         }

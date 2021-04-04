@@ -22,6 +22,10 @@ namespace MetricsManager.Controllers
             _logger.LogDebug(1, "NLog встроен в HddMetricsController");
         }
 
+        public HddMetricsController()
+        {
+        }
+
         [HttpGet("agent/{agentId}/left/memoryinGb/{memoryingb}")]
         public IActionResult GetMetricsFreeLeftMemoryFromAgent([FromRoute] int agentId, [FromRoute] MemoryInGb memoryInGB)
         {

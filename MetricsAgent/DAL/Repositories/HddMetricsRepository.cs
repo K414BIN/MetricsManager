@@ -59,7 +59,7 @@ namespace MetricsAgent.DAL.Repositories
         {
             using var cmd = new SQLiteCommand(connection);
             // прописываем в команду SQL запрос на обновление данных
-            cmd.CommandText = "UPDATE Hddmetrics SET value = @value WHERE id=@id;";
+            cmd.CommandText = "UPDATE hddmetrics SET value = @value WHERE id=@id;";
             cmd.Parameters.AddWithValue("@id", item.Id);
             cmd.Parameters.AddWithValue("@value", item.FreeMemorySizeInGb);
             cmd.Prepare();
@@ -72,7 +72,7 @@ namespace MetricsAgent.DAL.Repositories
             using var cmd = new SQLiteCommand(connection);
 
             // прописываем в команду SQL запрос на получение всех данных из таблицы
-            cmd.CommandText = "SELECT * FROM Hddmetrics";
+            cmd.CommandText = "SELECT * FROM hddmetrics";
 
             var returnList = new List<HddMetric>();
 
@@ -96,7 +96,7 @@ namespace MetricsAgent.DAL.Repositories
         public HddMetric GetById(int id)
         {
             using var cmd = new SQLiteCommand(connection);
-            cmd.CommandText = "SELECT * FROM Hddmetrics WHERE id=@id";
+            cmd.CommandText = "SELECT * FROM hddmetrics WHERE id=@id";
             using (SQLiteDataReader reader = cmd.ExecuteReader())
             {
                 // если удалось что то прочитать

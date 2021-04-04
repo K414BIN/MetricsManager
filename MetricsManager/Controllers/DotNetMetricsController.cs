@@ -21,6 +21,10 @@ namespace MetricsManager.Controllers
             _logger.LogDebug(1, "NLog встроен в DotNetMetricsController");
         }
 
+        public DotNetMetricsController()
+        {
+        }
+
         [HttpGet("agent/{agentId}/errors-count/from/{fromTime}/to/{toTime}/errorstype/{errorstype}")]
         public IActionResult GetMetricsErrorsCountFromAgent([FromRoute] int agentId, [FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime, [FromRoute] ErrorsType errorsType)
         {

@@ -25,7 +25,7 @@ namespace MetricsAgent.DAL.Repositories
                 // создаем команду
                 using var cmd = new SQLiteCommand(_connection);
                 // создаем таблицу, если ее нет 
-                cmd.CommandText = @"CREATE TABLE IF NOT EXISTS Rammetrics   (
+                cmd.CommandText = @"CREATE TABLE IF NOT EXISTS rammetrics   (
                                                                         `id` int(11)  ,
                                                                          `value` int, 
                                                                          PRIMARY KEY(`id`)
@@ -33,7 +33,7 @@ namespace MetricsAgent.DAL.Repositories
                 cmd.ExecuteNonQuery();
 
                 // прописываем в команду SQL запрос на вставку данных
-                cmd.CommandText = "INSERT INTO Rammetrics(value) VALUES(@value)";
+                cmd.CommandText = "INSERT INTO rammetrics(value) VALUES(@value)";
 
                 // добавляем параметры в запрос из нашего объекта
                 cmd.Parameters.AddWithValue("@value", item.AvailableMemorySizeInGb);
@@ -47,7 +47,7 @@ namespace MetricsAgent.DAL.Repositories
             {
                 using var cmd = new SQLiteCommand(_connection);
                 // прописываем в команду SQL запрос на удаление данных
-                cmd.CommandText = "DELETE FROM Rammetrics WHERE id=@id";
+                cmd.CommandText = "DELETE FROM rammetrics WHERE id=@id";
                 cmd.Parameters.AddWithValue("@id", id);
                 cmd.Prepare();
                 cmd.ExecuteNonQuery();
@@ -57,7 +57,7 @@ namespace MetricsAgent.DAL.Repositories
             {
                 using var cmd = new SQLiteCommand(_connection);
                 // прописываем в команду SQL запрос на обновление данных
-                cmd.CommandText = "UPDATE Rammetrics SET value = @value WHERE id=@id;";
+                cmd.CommandText = "UPDATE rammetrics SET value = @value WHERE id=@id;";
                 cmd.Parameters.AddWithValue("@id", item.Id);
                 cmd.Parameters.AddWithValue("@value", item.AvailableMemorySizeInGb);
                 cmd.Prepare();
@@ -69,7 +69,7 @@ namespace MetricsAgent.DAL.Repositories
                 using var cmd = new SQLiteCommand(_connection);
 
                 // прописываем в команду SQL запрос на получение всех данных из таблицы
-                cmd.CommandText = "SELECT * FROM Rammetrics";
+                cmd.CommandText = "SELECT * FROM rammetrics";
 
                 var returnList = new List<RamMetric>();
 
@@ -92,7 +92,7 @@ namespace MetricsAgent.DAL.Repositories
             public RamMetric GetById(int id)
             {
                 using var cmd = new SQLiteCommand(_connection);
-                cmd.CommandText = "SELECT * FROM Rammetrics WHERE id=@id";
+                cmd.CommandText = "SELECT * FROM rammetrics WHERE id=@id";
                 using (SQLiteDataReader reader = cmd.ExecuteReader())
                 {
                     // если удалось что то прочитать
