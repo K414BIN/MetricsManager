@@ -34,6 +34,7 @@ namespace MetricsAgent.DAL.Repositories
             cmd.CommandText = "INSERT INTO  dotnetmetrics(value, time) VALUES(@value, @time)";
             // добавляем параметры в запрос из нашего объекта
             cmd.Parameters.AddWithValue("@value",item.ErrorsCount);
+            cmd.Parameters.AddWithValue("@time", item.Time.TotalSeconds);
             cmd.Prepare();
 
             // выполнение команды

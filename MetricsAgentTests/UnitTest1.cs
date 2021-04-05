@@ -105,9 +105,10 @@ namespace MetricsAgentTests
      
         public HddControllerUnitTests()
         {
+            _mock = new Mock<IHddMetricsRepository>();
             _mocklogger = new Mock<ILogger<HddControllerUnitTests>>();
              controller = new HddMetricsController(_mock.Object);
-            _mock = new Mock<IHddMetricsRepository>();
+           
         }
 
         [Fact]
@@ -157,9 +158,10 @@ namespace MetricsAgentTests
 
         public DotNetControllerUnitTests()
         {
-            controller = new DotNetMetricsController(_mock.Object);
+          
             _mock = new Mock<IDotNetMetricsRepository>();
             _mocklogger = new Mock<ILogger<DotNetControllerUnitTests>>();
+            controller = new DotNetMetricsController(_mock.Object);
         }
 
         [Fact]

@@ -111,6 +111,7 @@ namespace MetricsManagerTests
     }
     public class CpuControllerUnitTests
     {
+        
         private CpuMetricsController controller;
 
         public CpuControllerUnitTests()

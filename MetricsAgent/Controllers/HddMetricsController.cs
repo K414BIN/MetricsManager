@@ -19,13 +19,13 @@ namespace MetricsAgent.Controllers
 
     public class HddMetricsController : ControllerBase
     {
- 
-        private HddMetricsRepository _repository;
+        private IHddMetricsRepository _repository;
 
         public HddMetricsController(IHddMetricsRepository repository)
         {
-            _repository = (HddMetricsRepository)repository;
+            _repository = repository;
         }
+        
 
         [HttpGet("left/memoryinGb/{memoryingb}")]
         public IActionResult GetMetricsFreeLeftMemory([FromRoute] MemoryInGb memoryInGb)
