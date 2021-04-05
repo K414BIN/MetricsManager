@@ -9,6 +9,8 @@ namespace MetricsAgent.DAL.Models
     {
         public int Id { get; set; }
 
+        public TimeSpan Time { get; set; }
+
         public int ErrorsCount { get; set; }
     }
 }

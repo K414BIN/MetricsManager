@@ -23,16 +23,15 @@ namespace MetricsAgent.DAL.Repositories
             // создаем команду
             using var cmd = new SQLiteCommand(_connection);
             // создаем таблицу, если ее нет 
-            cmd.CommandText = @"CREATE TABLE IF NOT EXISTS dotnetmetrics   (
+            cmd.CommandText = @"CREATE TABLE IF NOT EXISTS  dotnetmetrics   (
                                                                         `id` int(11)  ,
-                                                                         `value` int, 
+                                                                         `value` int, `time` int64,
                                                                          PRIMARY KEY(`id`)
                                                                           );";
             cmd.ExecuteNonQuery();
-
+        
             // прописываем в команду SQL запрос на вставку данных
-            cmd.CommandText = "INSERT INTO dotnetmetrics(value) VALUES(@value)";
-
+            cmd.CommandText = "INSERT INTO  dotnetmetrics(value, time) VALUES(@value, @time)";
             // добавляем параметры в запрос из нашего объекта
             cmd.Parameters.AddWithValue("@value",item.ErrorsCount);
             cmd.Prepare();
@@ -58,6 +57,7 @@ namespace MetricsAgent.DAL.Repositories
             cmd.CommandText = "UPDATE dotnetmetrics SET value = @value WHERE id=@id;";
             cmd.Parameters.AddWithValue("@id", item.Id);
             cmd.Parameters.AddWithValue("@value", item.ErrorsCount);
+            cmd.Parameters.AddWithValue("@time", item.Time.TotalSeconds);
             cmd.Prepare();
             cmd.ExecuteNonQuery();
         }
@@ -79,6 +79,7 @@ namespace MetricsAgent.DAL.Repositories
                     // добавляем объект в список возврата
                     returnList.Add(new DotNetMetric
                     {
+                        Time = TimeSpan.FromSeconds(reader.GetInt32(0)),
                         Id = reader.GetInt32(0),
                         ErrorsCount = reader.GetInt32(0)
                     });
@@ -100,6 +101,7 @@ namespace MetricsAgent.DAL.Repositories
                     return new DotNetMetric
                     {
                         Id = reader.GetInt32(0),
+                        Time = TimeSpan.FromSeconds(reader.GetInt32(0)),
                         ErrorsCount = reader.GetInt32(0)
                     };
                 }

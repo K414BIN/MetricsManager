@@ -50,7 +50,6 @@ namespace MetricsAgent.DAL.Repositories
             using var cmd = new SQLiteCommand(connection);
             // прописываем в команду SQL запрос на удаление данных
             cmd.CommandText = "DELETE FROM networkmetrics WHERE id=@id";
-
             cmd.Parameters.AddWithValue("@id", id);
             cmd.Prepare();
             cmd.ExecuteNonQuery();

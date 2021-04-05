@@ -64,9 +64,6 @@ namespace MetricsAgent
                 command.CommandText = "DROP TABLE IF EXISTS networkmetrics";
                 command.ExecuteNonQuery();
 
-                command.CommandText = @"CREATE TABLE dotnetmetrics(id INTEGER PRIMARY KEY, value INT)";
-                command.ExecuteNonQuery();
-
                 command.CommandText = @"CREATE TABLE rammetrics(id INTEGER PRIMARY KEY, value INT)";
                 command.ExecuteNonQuery();
 
@@ -79,6 +76,9 @@ namespace MetricsAgent
                 command.CommandText = @"CREATE TABLE cpumetrics(id INTEGER PRIMARY KEY, value INT, time INT64)";
                 command.ExecuteNonQuery();
 
+                command.CommandText = @"CREATE TABLE dotnetmetrics(id INTEGER PRIMARY KEY, value INT, time INT64)";
+                command.ExecuteNonQuery();
+
                 // заполняем таблицу CPUMetrics
                 command.CommandText = "INSERT INTO cpumetrics(value, time) VALUES(10,1)";
                 command.ExecuteNonQuery();
@@ -87,6 +87,16 @@ namespace MetricsAgent
                 command.CommandText = "INSERT INTO cpumetrics(value, time) VALUES(75,4)";
                 command.ExecuteNonQuery();
                 command.CommandText = "INSERT INTO cpumetrics(value, time) VALUES(90,5)";
+                command.ExecuteNonQuery();
+
+                //заполняем таблицу DotNetMetrics
+                command.CommandText = "INSERT INTO dotnetmetrics(value, time) VALUES(10,1)";
+                command.ExecuteNonQuery();
+                command.CommandText = "INSERT INTO dotnetmetrics(value, time) VALUES(50,2)";
+                command.ExecuteNonQuery();
+                command.CommandText = "INSERT INTO dotnetmetrics(value, time) VALUES(75,4)";
+                command.ExecuteNonQuery();
+                command.CommandText = "INSERT INTO dotnetmetrics(value, time) VALUES(90,5)";
                 command.ExecuteNonQuery();
 
                 //заполняем таблицу NetworkMetrics
@@ -118,18 +128,6 @@ namespace MetricsAgent
                 command.ExecuteNonQuery();
                 command.CommandText = "INSERT INTO rammetrics(value) VALUES(90)";
                 command.ExecuteNonQuery();
-
-                //заполняем таблицу DotnetMetrics
-                command.CommandText = "INSERT INTO dotnetmetrics(value) VALUES(10)";
-                command.ExecuteNonQuery();
-                command.CommandText = "INSERT INTO dotnetmetrics(value) VALUES(50)";
-                command.ExecuteNonQuery();
-                command.CommandText = "INSERT INTO dotnetmetrics(value) VALUES(75)";
-                command.ExecuteNonQuery();
-                command.CommandText = "INSERT INTO dotnetmetrics(value) VALUES(90)";
-                command.ExecuteNonQuery();
-
-
             }
         }
 

@@ -172,7 +172,7 @@ namespace MetricsAgentTests
 
             //Act
             var result = controller.GetMetricsErrorsCount( fromTime, toTime, kindOfErrors);
-
+            
             // Assert
             _ = Assert.IsAssignableFrom<IActionResult>(result);
         }
