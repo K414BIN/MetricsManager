@@ -22,8 +22,8 @@ namespace MetricsAgent.DAL.Repositories
             // создаем команду
             using var cmd = new SQLiteCommand(connection);
             cmd.CommandText= @"CREATE TABLE IF NOT EXISTS networkmetrics (
-                                                                        `id` int(11)  ,
-                                                                         `value` int, `time` int64,
+                                                                        `id` INTEGER ,
+                                                                         `value` INT, `time` INT64,
                                                                          PRIMARY KEY(`id`)
                                                                           );";
        //     cmd.CommandText = @"CREATE TABLE networkmetrics(id INTEGER PRIMARY KEY, value INT, time INT)";
@@ -99,6 +99,8 @@ namespace MetricsAgent.DAL.Repositories
         {
             using var cmd = new SQLiteCommand(connection);
             cmd.CommandText = "SELECT * FROM networkmetrics WHERE id=@id";
+            cmd.Parameters.AddWithValue("@id", id);
+            cmd.Prepare();
             using (SQLiteDataReader reader = cmd.ExecuteReader())
             {
                 // если удалось что то прочитать

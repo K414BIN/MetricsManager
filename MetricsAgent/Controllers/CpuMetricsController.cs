@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
-using System.Linq;
 using MetricsAgent.DAL.Models;
-using System.Threading.Tasks;
 using MetricsAgent.DAL.Interfaces;
 using MetricsAgent.Requests;
 using MetricsAgent.Responses;
@@ -17,13 +15,7 @@ namespace MetricsAgent.Controllers
     [ApiController]
     public class CpuMetricsController : ControllerBase
     {
-        private readonly ILogger<CpuMetricsController> _logger;
-
-        public CpuMetricsController(ILogger<CpuMetricsController> logger)
-        {
-            _logger = logger;
-            _logger.LogDebug(1, "NLog встроен в CpuMetricsController");
-        }
+       
         private ICpuMetricsRepository _repository;
 
         public CpuMetricsController(ICpuMetricsRepository repository)
@@ -31,24 +23,7 @@ namespace MetricsAgent.Controllers
             _repository = repository;
         }
 
-        [HttpGet("sql-test")]
-        public IActionResult TryToSqlLite()
-        {
-            string cs = "Data Source=:memory:";
-            string stm = "SELECT SQLITE_VERSION()";
-
-            using (var con = new SQLiteConnection(cs))
-            {
-                con.Open();
-
-                using var cmd = new SQLiteCommand(stm, con);
-                string version = cmd.ExecuteScalar().ToString();
-
-                return Ok(version);
-            }
-        }
-
-        [HttpDelete("delete")]
+        [HttpDelete("delete/{id}")]
         public IActionResult Delete([FromRoute] int id)
         {
             _repository.Delete(id);
@@ -56,18 +31,14 @@ namespace MetricsAgent.Controllers
         }
 
         [HttpPut("update")]
-        public IActionResult Update([FromBody] CpuMetricUpdateRequest request)
+        public IActionResult Update([FromBody] CpuMetric request)
         {
-            // что-то пошло не так это надо доделать
-            var result = new CpuMetric{Value = request.Value,Time=request.Time};
-            var response =_repository.GetById(request.Id);
-
-            _repository.Update(result); 
-
+            _repository.Update(request);
+   
             return Ok();
         }
         
-        [HttpGet("getbyid")]
+        [HttpGet("getbyid/{id}")]
         public IActionResult GetById([FromRoute] int id)
         {
             _repository.GetById(id);

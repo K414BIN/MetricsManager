@@ -7,6 +7,7 @@ using MainLibrary;
 using MetricsAgent.Controllers;
 using MetricsAgent.DAL.Models;
 using MetricsAgent.DAL.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MetricsAgent.DAL.Repositories
 {
@@ -27,9 +28,9 @@ namespace MetricsAgent.DAL.Repositories
             using var cmd = new SQLiteCommand(_connection);
             // создаем таблицу, если ее нет 
             cmd.CommandText = @"CREATE TABLE IF NOT EXISTS cpumetrics   (
-                                                                        `id` int(11)  ,
-                                                                         `value` int, `time` int64,
-                                                                         PRIMARY KEY(`id`)
+                                                                         `id` INTEGER  ,
+                                                                         `value` INT, `time` INT64,
+                                                                          PRIMARY KEY(`id`)
                                                                           );";
             cmd.ExecuteNonQuery();
 
@@ -54,7 +55,6 @@ namespace MetricsAgent.DAL.Repositories
             using var cmd = new SQLiteCommand(_connection);
             // прописываем в команду SQL запрос на удаление данных
             cmd.CommandText = "DELETE FROM cpumetrics WHERE id=@id";
-
             cmd.Parameters.AddWithValue("@id", id);
             cmd.Prepare();
             cmd.ExecuteNonQuery();
@@ -69,7 +69,6 @@ namespace MetricsAgent.DAL.Repositories
             cmd.Parameters.AddWithValue("@value", item.Value);
             cmd.Parameters.AddWithValue("@time", item.Time.TotalSeconds);
             cmd.Prepare();
-
             cmd.ExecuteNonQuery();
         }
 
@@ -105,12 +104,11 @@ namespace MetricsAgent.DAL.Repositories
         {
             using var cmd = new SQLiteCommand(_connection);
             cmd.CommandText = "SELECT * FROM cpumetrics WHERE id=@id";
+            cmd.Parameters.AddWithValue("@id", id);
+            cmd.Prepare();
             using (SQLiteDataReader reader = cmd.ExecuteReader())
-            {
-                // если удалось что то прочитать
                 if (reader.Read())
                 {
-                    // возвращаем прочитанное
                     return new CpuMetric
                     {
                         Id = reader.GetInt32(0),
@@ -120,10 +118,8 @@ namespace MetricsAgent.DAL.Repositories
                 }
                 else
                 {
-                    // не нашлось запись по идентификатору, не делаем ничего
                     return null;
                 }
-            }
         }
     }
 }

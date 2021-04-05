@@ -22,13 +22,11 @@ namespace MetricsManager.Controllers
             _logger.LogDebug(1, "NLog встроен в HddMetricsController");
         }
 
-        public HddMetricsController()
-        {
-        }
-
-        [HttpGet("agent/{agentId}/left/memoryinGb/{memoryingb}")]
+        [HttpGet("agent/{agentId}/available/memoryinGb/{memoryingb}")]
         public IActionResult GetMetricsFreeLeftMemoryFromAgent([FromRoute] int agentId, [FromRoute] MemoryInGb memoryInGB)
         {
+            // тестовое сообщение, можно удалить
+             _logger.LogInformation("Привет! Это наше первое сообщение в лог");
             return Ok();
         }
 

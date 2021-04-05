@@ -24,9 +24,9 @@ namespace MetricsAgent.DAL.Repositories
             using var cmd = new SQLiteCommand(_connection);
             // создаем таблицу, если ее нет 
             cmd.CommandText = @"CREATE TABLE IF NOT EXISTS  dotnetmetrics   (
-                                                                        `id` int(11)  ,
-                                                                         `value` int, `time` int64,
-                                                                         PRIMARY KEY(`id`)
+                                                                              `id` INTEGER  ,
+                                                                              `value` INT, `time` INT64,
+                                                                               PRIMARY KEY(`id`)
                                                                           );";
             cmd.ExecuteNonQuery();
         
@@ -92,6 +92,8 @@ namespace MetricsAgent.DAL.Repositories
         {
             using var cmd = new SQLiteCommand(_connection);
             cmd.CommandText = "SELECT * FROM dotnetmetrics WHERE id=@id";
+            cmd.Parameters.AddWithValue("@id", id);
+            cmd.Prepare();
             using (SQLiteDataReader reader = cmd.ExecuteReader())
             {
                 // если удалось что то прочитать

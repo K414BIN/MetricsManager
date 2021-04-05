@@ -22,9 +22,7 @@ namespace MetricsManager.Controllers
             _logger.LogDebug(1, "NLog встроен в RamMetricsController");
         }
 
-        public RamMetricsController()
-        {
-        }
+   
 
         [HttpGet("agent/{agentId}/available/memoryinGb/{memoryingb}")]
         public IActionResult GetMetricsAvailabeMemoryFromAgent([FromRoute] int agentId, [FromRoute] MemoryInGb memoryInGB)

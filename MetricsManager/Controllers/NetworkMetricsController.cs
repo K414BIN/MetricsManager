@@ -14,10 +14,7 @@ namespace MetricsManager.Controllers
     {
         private readonly ILogger<NetworkMetricsController> _logger;
 
-        public NetworkMetricsController()
-        {
-        }
-
+      
         public NetworkMetricsController(ILogger<NetworkMetricsController> logger)
         {
             _logger = logger;

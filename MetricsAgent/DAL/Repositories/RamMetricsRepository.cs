@@ -26,8 +26,8 @@ namespace MetricsAgent.DAL.Repositories
                 using var cmd = new SQLiteCommand(_connection);
                 // создаем таблицу, если ее нет 
                 cmd.CommandText = @"CREATE TABLE IF NOT EXISTS rammetrics   (
-                                                                        `id` int(11)  ,
-                                                                         `value` int, 
+                                                                        `id` INTEGER  ,
+                                                                         `value` INT, 
                                                                          PRIMARY KEY(`id`)
                                                                           );";
                 cmd.ExecuteNonQuery();
@@ -93,6 +93,8 @@ namespace MetricsAgent.DAL.Repositories
             {
                 using var cmd = new SQLiteCommand(_connection);
                 cmd.CommandText = "SELECT * FROM rammetrics WHERE id=@id";
+                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Prepare();
                 using (SQLiteDataReader reader = cmd.ExecuteReader())
                 {
                     // если удалось что то прочитать

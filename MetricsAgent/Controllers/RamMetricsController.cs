@@ -17,13 +17,6 @@ namespace MetricsAgent.Controllers
     [ApiController]
     public class RamMetricsController : ControllerBase
     {
-        private readonly ILogger<RamMetricsController> _logger;
-
-        public RamMetricsController(ILogger<RamMetricsController> logger)
-        {
-            _logger = logger;
-            _logger.LogDebug(1, "NLog встроен в RamMetricsController");
-        }
         private IRamMetricsRepository _repository;
 
         public RamMetricsController(IRamMetricsRepository repository)
@@ -66,7 +59,7 @@ namespace MetricsAgent.Controllers
             return Ok(response);
         }
 
-        [HttpDelete("delete")]
+        [HttpDelete("delete/{id}")]
         public IActionResult Delete([FromRoute] int id)
         {
             _repository.Delete(id);
@@ -74,22 +67,16 @@ namespace MetricsAgent.Controllers
         }
 
         [HttpPut("update")]
-        public IActionResult Update([FromBody] RamMetricUpdateRequest request)
+        public IActionResult Update([FromBody] RamMetric request)
         {
-            // что-то пошло не так это надо доделать
-            var result = new RamMetric { AvailableMemorySizeInGb = request.Value };
-            var response = _repository.GetById(request.Id);
-
-            _repository.Update(result);
-
+            _repository.Update(request);
             return Ok();
         }
 
-        [HttpGet("getbyid")]
+        [HttpGet("getbyid/{id}")]
         public IActionResult GetById([FromRoute] int id)
         {
-            // что-то пошло не так это надо доделать
-            _repository.GetById(id);
+           _repository.GetById(id);
             return Ok();
         }
     }

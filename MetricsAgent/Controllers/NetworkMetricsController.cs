@@ -16,13 +16,6 @@ namespace MetricsAgent.Controllers
     [ApiController]
     public class NetworkMetricsController : ControllerBase
     {
-        private readonly ILogger<NetworkMetricsController> _logger;
-
-        public NetworkMetricsController(ILogger<NetworkMetricsController> logger)
-        {
-            _logger = logger;
-            _logger.LogDebug(1, "NLog встроен в NetworkMetricsController");
-        }
 
         private INetworkMetricsRepository _repository;
 
@@ -67,7 +60,7 @@ namespace MetricsAgent.Controllers
             return Ok(response);
         }
 
-        [HttpDelete("delete")]
+        [HttpDelete("delete/{id}")]
         public IActionResult Delete([FromRoute] int id)
         {
             _repository.Delete(id);
@@ -75,18 +68,13 @@ namespace MetricsAgent.Controllers
         }
 
         [HttpPut("update")]
-        public IActionResult Update([FromBody] NetworkMetricUpdateRequest request)
+        public IActionResult Update([FromBody] NetworkMetric request)
         {
-            // что-то пошло не так это надо доделать
-            var result = new NetworkMetric { Value = request.Value, Time = request.Time };
-            var response = _repository.GetById(request.Id);
-
-            _repository.Update(result);
-
+            _repository.Update(request);
             return Ok();
         }
 
-        [HttpGet("getbyid")]
+        [HttpGet("getbyid/{id}")]
         public IActionResult GetById([FromRoute] int id)
         {
             _repository.GetById(id);

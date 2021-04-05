@@ -12,6 +12,7 @@ namespace MetricsManagerTests
     public class HddControllerUnitTests
     {
         private HddMetricsController controller;
+      
 
         public HddControllerUnitTests()
         {

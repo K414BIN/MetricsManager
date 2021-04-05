@@ -17,9 +17,6 @@ namespace MetricsManager.Controllers
             _logger.LogDebug(1, "NLog встроен в CpuMetricsController");
         }
 
-        public CpuMetricsController()
-        {
-        }
 
         [HttpGet("agent/{agentId}/from/{fromTime}/to/{toTime}")]
         public IActionResult GetMetricsCpuFromAgent([FromRoute] int agentId, [FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
