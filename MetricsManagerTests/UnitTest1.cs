@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Xunit;
 using MetricsManager;
 using Microsoft.Extensions.Logging;
+using NLog;
 
 namespace MetricsManagerTests
 {

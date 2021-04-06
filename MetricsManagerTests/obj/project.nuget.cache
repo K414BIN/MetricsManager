@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "tHMf+VTRR4HA2Lzbjm7JoIx9JGZyAMdhJvV86EEq7vPFtHqL3fAu6xOI5ojd9zHWE6WeNuxMOuaOMi9Pei/6JQ==",
+  "dgSpecHash": "jd7hVNuu3EgvM1541AGJmq3MSyHEF4DmquvD4GmHE0uKQvLz/FiTyx6gNmlZw1dliNtZ5QY5r66z5gJjM5NdKQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\akradioman3\\source\\repos\\MetricsManagerTests\\MetricsManagerTests.csproj",
   "expectedPackageFiles": [
@@ -25,8 +25,8 @@
     "C:\\Users\\akradioman3\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
     "C:\\Users\\akradioman3\\.nuget\\packages\\newtonsoft.json\\9.0.1\\newtonsoft.json.9.0.1.nupkg.sha512",
     "C:\\Users\\akradioman3\\.nuget\\packages\\nlog\\4.7.9\\nlog.4.7.9.nupkg.sha512",
-    "C:\\Users\\akradioman3\\.nuget\\packages\\nlog.extensions.logging\\1.7.1\\nlog.extensions.logging.1.7.1.nupkg.sha512",
-    "C:\\Users\\akradioman3\\.nuget\\packages\\nlog.web.aspnetcore\\4.11.0\\nlog.web.aspnetcore.4.11.0.nupkg.sha512",
+    "C:\\Users\\akradioman3\\.nuget\\packages\\nlog.extensions.logging\\1.7.2\\nlog.extensions.logging.1.7.2.nupkg.sha512",
+    "C:\\Users\\akradioman3\\.nuget\\packages\\nlog.web.aspnetcore\\4.12.0\\nlog.web.aspnetcore.4.12.0.nupkg.sha512",
     "C:\\Users\\akradioman3\\.nuget\\packages\\nuget.frameworks\\5.0.0\\nuget.frameworks.5.0.0.nupkg.sha512",
     "C:\\Users\\akradioman3\\.nuget\\packages\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\akradioman3\\.nuget\\packages\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
