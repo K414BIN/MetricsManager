@@ -1,0 +1,53 @@
+2021-04-02 18:24:01.1189 Info Microsoft.Extensions.Hosting.Internal.ConsoleLifetime.OnApplicationStarted Application started. Press Ctrl+C to shut down.
+2021-04-02 18:24:01.1189 Info Microsoft.Extensions.Hosting.Internal.ConsoleLifetime.OnApplicationStarted Hosting environment: Development
+2021-04-02 18:24:01.1363 Info Microsoft.Extensions.Hosting.Internal.ConsoleLifetime.OnApplicationStarted Content root path: C:\Users\akradioman3\source\repos\MetricsManager
+2021-04-02 18:24:01.1525 Warn Microsoft.AspNetCore.HttpsPolicy.HttpsLoggingExtensions.FailedToDeterminePort Failed to determine the https port for redirect.
+2021-04-02 18:24:26.7365 Info MetricsManager.Controllers.CpuMetricsController.GetMetricsFromAgent Привет! Это наше первое сообщение в лог
+2021-04-02 18:24:36.5880 Info MetricsManager.Controllers.NetworkMetricsController.GetMetricsNetworkFromAgent Привет! Это наше первое сообщение в лог
+2021-04-02 18:24:44.4413 Info MetricsManager.Controllers.RamMetricsController.GetMetricsAvailabeMemoryFromAgent Привет! Это наше первое сообщение в лог
+2021-04-02 18:26:49.3268 Info MetricsManager.Controllers.DotNetMetricsController.GetMetricsErrorsCountFromAgent Привет! Это наше первое сообщение в лог
+2021-04-02 18:29:03.4382 Info MetricsManager.Controllers.HddMetricsController.GetMetricsFreeLeftMemoryFromAgent Привет! Это наше первое сообщение в лог
+2021-04-02 22:37:35.5895 Info Microsoft.Extensions.Hosting.Internal.ConsoleLifetime.OnApplicationStarted Application started. Press Ctrl+C to shut down.
+2021-04-02 22:37:35.5895 Info Microsoft.Extensions.Hosting.Internal.ConsoleLifetime.OnApplicationStarted Hosting environment: Development
+2021-04-02 22:37:35.6056 Info Microsoft.Extensions.Hosting.Internal.ConsoleLifetime.OnApplicationStarted Content root path: C:\Users\akradioman3\source\repos\MetricsManager
+2021-04-02 22:37:35.6056 Warn Microsoft.AspNetCore.HttpsPolicy.HttpsLoggingExtensions.FailedToDeterminePort Failed to determine the https port for redirect.
+2021-04-05 11:05:06.6659 Info Microsoft.Extensions.Hosting.Internal.ConsoleLifetime.OnApplicationStarted Application started. Press Ctrl+C to shut down.
+2021-04-05 11:05:06.7036 Info Microsoft.Extensions.Hosting.Internal.ConsoleLifetime.OnApplicationStarted Hosting environment: Development
+2021-04-05 11:05:06.7036 Info Microsoft.Extensions.Hosting.Internal.ConsoleLifetime.OnApplicationStarted Content root path: C:\Users\akradioman3\source\repos\MetricsManager
+2021-04-05 11:05:06.6948 Warn Microsoft.AspNetCore.HttpsPolicy.HttpsLoggingExtensions.FailedToDeterminePort Failed to determine the https port for redirect.
+2021-04-05 11:06:27.3308 Error Microsoft.AspNetCore.Diagnostics.DiagnosticsLoggerExtensions.UnhandledException An unhandled exception has occurred while executing the request.System.InvalidOperationException: Multiple constructors accepting all given argument types have been found in type 'MetricsManager.Controllers.NetworkMetricsController'. There should only be one applicable constructor.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.TryFindMatchingConstructor(Type instanceType, Type[] argumentTypes, ConstructorInfo& matchingConstructor, Nullable`1[]& parameterMap)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.FindApplicableConstructor(Type instanceType, Type[] argumentTypes, ConstructorInfo& matchingConstructor, Nullable`1[]& matchingParameterMap)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateFactory(Type instanceType, Type[] argumentTypes)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.CreateActivator(ControllerActionDescriptor descriptor)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.CreateControllerFactory(ControllerActionDescriptor descriptor)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvokerCache.GetCachedResult(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvokerProvider.OnProvidersExecuting(ActionInvokerProviderContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionInvokerFactory.CreateInvoker(ActionContext actionContext)
+   at Microsoft.AspNetCore.Mvc.Routing.ActionEndpointFactory.<>c__DisplayClass7_0.<CreateRequestDelegate>b__0(HttpContext context)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2021-04-05 11:07:48.5605 Error Microsoft.AspNetCore.Diagnostics.DiagnosticsLoggerExtensions.UnhandledException An unhandled exception has occurred while executing the request.System.InvalidOperationException: Multiple constructors accepting all given argument types have been found in type 'MetricsManager.Controllers.RamMetricsController'. There should only be one applicable constructor.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.TryFindMatchingConstructor(Type instanceType, Type[] argumentTypes, ConstructorInfo& matchingConstructor, Nullable`1[]& parameterMap)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.FindApplicableConstructor(Type instanceType, Type[] argumentTypes, ConstructorInfo& matchingConstructor, Nullable`1[]& matchingParameterMap)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateFactory(Type instanceType, Type[] argumentTypes)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.CreateActivator(ControllerActionDescriptor descriptor)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.CreateControllerFactory(ControllerActionDescriptor descriptor)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvokerCache.GetCachedResult(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvokerProvider.OnProvidersExecuting(ActionInvokerProviderContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionInvokerFactory.CreateInvoker(ActionContext actionContext)
+   at Microsoft.AspNetCore.Mvc.Routing.ActionEndpointFactory.<>c__DisplayClass7_0.<CreateRequestDelegate>b__0(HttpContext context)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2021-04-05 12:56:50.6250 Info Microsoft.Extensions.Hosting.Internal.ConsoleLifetime.OnApplicationStarted Application started. Press Ctrl+C to shut down.
+2021-04-05 12:56:50.6624 Info Microsoft.Extensions.Hosting.Internal.ConsoleLifetime.OnApplicationStarted Hosting environment: Development
+2021-04-05 12:56:50.6699 Info Microsoft.Extensions.Hosting.Internal.ConsoleLifetime.OnApplicationStarted Content root path: C:\Users\akradioman3\source\repos\MetricsManager
+2021-04-05 12:56:50.8335 Warn Microsoft.AspNetCore.HttpsPolicy.HttpsLoggingExtensions.FailedToDeterminePort Failed to determine the https port for redirect.
+2021-04-05 13:09:17.0652 Info Microsoft.Extensions.Hosting.Internal.ConsoleLifetime.OnApplicationStarted Application started. Press Ctrl+C to shut down.
+2021-04-05 13:09:17.0652 Info Microsoft.Extensions.Hosting.Internal.ConsoleLifetime.OnApplicationStarted Hosting environment: Development
+2021-04-05 13:09:17.0652 Info Microsoft.Extensions.Hosting.Internal.ConsoleLifetime.OnApplicationStarted Content root path: C:\Users\akradioman3\source\repos\MetricsManager
+2021-04-05 13:09:17.1037 Warn Microsoft.AspNetCore.HttpsPolicy.HttpsLoggingExtensions.FailedToDeterminePort Failed to determine the https port for redirect.
