@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace MetricsManager.Controllers
 {
@@ -12,16 +13,20 @@ namespace MetricsManager.Controllers
     public class AgentsController : ControllerBase
     {
         private readonly Agents _holder;
+        private readonly ILogger<AgentsController> _logger;
 
-        public AgentsController(Agents holder)
+        public AgentsController(ILogger<AgentsController> logger,Agents holder)
         {
+            _logger = logger;
             _holder = holder;
         }
+
 
         [HttpPost("register")]
         public IActionResult RegisterAgent([FromBody] AgentInfo agentInfo)
         {
             _holder.ListAgents.Add(agentInfo);
+            _logger.Log(LogLevel.Information, "Registering agent {0} at address {1}",agentInfo.AgentId,agentInfo.AgentAddress);
             return Ok();
         }
 
@@ -29,6 +34,7 @@ namespace MetricsManager.Controllers
         public IActionResult EnableAgentById([FromRoute] int agentId)
         {
             _holder.ListActiveAgents.Add(agentId);
+            _logger.Log(LogLevel.Information, "Enabling agent {0}",agentId);
             return Ok();
         }
 
@@ -38,6 +44,7 @@ namespace MetricsManager.Controllers
             if (_holder.ListActiveAgents.Contains(agentId))
             {
                 _holder.ListActiveAgents.Remove(agentId);
+                _logger.Log(LogLevel.Information, "Disabling agent {0}",agentId);
             }
             return Ok();
         }

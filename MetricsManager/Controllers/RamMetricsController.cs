@@ -27,14 +27,15 @@ namespace MetricsManager.Controllers
         [HttpGet("agent/{agentId}/available/memoryinGb/{memoryingb}")]
         public IActionResult GetMetricsAvailabeMemoryFromAgent([FromRoute] int agentId, [FromRoute] MemoryInGb memoryInGB)
         {
-        // тестовое сообщение, можно удалить
-        // _logger.LogInformation("Привет! Это наше первое сообщение в лог");
+        
+           _logger.Log(LogLevel.Information, "Requested agent: {0} available {1} memory in Gb.",agentId, memoryInGB);
             return Ok();
         }
 
         [HttpGet("available/memoryinGb/{memoryingb}")]
         public IActionResult GetMetricsAvailabeMemory([FromRoute] MemoryInGb memoryInGB)
         {
+            _logger.Log(LogLevel.Information, "Requested available {0} memory in Gb.", memoryInGB);
             return Ok();
         }
     }

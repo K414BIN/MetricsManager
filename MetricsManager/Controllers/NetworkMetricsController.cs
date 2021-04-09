@@ -24,12 +24,14 @@ namespace MetricsManager.Controllers
         [HttpGet("from/{fromTime}/to/{toTime}")]
         public IActionResult GetMetricsNetwork([FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
         {
+            _logger.Log(LogLevel.Information, "Requested between time {0} - {1} sec.",fromTime.TotalSeconds, toTime.TotalSeconds);
             return Ok();
         }
 
         [HttpGet("agent/{agentId}/from/{fromTime}/to/{toTime}")]
         public IActionResult GetMetricsNetworkFromAgent([FromRoute] int agentId, [FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
         {
+            _logger.Log(LogLevel.Information, "Requested agent: {0} between time {1} - {2} sec.",agentId, fromTime.TotalSeconds, toTime.TotalSeconds);
                return Ok();
         }
     }

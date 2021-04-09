@@ -24,12 +24,14 @@ namespace MetricsManager.Controllers
         [HttpGet("agent/{agentId}/errors-count/from/{fromTime}/to/{toTime}/errorstype/{errorstype}")]
         public IActionResult GetMetricsErrorsCountFromAgent([FromRoute] int agentId, [FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime, [FromRoute] ErrorsType errorsType)
         {
-           return Ok();
+            _logger.Log(LogLevel.Information, "Requested agent: {0} between time {1} - {2} sec. collect erorr`s type {3}",agentId, fromTime.TotalSeconds, toTime.TotalSeconds,errorsType);
+            return Ok();
         }
 
         [HttpGet("errors-count/from/{fromTime}/to/{toTime}/errorstype/{errorstype}")]
         public IActionResult GetMetricsErrorsCount([FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime, [FromRoute] ErrorsType errorsType)
         {
+           _logger.Log(LogLevel.Information, "Requested between time {0} - {1} sec. collect erorr`s type {2}", fromTime.TotalSeconds, toTime.TotalSeconds,errorsType);
            return Ok();
         }
     }
