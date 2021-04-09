@@ -6,6 +6,8 @@ using Xunit;
 using MetricsManager;
 using Microsoft.Extensions.Logging;
 using NLog;
+using MetricsAgent.DAL.Interfaces;
+using MetricsAgentTests;
 
 namespace MetricsManagerTests
 {
@@ -112,13 +114,19 @@ namespace MetricsManagerTests
     }
     public class CpuControllerUnitTests
     {
-        
         private CpuMetricsController controller;
+        private readonly Mock<ICpuMetricsRepository> _mock;
+        private  Mock<ILogger<CpuMetricsControllerUnitTests>> _mocklogger;
 
         public CpuControllerUnitTests()
         {
-            controller = new CpuMetricsController();
+            _mock = new Mock<ICpuMetricsRepository>();
+            _mocklogger = new Mock<ILogger<CpuControllerUnitTests>>();
+            controller = new CpuMetricsController(_mock);
         }
+        private CpuMetricsController controller;
+
+        
 
         [Fact]
         public void GetMetricsFromAgent_ReturnsOk()

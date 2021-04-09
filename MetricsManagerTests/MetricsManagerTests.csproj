@@ -21,6 +21,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MainLibrary\MainLibrary.csproj" />
+    <ProjectReference Include="..\MetricsAgentTests\MetricsAgentTests.csproj" />
+    <ProjectReference Include="..\MetricsAgent\MetricsAgent.csproj" />
     <ProjectReference Include="..\MetricsManager\MetricsManager.csproj" />
   </ItemGroup>
 

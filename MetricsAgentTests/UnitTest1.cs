@@ -15,14 +15,15 @@ namespace MetricsAgentTests
     public class CpuMetricsControllerUnitTests
     {
         private CpuMetricsController controller;
-        private readonly Mock<ICpuMetricsRepository> _mock;
-        private  Mock<ILogger<CpuMetricsControllerUnitTests>> _mocklogger;
+        private  Mock<ILogger<CpuMetricsController>> _mockLogger;
+        private  Mock<ICpuMetricsRepository> _mockRepositary;
+    //    private Mock<IMapper> _mockMapper;
 
         public CpuMetricsControllerUnitTests()
         {
-            _mock = new Mock<ICpuMetricsRepository>();
-            _mocklogger = new Mock<ILogger<CpuMetricsControllerUnitTests>>();
-            controller = new CpuMetricsController(_mock.Object);
+            _mockRepositary = new Mock<ICpuMetricsRepository>();
+            _mockLogger = new Mock<ILogger<CpuMetricsController>>();
+           controller = new CpuMetricsController(_mockLogger.Object, _mockRepositary.Object);
         }
 
         [Fact]
@@ -31,7 +32,7 @@ namespace MetricsAgentTests
             //Arrange
             var fromTime = TimeSpan.FromSeconds(0);
             var toTime = TimeSpan.FromSeconds(100);
-
+            
             //Act
             var result = controller.GetMetricsCpu(fromTime, toTime);
 
@@ -44,14 +45,14 @@ namespace MetricsAgentTests
         {
             // устанавливаем параметр заглушки
             // в заглушке прописываем что в репозиторий прилетит CpuMetric объект
-            _mock.Setup(repository => repository.Create(It.IsAny<CpuMetric>())).Verifiable();
+            _mockRepositary.Setup(repository => repository.Create(It.IsAny<CpuMetric>())).Verifiable();
 
             // выполняем действие на контроллере
             var result = controller.Create(new CpuMetricCreateRequest { Time = TimeSpan.FromSeconds(1), Value = 50 });
 
             // проверяем заглушку на то, что пока работал контроллер
             // действительно вызвался метод Create репозитория с нужным типом объекта в параметре
-            _mock.Verify(repository => repository.Create(It.IsAny<CpuMetric>()), Times.AtMostOnce());
+            _mockRepositary.Verify(repository => repository.Create(It.IsAny<CpuMetric>()), Times.AtMostOnce());
         }
     }
 

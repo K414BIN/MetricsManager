@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Data.SQLite;
 using MainLibrary;
@@ -79,7 +78,7 @@ namespace MetricsAgent.DAL.Repositories
             // прописываем в команду SQL запрос на получение всех данных из таблицы
             cmd.CommandText = "SELECT * FROM cpumetrics";
 
-            var returnList = new List<CpuMetric>();
+            var returnList = new List<CpuMetricDto>();
 
             using (SQLiteDataReader reader = cmd.ExecuteReader())
             {
@@ -87,17 +86,17 @@ namespace MetricsAgent.DAL.Repositories
                 while (reader.Read())
                 {
                     // добавляем объект в список возврата
-                    returnList.Add(new CpuMetric
+                    returnList.Add(new CpuMetricDto
                     {
                         Id = reader.GetInt32(0),
                         Value = reader.GetInt32(0),
                         // налету преобразуем прочитанные секунды в метку времени
-                        Time = TimeSpan.FromSeconds(reader.GetInt32(0))
+                        Time = new DateTimeOffset(DateTime.Now, TimeSpan.FromSeconds(reader.GetInt32(0)))
                     });
                 }
             }
 
-            return returnList;
+            return (IList<CpuMetric>)returnList;
         }
 
         public CpuMetric GetById(int id)

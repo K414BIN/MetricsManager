@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
+using MainLibrary;
 using MetricsAgent.DAL.Models;
 using MetricsAgent.DAL.Interfaces;
 using MetricsAgent.Requests;
@@ -15,13 +16,17 @@ namespace MetricsAgent.Controllers
     [ApiController]
     public class CpuMetricsController : ControllerBase
     {
-       
-        private ICpuMetricsRepository _repository;
+        private readonly ICpuMetricsRepository _repository;
 
-        public CpuMetricsController(ICpuMetricsRepository repository)
+        private readonly ILogger<CpuMetricsController> _logger;
+
+        public CpuMetricsController(ILogger<CpuMetricsController> logger,ICpuMetricsRepository repository)
         {
+            _logger = logger;
             _repository = repository;
         }
+
+     
 
         [HttpDelete("delete/{id}")]
         public IActionResult Delete([FromRoute] int id)
@@ -57,9 +62,10 @@ namespace MetricsAgent.Controllers
             return Ok();
         }
 
-        [HttpGet("all")]
-        public IActionResult GetAll()
+        [HttpGet("from/{fromTime}/to/{toTime}")]
+        public IActionResult GetMetricsCpu([FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
         {
+            _logger.Log(LogLevel.Information, "Requested between time {0} - {1} sec.",fromTime.TotalSeconds, toTime.TotalSeconds);
             var metrics = _repository.GetAll();
 
             var response = new AllCpuMetricsResponse()
@@ -73,13 +79,15 @@ namespace MetricsAgent.Controllers
             }
 
             return Ok(response);
+       
         }
 
-        [HttpGet("from/{fromTime}/to/{toTime}")]
-        public IActionResult GetMetricsCpu([FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
+        [HttpGet("from/{fromTime}/to/{toTime}/percentiles/{Percentile}")]
+        public IActionResult GetCpuMetricsByPercentileTimeInterval([FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime, [FromRoute] Percentile percentile)
         {
+            _logger.LogInformation($"GetCpuMetricsByPercentileTimeInterval - From time : {fromTime};  To time: { toTime};  Percentile {percentile}");
+         
             return Ok();
         }
-
     }
 }
