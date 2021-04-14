@@ -1,11 +1,11 @@
 ﻿using System;
+using AutoMapper;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using Core;
 using MetricsAgent.DAL.Interfaces;
 using MetricsAgent.DAL.Models;
 using MetricsAgent.Models;
-using MetricsAgent.Requests;
 using MetricsAgent.Responses;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -20,11 +20,14 @@ namespace MetricsAgent.Controllers
         private readonly ICpuMetricsRepository _repository;
 
         private readonly ILogger<CpuMetricsController> _logger;
+        private readonly IMapper _mapper;
 
-        public CpuMetricsController(ILogger<CpuMetricsController> logger, ICpuMetricsRepository repository)
+        public CpuMetricsController(ILogger<CpuMetricsController> logger, ICpuMetricsRepository repository, IMapper mapper)
         {
+            _mapper = mapper;
             _logger = logger;
             _repository = repository;
+            _logger.LogInformation("Start CpuMetricsController");
         }
 
         [HttpGet("from/{fromTime}/to/{toTime}/")]

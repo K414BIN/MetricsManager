@@ -2,6 +2,9 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using MetricsAgent.DAL.Interfaces;
+using MetricsAgent.DAL.Models;
+using MetricsAgent.Models;
+using MetricsAgent.Responses;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.Logging;
@@ -36,6 +39,18 @@ namespace MetricsAgent.Controllers
         {
             _logger.LogInformation($"GetAll");
             IList<HddMetric> metrics = _repository.GetAll();
+        
+            var response = new AllMetricsResponse<HddMetricDto>()
+            {
+                Metrics = new List<HddMetricDto>()
+
+            };
+            foreach (var metric in metrics)
+            {
+                response.Metrics.Add(_mapper.Map<HddMetricDto>(metric));
+            }
+
+            return Ok(response);
         }
 
     }

@@ -24,7 +24,7 @@ namespace MetricsManager.Controllers
         //    return new RestClient(connectionString, _httpClientFactory.CreateClient());
         //}
 
-        public bool TestAgentInDb(int id, Func<(AgentInfo, bool> checkAgentInfo)
+        public bool TestAgentInDb(int id, Func<(AgentInfo, bool)> checkAgentInfo)
         {
             var agent = _repository.GetAgent(id);
             return checkAgentInfo(agent);

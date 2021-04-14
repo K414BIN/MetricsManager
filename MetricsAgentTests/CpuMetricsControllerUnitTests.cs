@@ -1,6 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
+using AutoMapper;
+using MetricsAgent.Controllers;
+using MetricsAgent.DAL.Interfaces;
+using MetricsAgent.DAL.Models;
+using MetricsAgent.Models;
+using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestPlatform.ObjectModel.Logging;
+using Moq;
+using Xunit;
 
 namespace MetricsAgentTests
 {
