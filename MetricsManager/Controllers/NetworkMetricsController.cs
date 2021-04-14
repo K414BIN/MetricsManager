@@ -7,20 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MetricsManager.Controllers
 {
-    [Route("api/metrics/network")]
+    [Route("api/[controller]")]
     [ApiController]
     public class NetworkMetricsController : ControllerBase
     {
-        [HttpGet("from/{fromTime}/to/{toTime}")]
-        public IActionResult GetMetricsNetwork([FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
-        {
-            return Ok();
-        }
-
-        [HttpGet("agent/{agentId}/from/{fromTime}/to/{toTime}")]
-        public IActionResult GetMetricsNetworkFromAgent([FromRoute] int agentId, [FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
-        {
-            return Ok();
-        }
     }
 }

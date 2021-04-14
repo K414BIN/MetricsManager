@@ -7,21 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MetricsManager.Controllers
 {
-    [Route("api/metrics/ram")]
+    [Route("api/[controller]")]
     [ApiController]
     public class RamMetricsController : ControllerBase
     {
-
-        [HttpGet("agent/{agentId}/available/memoryinGb/{memoryingb}")]
-        public IActionResult GetMetricsAvailabeMemoryFromAgent([FromRoute] int agentId, [FromRoute] MemoryInGB memoryInGB)
-        {
-            return Ok();
-        }
-
-        [HttpGet("available/memoryinGb/{memoryingb}")]
-        public IActionResult GetMetricsAvailabeMemory([FromRoute] MemoryInGB memoryInGB)
-        {
-            return Ok();
-        }
     }
 }
