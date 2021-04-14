@@ -22,8 +22,8 @@ namespace MetricsAgent.Controllers
             _repository = repository;
         }
 
-        [HttpGet("available/memoryinGb/{memoryingb}")]
-        public IActionResult GetMetricsAvailabeMemory([FromRoute] MemoryInGb memoryInGB)
+        [HttpGet("available/{memoryingb}")]
+        public IActionResult GetMetricsAvailabeMemory([FromRoute] int memoryInGB)
         {
             return Ok();
         }
@@ -33,7 +33,7 @@ namespace MetricsAgent.Controllers
         {
             _repository.Create(new RamMetric
             {
-                AvailableMemorySizeInGb  = request.Value
+               Value  = request.Value
             });
 
             return Ok();
@@ -51,7 +51,7 @@ namespace MetricsAgent.Controllers
 
             foreach (var metric in metrics)
             {
-                response.Metrics.Add(new RamMetric { AvailableMemorySizeInGb = metric.AvailableMemorySizeInGb, Id = metric.Id });
+                response.Metrics.Add(new RamMetric { Value = metric.Value, Id = metric.Id });
             }
 
             return Ok(response);

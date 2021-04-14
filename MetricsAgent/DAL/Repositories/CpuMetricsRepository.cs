@@ -1,24 +1,26 @@
 ﻿using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Linq;
+using Core;
 using Dapper;
 using MetricsAgent.DAL.Interfaces;
 using MetricsAgent.DAL.Models;
-using System.Data;
 
 namespace MetricsAgent.DAL.Repositories
 {
     public class CpuMetricsRepository : ICpuMetricsRepository
     {
-        private const string ConnectionString = @"Data Source=metrics.db; Version=3;Pooling=True;Max Pool Size=100;";
-
+        // строка подключения
+        private readonly string ConnectionString = SQLSettings.ConnectionString;
+        
+        // инжектируем соединение с базой данных в наш репозиторий через конструктор
         public CpuMetricsRepository()
         {
             // добавляем парсилку типа TimeSpan в качестве подсказки для SQLite
             SqlMapper.AddTypeHandler(new TimeSpanHandler());
         }
 
-          public void Create(CpuMetric item)
+        public void Create(CpuMetric item)
         {
             using (var connection = new SQLiteConnection(ConnectionString))
             {
@@ -82,5 +84,5 @@ namespace MetricsAgent.DAL.Repositories
             }
         }
     }
-}
+} 
 

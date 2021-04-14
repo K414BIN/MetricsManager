@@ -18,7 +18,6 @@ namespace MetricsAgent.Controllers
     public class CpuMetricsController : ControllerBase
     {
         private readonly ICpuMetricsRepository _repository;
-
         private readonly ILogger<CpuMetricsController> _logger;
         private readonly IMapper _mapper;
 
@@ -48,9 +47,6 @@ namespace MetricsAgent.Controllers
 
             return Ok(response);
         }
-
-
-
 
         [HttpGet("from/{fromTime}/to/{toTime}/percentiles/{Percentile}")]
         public IActionResult GetCpuMetricsByPercentileTimeInterval([FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime, [FromRoute] Percentile percentile)

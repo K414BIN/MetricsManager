@@ -1,5 +1,7 @@
 ﻿using System;
 using Core;
+using MetricsAgent.Client;
+using MetricsAgent.Requests;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -25,12 +27,12 @@ namespace MetricsManager.Controllers
             return Ok();
         }
 
-        [HttpGet("agent/{agentId}/from/{fromTime}/to/{toTime}")]
-        public IActionResult GetMetricsCpuFromAgent([FromRoute] int agentId, [FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
-        {
-            _logger.Log(LogLevel.Information, "Requested agent: {0} between time {1} - {2} sec.", agentId.ToString(),fromTime.TotalSeconds, toTime.TotalSeconds);
-            return Ok();
-        }
+        //[HttpGet("agent/{agentId}/from/{fromTime}/to/{toTime}")]
+        //public IActionResult GetMetricsCpuFromAgent([FromRoute] int agentId, [FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
+        //{
+        //    _logger.Log(LogLevel.Information, "Requested agent: {0} between time {1} - {2} sec.", agentId.ToString(),fromTime.TotalSeconds, toTime.TotalSeconds);
+        //    return Ok();
+        //}
 
         [HttpGet("from/{fromTime}/to/{toTime}")]
         public IActionResult GetMetricsCpu([FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
@@ -38,5 +40,22 @@ namespace MetricsManager.Controllers
             _logger.Log(LogLevel.Information, "Requested between time {0} - {1} sec.",fromTime.TotalSeconds, toTime.TotalSeconds);
             return Ok();
         }
+
+        [HttpGet("agent/{agentId}/from/{fromTime}/to/{toTime}")]
+        public IActionResult  GetMetricsCpuFromAgent([FromRoute] int agentId, [FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
+        {
+            // логируем, что мы пошли в соседний сервис
+            _logger.LogInformation($"starting new request to metrics agent");
+            // обращение в сервис
+            var metrics = MetricsAgentClient.GetCpuMetrics(new GetAllCpuMetricsRequest
+            {
+                FromTime = fromTime,
+                ToTime = toTime
+            });
+    
+            // возвращаем ответ
+            return Ok(metrics);
+        }
+
     }
 }

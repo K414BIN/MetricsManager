@@ -194,6 +194,10 @@
               "target": "Package",
               "version": "[2.0.78, )"
             },
+            "Microsoft.Extensions.Http.Polly": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
             "NLog": {
               "target": "Package",
               "version": "[4.7.9, )"
@@ -201,6 +205,10 @@
             "NLog.Web.AspNetCore": {
               "target": "Package",
               "version": "[4.12.0, )"
+            },
+            "Quartz": {
+              "target": "Package",
+              "version": "[3.3.2, )"
             },
             "ServiceStack.Text": {
               "target": "Package",
