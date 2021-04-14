@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace MetricsManager.Controllers
 {
@@ -34,7 +35,7 @@ namespace MetricsManager.Controllers
         {
             TestAgentInDb(agentInfo.AgentId, agentInfo => agentInfo.AgentAddress != null);
             var list = new List<int>();
-            list.RemoveAll(item => item == agentId);
+            list.RemoveAll(item => item == 1);
             return Ok();
         }
 
