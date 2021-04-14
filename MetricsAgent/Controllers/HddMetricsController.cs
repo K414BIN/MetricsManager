@@ -20,11 +20,12 @@ namespace MetricsAgent.Controllers
         private readonly IMapper _mapper;
 
         public HddMetricsController(ILogger<HddMetricsController> logger, IHddMetricsRepository repository,
-            IActionResultTypeMapper mapper)
+           IMapper mapper)
         {
             _repository = repository;
             _logger = logger;
             _mapper = mapper;
+            _logger.LogInformation("Start HddMetricsController");
         }
 
         [HttpGet("hdd/left")]
@@ -52,6 +53,37 @@ namespace MetricsAgent.Controllers
 
             return Ok(response);
         }
+        
+        [HttpDelete("delete/{id}")]
+        public IActionResult Delete([FromRoute] int id)
+        {
+            _repository.Delete(id);
+            return Ok();
+        }
 
+        [HttpPut("update")]
+        public IActionResult Update([FromBody] HddMetric request)
+        {
+            _repository.Update(request);
+            return Ok();
+        }
+
+        [HttpGet("getbyid/{id}")]
+        public IActionResult GetById([FromRoute] int id)
+        {
+            _repository.GetById(id);
+            return Ok();
+        }
+        
+        [HttpPost("create")]
+        public IActionResult Create([FromBody] HddMetricCreateRequest request)
+        {
+            _repository.Create(new HddMetric
+            {
+                Value  = request.Value
+            });
+
+            return Ok();
+        }
     }
 }

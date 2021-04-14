@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using MetricsAgent.DAL.Interfaces;
 using MetricsAgent.DAL.Models;
+using MetricsAgent.Models;
 using MetricsAgent.Responses;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,12 +18,17 @@ namespace MetricsAgent.Controllers
     public class DotNetMetricsController : ControllerBase
     {
         private readonly IDotNetMetricsRepository _repository;
+        private readonly ILogger<DotNetMetricsController> _logger;
+        private readonly IMapper _mapper;
 
-        public DotNetMetricsController(IDotNetMetricsRepository repository)
+        public DotNetMetricsController(ILogger<DotNetMetricsController> logger, IDotNetMetricsRepository repository, IMapper mapper)
         {
+            _mapper = mapper;
+            _logger = logger;
             _repository = repository;
+            _logger.LogInformation("Start DotNetMetricsController");
         }
-
+        
         [HttpGet("errors-count/from/{fromTime}/to/{toTime}/errorsCount/{errorsCount}")]
         public IActionResult GetMetricsErrorsCount([FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime, [FromRoute] int errorsCount)
         {
@@ -64,17 +71,18 @@ namespace MetricsAgent.Controllers
 
         [HttpGet("all")]
         public IActionResult GetAll()
-        {
+        { 
+            _logger.LogInformation($"GetAll");
             var metrics = _repository.GetAll();
 
-            var response = new AllDotNetMetricsResponse()
+            var response = new AllMetricsResponse<DotNetMetricDto>()
             {
-                Metrics = new List<DotNetMetric>()
+                Metrics = new List<DotNetMetricDto>()
             };
 
             foreach (var metric in metrics)
             {
-                response.Metrics.Add(new DotNetMetric { Time = metric.Time, Value = metric.Value, Id = metric.Id });
+                response.Metrics.Add(_mapper.Map<DotNetMetricDto>(metric));
             }
 
             return Ok(response);

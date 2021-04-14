@@ -66,7 +66,7 @@ namespace MetricsAgent.Controllers
         [HttpGet("all")]
         public IActionResult GetAll()
         {
-            _logger.LogInformation($"GetCpuMetricsTimeInterval - From time: {fromTime}; To time: {toTime}");
+            _logger.LogInformation($"GetAll");
             var metrics = _repository.GetAll();
 
             var response = new AllMetricsResponse<NetworkMetricDto>()

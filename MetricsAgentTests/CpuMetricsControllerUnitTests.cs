@@ -30,13 +30,12 @@ namespace MetricsAgentTests
             _controller = new CpuMetricsController(_mockLogger.Object, _mockRepository.Object, _mockMapper.Object);
         }
 
-        [Fact]
-        public void Call_GetCpuMetricsTimeInterval_From_Controller()
-        {
-            _mockRepository
-                .Setup(repository => repository.GetByTimePeriod(It.IsAny<DateTimeOffset>(), It.IsAny<DateTimeOffset>())
-                .Returns(new List<CpuMetric>());
-
-        }
+        //    [Fact]
+        //    public void Call_GetCpuMetricsTimeInterval_From_Controller()
+        //    {
+        //        _mockRepository
+        //            .Setup(repository => repository.GetByTimePeriod(It.IsAny<DateTimeOffset>(), It.IsAny<DateTimeOffset>())
+        //            .Returns(new List<CpuMetric>());}
+        
     }
 }

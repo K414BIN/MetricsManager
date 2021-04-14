@@ -16,13 +16,19 @@ namespace MetricsAgent.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class RamMetricsController : ControllerBase
-    {
-        private IRamMetricsRepository _repository;
+    { 
+        private readonly IRamMetricsRepository _repository;
+        private readonly ILogger<RamMetricsController> _logger;
+        private readonly IMapper _mapper;
 
-        public RamMetricsController(IRamMetricsRepository repository)
+        public RamMetricsController(ILogger<RamMetricsController> logger, IRamMetricsRepository repository, IMapper mapper)
         {
+            _mapper = mapper;
+            _logger = logger;
             _repository = repository;
+            _logger.LogInformation("Start RamMetricsController");
         }
+
 
         [HttpGet("available/{memoryingb}")]
         public IActionResult GetMetricsAvailabeMemory([FromRoute] int memoryInGB)
@@ -44,6 +50,7 @@ namespace MetricsAgent.Controllers
         [HttpGet("all")]
         public IActionResult GetAll()
         {
+            _logger.LogInformation($"GetAll");
             var metrics = _repository.GetAll();
 
             var response = new AllMetricsResponse<RamMetricDto>()

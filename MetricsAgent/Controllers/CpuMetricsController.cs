@@ -34,7 +34,8 @@ namespace MetricsAgent.Controllers
             [FromRoute] DateTimeOffset toTime)
         {
             _logger.LogInformation($"GetCpuMetricsTimeInterval - From time: {fromTime}; To time: {toTime}");
-            List<CpuMetric> metrics = _repository.GetByTimePeriod(fromTime, toTime);
+        //    List<CpuMetric> metrics = _repository.GetByTimePeriod(fromTime, toTime);
+            var metrics = _repository.GetAll();
             var response = new AllMetricsResponse<CpuMetricDto>()
             {
                 Metrics = new List<CpuMetricDto>()
@@ -56,5 +57,37 @@ namespace MetricsAgent.Controllers
             return Ok();
         }
 
+        [HttpDelete("delete/{id}")]
+        public IActionResult Delete([FromRoute] int id)
+        {
+            _repository.Delete(id);
+            return Ok();
+        }
+
+        [HttpPut("update")]
+        public IActionResult Update([FromBody] CpuMetric request)
+        {
+            _repository.Update(request);
+            return Ok();
+        }
+
+        [HttpGet("getbyid/{id}")]
+        public IActionResult GetById([FromRoute] int id)
+        {
+            _repository.GetById(id);
+            return Ok();
+        }
+
+        [HttpPost("create")]
+        public IActionResult Create([FromBody] CpuMetricCreateRequest request)
+        {
+            _repository.Create(new CpuMetric
+            {
+                Time = request.Time,
+                Value = request.Value
+            });
+
+            return Ok();
+        }
     }
 }
