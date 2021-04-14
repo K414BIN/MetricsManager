@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using MetricsAgent.DAL.Interfaces;
 using MetricsAgent.DAL.Models;
+using MetricsAgent.Models;
 using MetricsAgent.Responses;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -44,17 +46,18 @@ namespace MetricsAgent.Controllers
         {
             var metrics = _repository.GetAll();
 
-            var response = new AllRamMetricsResponse()
+            var response = new AllMetricsResponse<RamMetricDto>()
             {
-                Metrics = new List<RamMetric>()
+                Metrics = new List<RamMetricDto>()
             };
 
             foreach (var metric in metrics)
             {
-                response.Metrics.Add(new RamMetric { Value = metric.Value, Id = metric.Id });
+                response.Metrics.Add(_mapper.Map<RamMetricDto>(metric));
             }
 
             return Ok(response);
+            
         }
 
         [HttpDelete("delete/{id}")]

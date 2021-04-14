@@ -9,11 +9,11 @@ namespace MetricsAgent.Client
 
             AllHddMetricsApiResponse GetAllHddMetrics(GetAllHddMetricsApiRequest request);
 
-            DonNetMetricsApiResponse GetDonNetMetrics(DonNetHeapMetrisApiRequest request);
+            DotNetMetricsApiResponse GetAllDotNetMetrics(DotNetMetrisApiRequest request);
 
-            AllCpuMetricsApiResponse GetCpuMetrics(GetAllCpuMetricsApiRequest request);
+            AllCpuMetricsApiResponse GetAllCpuMetrics(GetAllCpuMetricsApiRequest request);
             
-            AllNetworkMetricsApiResponse GetCpuMetrics(GetAllNetworkMetricsApiRequest request);
+            AllNetworkMetricsApiResponse GetAllNetworkMetrics(GetAllNetworkMetricsApiRequest request);
         
     }
 }

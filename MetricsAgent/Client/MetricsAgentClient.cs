@@ -30,7 +30,7 @@ namespace MetricsAgent.Client
                 $"{request.ClientBaseAddress}/api/hddmetrics/from/{fromParameter}/to/{toParameter}");
             try
             {
-                HttpResponseMessage response = httpClient.SendAsync(HttpRequest).Result;
+                HttpResponseMessage response = _httpClient.SendAsync(HttpRequest).Result;
 
                 using var responseStream = response.Content.ReadAsStreamAsync().Result;
                 return JsonSerializer.DeserializeAsync<AllHddMetricsApiResponse>(responseStream).Result;
@@ -50,7 +50,7 @@ namespace MetricsAgent.Client
                 $"{request.ClientBaseAddress}/api/cpumetrics/from/{fromParameter}/to/{toParameter}");
             try
             {
-                HttpResponseMessage response = httpClient.SendAsync(HttpRequest).Result;
+                HttpResponseMessage response =_httpClient.SendAsync(HttpRequest).Result;
 
                 using var responseStream = response.Content.ReadAsStreamAsync().Result;
                 return JsonSerializer.DeserializeAsync<AllCpuMetricsApiResponse>(responseStream).Result;
@@ -70,10 +70,30 @@ namespace MetricsAgent.Client
                 $"{request.ClientBaseAddress}/api/rammetrics/from/{fromParameter}/to/{toParameter}");
             try
             {
-                HttpResponseMessage response = httpClient.SendAsync(HttpRequest).Result;
+                HttpResponseMessage response =_httpClient.SendAsync(HttpRequest).Result;
 
                 using var responseStream = response.Content.ReadAsStreamAsync().Result;
                 return JsonSerializer.DeserializeAsync<AllRamMetricsApiResponse>(responseStream).Result;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+            }
+
+            return null;
+        }
+        public AllNetworkMetricsApiResponse GetAllNetworkMetrics(GetAllNetworkMetricsApiRequest request)
+        {
+            var fromParameter = request.FromTime.TotalSeconds;
+            var toParameter = request.ToTime.TotalSeconds;
+            var httpRequest = new HttpRequestMessage(HttpMethod.Get,
+                $"{request.ClientBaseAddress}/api/networkmetrics/from/{fromParameter}/to/{toParameter}");
+            try
+            {
+                HttpResponseMessage response = _httpClient.SendAsync(HttpRequest).Result;
+
+                using var responseStream = response.Content.ReadAsStreamAsync().Result;
+                return JsonSerializer.DeserializeAsync<AllNetworkMetricsApiResponse>(responseStream).Result;
             }
             catch (Exception ex)
             {
@@ -90,7 +110,7 @@ namespace MetricsAgent.Client
                 $"{request.ClientBaseAddress}/api/dotnetmetrics/from/{fromParameter}/to/{toParameter}");
             try
             {
-                HttpResponseMessage response = httpClient.SendAsync(HttpRequest).Result;
+                HttpResponseMessage response = _httpClient.SendAsync(HttpRequest).Result;
 
                 using var responseStream = response.Content.ReadAsStreamAsync().Result;
                 return JsonSerializer.DeserializeAsync<AllDotNetMetricsApiResponse>(responseStream).Result;
@@ -103,7 +123,27 @@ namespace MetricsAgent.Client
             return null;
         }
 
-        public static object GetCpuMetrics(GetAllCpuMetricsRequest getAllCpuMetricsRequest)
+        AllRamMetricsApiResponse IMetricsAgentClient.GetAllRamMetrics(GetAllRamMetricsApiRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
+        AllHddMetricsApiResponse IMetricsAgentClient.GetAllHddMetrics(GetAllHddMetricsApiRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
+        DotNetMetricsApiResponse IMetricsAgentClient.GetAllDotNetMetrics(DotNetMetrisApiRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
+        AllCpuMetricsApiResponse IMetricsAgentClient.GetAllCpuMetrics(GetAllCpuMetricsApiRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
+        AllNetworkMetricsApiResponse IMetricsAgentClient.GetAllNetworkMetrics(GetAllNetworkMetricsApiRequest request)
         {
             throw new NotImplementedException();
         }
