@@ -1,4 +1,5 @@
-﻿using MetricsAgent.Responses;
+﻿using MetricsAgent.Requests;
+using MetricsAgent.Responses;
 
 namespace MetricsAgent.Client
 {
@@ -9,7 +10,7 @@ namespace MetricsAgent.Client
 
             AllHddMetricsApiResponse GetAllHddMetrics(GetAllHddMetricsApiRequest request);
 
-            DotNetMetricsApiResponse GetAllDotNetMetrics(DotNetMetrisApiRequest request);
+           AllDotNetMetricsApiResponse GetAllDotNetMetrics(GetAllDotNetMetricsApiRequest request);
 
             AllCpuMetricsApiResponse GetAllCpuMetrics(GetAllCpuMetricsApiRequest request);
             

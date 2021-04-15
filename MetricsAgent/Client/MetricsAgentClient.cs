@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 using MetricsAgent.Requests;
+using MetricsAgent.Responses;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
@@ -42,6 +43,7 @@ namespace MetricsAgent.Client
 
             return null;
         }
+
         public AllCpuMetricsApiResponse GetAllCpuMetrics(GetAllCpuMetricsApiRequest request)
         {
             var fromParameter = request.FromTime.TotalSeconds;
@@ -50,7 +52,7 @@ namespace MetricsAgent.Client
                 $"{request.ClientBaseAddress}/api/cpumetrics/from/{fromParameter}/to/{toParameter}");
             try
             {
-                HttpResponseMessage response =_httpClient.SendAsync(HttpRequest).Result;
+                HttpResponseMessage response = _httpClient.SendAsync(HttpRequest).Result;
 
                 using var responseStream = response.Content.ReadAsStreamAsync().Result;
                 return JsonSerializer.DeserializeAsync<AllCpuMetricsApiResponse>(responseStream).Result;
@@ -62,6 +64,7 @@ namespace MetricsAgent.Client
 
             return null;
         }
+
         public AllRamMetricsApiResponse GetAllRamMetrics(GetAllRamMetricsApiRequest request)
         {
             var fromParameter = request.FromTime.TotalSeconds;
@@ -70,7 +73,7 @@ namespace MetricsAgent.Client
                 $"{request.ClientBaseAddress}/api/rammetrics/from/{fromParameter}/to/{toParameter}");
             try
             {
-                HttpResponseMessage response =_httpClient.SendAsync(HttpRequest).Result;
+                HttpResponseMessage response = _httpClient.SendAsync(HttpRequest).Result;
 
                 using var responseStream = response.Content.ReadAsStreamAsync().Result;
                 return JsonSerializer.DeserializeAsync<AllRamMetricsApiResponse>(responseStream).Result;
@@ -82,6 +85,7 @@ namespace MetricsAgent.Client
 
             return null;
         }
+
         public AllNetworkMetricsApiResponse GetAllNetworkMetrics(GetAllNetworkMetricsApiRequest request)
         {
             var fromParameter = request.FromTime.TotalSeconds;
@@ -102,6 +106,7 @@ namespace MetricsAgent.Client
 
             return null;
         }
+
         public AllDotNetMetricsApiResponse GetAllDotNetMetrics(GetAllDotNetMetricsApiRequest request)
         {
             var fromParameter = request.FromTime.TotalSeconds;
@@ -123,30 +128,6 @@ namespace MetricsAgent.Client
             return null;
         }
 
-        AllRamMetricsApiResponse IMetricsAgentClient.GetAllRamMetrics(GetAllRamMetricsApiRequest request)
-        {
-            throw new NotImplementedException();
-        }
-
-        AllHddMetricsApiResponse IMetricsAgentClient.GetAllHddMetrics(GetAllHddMetricsApiRequest request)
-        {
-            throw new NotImplementedException();
-        }
-
-        DotNetMetricsApiResponse IMetricsAgentClient.GetAllDotNetMetrics(DotNetMetrisApiRequest request)
-        {
-            throw new NotImplementedException();
-        }
-
-        AllCpuMetricsApiResponse IMetricsAgentClient.GetAllCpuMetrics(GetAllCpuMetricsApiRequest request)
-        {
-            throw new NotImplementedException();
-        }
-
-        AllNetworkMetricsApiResponse IMetricsAgentClient.GetAllNetworkMetrics(GetAllNetworkMetricsApiRequest request)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
     
