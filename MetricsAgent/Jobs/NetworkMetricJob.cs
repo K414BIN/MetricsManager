@@ -19,7 +19,7 @@ namespace MetricsAgent.Jobs
             public NetworkMetricJob(IServiceProvider provider)
             {
                 _provider = provider;
-                repository = _provider.GetService<INetworkMetricsRepository>();
+    //            repository = _provider.GetService<INetworkMetricsRepository>();
                 _netCounter = new PerformanceCounter("Network", "MBytes per second");
             }
 

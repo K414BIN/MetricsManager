@@ -18,7 +18,7 @@ namespace MetricsAgent.Jobs
             public DotNetMetricJob(IServiceProvider provider)
             {
                 _provider = provider;
-                _repository = _provider.GetService<IDotNetMetricsRepository>();
+        //        _repository = _provider.GetService<IDotNetMetricsRepository>();
                 _DotNetCounter = new PerformanceCounter("DotNetGarbageHeap", "% Usage", "_Total");
             }
 

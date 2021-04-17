@@ -62,21 +62,18 @@ namespace MetricsManager
             }
         }
 
-        public IList<AgentInfo> GetAgent(int agentId)
+        public AgentInfo GetAgent(int agentId)
         {
             var agent = new List<AgentInfo> ( GetAll());
-    
-            int id;
-            if (agent.Contains(agentId)))
+            foreach (var value in agent)
             {
-                using (var connection = new SQLiteConnection(ConnectionString))
+                if (value.AgentId == agentId)
                 {
-                    id = connection.Execute("SELECT FROM agents WHERE id=@agentId", agentId);
+                    return (value);
                 }
+                
             }
-
-            if (agent.Contains(agent.)) return agent
-            return 
+            return null;
         }
 
         public void Update (AgentInfo item)
@@ -85,8 +82,6 @@ namespace MetricsManager
             {
                 connection.Execute("UPDATE FROM agents SET agenturl=@newurl WHERE id=@agentId",
                     new {newurl = item.AgentAddress, agentId = item.AgentId});
-            
-
             }
         }
     }

@@ -20,7 +20,7 @@ namespace MetricsAgent.Jobs
             public HddMetricJob(IServiceProvider provider)
             {
                 _provider = provider;
-                _repository = _provider.GetService<IHddMetricsRepository>();
+      //          _repository = _provider.GetService<IHddMetricsRepository>();
                 _memCounter = new PerformanceCounter("Memory", "Available MBytes");
             }
 
