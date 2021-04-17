@@ -1,14 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace MetricsManager
 {
     public class AgentInfo
     {
-        public int AgentId { get; set; }
+        public AgentInfo(int agentId, Uri agentAddress)
+        {
+            AgentId = agentId;
+            AgentAddress = agentAddress;
+        }
 
-        public Uri AgentAddress { get; set; }
+        public Uri AgentAddress { get;}
+
+        public int AgentId  { get;}
+    
     }
 }
