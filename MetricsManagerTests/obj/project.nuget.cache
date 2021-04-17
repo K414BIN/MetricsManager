@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "dLM5tBuSRj32uqtMifui+5M8e3YPe+cGro8zqw3t664WXFGFRsnhEh5p/IfXStcrFY4Yqba3N1OjF2TkIyFQSQ==",
+  "dgSpecHash": "bG3Ua8HkdY3za8FajV0A/5yBcKOXkDu4nBZrk3v1dSbqZOzgorWYJxl2Ui8c7HGgUWResCy36q2c1Uo55Ixc8A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\akradioman3\\source\\repos\\MetricsManagerTests\\MetricsManagerTests.csproj",
+  "projectFilePath": "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\MetricsManagerTests\\MetricsManagerTests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\akradioman3\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\akradioman3\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",

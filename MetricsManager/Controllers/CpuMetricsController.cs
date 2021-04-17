@@ -29,21 +29,21 @@ namespace MetricsManager.Controllers
             return Ok();
         }
 
-        //[HttpGet("agent/{agentId}/from/{fromTime}/to/{toTime}")]
-        //public IActionResult GetMetricsCpuFromAgent([FromRoute] int agentId, [FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
-        //{
-        //    _logger.Log(LogLevel.Information, "Requested agent: {0} between time {1} - {2} sec.", agentId.ToString(),fromTime.TotalSeconds, toTime.TotalSeconds);
-        //    return Ok();
-        //}
+        [HttpGet("agent/{agentId}/from/{fromTime}/to/{toTime}")]
+        public IActionResult GetMetricsCpuFromAgent([FromRoute] int agentId, [FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
+        {
+            _logger.Log(LogLevel.Information, "Requested agent: {0} between time {1} - {2} sec.", agentId.ToString(), fromTime.TotalSeconds, toTime.TotalSeconds);
+            return Ok();
+        }
 
         [HttpGet("from/{fromTime}/to/{toTime}")]
         public IActionResult GetMetricsCpu([FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
         {
-            _logger.Log(LogLevel.Information, "Requested between time {0} - {1} sec.",fromTime.TotalSeconds, toTime.TotalSeconds);
+            _logger.Log(LogLevel.Information, "Requested between time {0} - {1} sec.", fromTime.TotalSeconds, toTime.TotalSeconds);
             return Ok();
         }
 
-      
+
         [HttpGet("agent/{agentId}/from/{fromTime}/to/{toTime}")]
         public IActionResult GetMetricsFromAgent([FromRoute] int agentId, [FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
         {
@@ -54,8 +54,8 @@ namespace MetricsManager.Controllers
             HttpResponseMessage response = client.SendAsync(request).Result;
             if (response.IsSuccessStatusCode)
             {
-                using var responseStream =  response.Content.ReadAsStreamAsync().Result;
-                var metricsResponse  =  JsonSerializer.DeserializeAsync
+                using var responseStream = response.Content.ReadAsStreamAsync().Result;
+                var metricsResponse = JsonSerializer.DeserializeAsync
                     <CpuMetricsResponse>(responseStream).Result;
             }
             else

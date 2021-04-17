@@ -15,7 +15,7 @@ namespace MetricsManager.Controllers
     [ApiController]
     public class AgentsController : ControllerBase
     {
-        private readonly IAgentRepository<AgentInfo> _repository;
+        private readonly IAgentRepositoryAgentsRepository _repository;
         public AgentsController(IHttpClientFactory httpClientFactory)
         {
             httpClientFactory.CreateClient();

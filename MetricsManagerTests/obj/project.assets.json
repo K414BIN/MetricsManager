@@ -7484,11 +7484,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\akradioman3\\source\\repos\\MetricsManagerTests\\MetricsManagerTests.csproj",
+      "projectUniqueName": "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\MetricsManagerTests\\MetricsManagerTests.csproj",
       "projectName": "MetricsManagerTests",
-      "projectPath": "C:\\Users\\akradioman3\\source\\repos\\MetricsManagerTests\\MetricsManagerTests.csproj",
+      "projectPath": "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\MetricsManagerTests\\MetricsManagerTests.csproj",
       "packagesPath": "C:\\Users\\akradioman3\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\akradioman3\\source\\repos\\MetricsManagerTests\\obj\\",
+      "outputPath": "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\MetricsManagerTests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\akradioman3\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -7505,8 +7505,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\akradioman3\\source\\repos\\MetricsManager\\MetricsManager.csproj": {
-              "projectPath": "C:\\Users\\akradioman3\\source\\repos\\MetricsManager\\MetricsManager.csproj"
+            "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\MetricsManager\\MetricsManager.csproj": {
+              "projectPath": "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\MetricsManager\\MetricsManager.csproj"
             }
           }
         }

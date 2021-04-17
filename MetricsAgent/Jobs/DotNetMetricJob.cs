@@ -1,36 +1,38 @@
-﻿using System;
-using System.Diagnostics;
-using System.Threading.Tasks;
-using MetricsAgent.DAL.Interfaces;
-using MetricsAgent.DAL.Models;
-using Quartz;
-using System.Collections.Generic;
+﻿//using System;
+//using System.Diagnostics;
+//using System.Threading.Tasks;
+//using MetricsAgent.DAL.Interfaces;
+//using MetricsAgent.DAL.Models;
+//using Quartz;
+//using System.Collections.Generic;
 
-namespace MetricsAgent.Jobs
-{
-    public class DotNetMetricJob : IJob
-    {
+//namespace MetricsAgent.Jobs
+//{  
+//    [DisallowConcurrentExecution]
+//    public class DotNetMetricJob : IJob
+//    {
       
-            private readonly IServiceProvider _provider;
-            private IDotNetMetricsRepository _repository;
-            private PerformanceCounter _DotNetCounter;
+//            private readonly IServiceProvider _provider;
+//            private IDotNetMetricsRepository _repository;
+//            private PerformanceCounter _DotNetCounter;
 
-            public DotNetMetricJob(IServiceProvider provider)
-            {
-                _provider = provider;
-        //        _repository = _provider.GetService<IDotNetMetricsRepository>();
-                _DotNetCounter = new PerformanceCounter("DotNetGarbageHeap", "% Usage", "_Total");
-            }
+           
+//            public DotNetMetricJob(IServiceProvider provider)
+//            {
+//                _provider = provider;
+//        //        _repository = _provider.GetService<IDotNetMetricsRepository>();
+//                _DotNetCounter = new PerformanceCounter("DotNetGarbageHeap", "% Usage", "_Total");
+//            }
 
-            public Task Execute(IJobExecutionContext context)
-            {
-                var time = TimeSpan.FromSeconds(DateTimeOffset.UtcNow.ToUnixTimeSeconds());
-                var DotNet= Convert.ToInt32(_DotNetCounter.NextValue());
+//            public Task Execute(IJobExecutionContext context)
+//            {
+//                var time = TimeSpan.FromSeconds(DateTimeOffset.UtcNow.ToUnixTimeSeconds());
+//                var DotNet= Convert.ToInt32(_DotNetCounter.NextValue());
                 
-                _repository.Create(new DotNetMetric { Time = time, Value = DotNet });
-                return Task.CompletedTask;
-            }
+//                _repository.Create(new DotNetMetric { Time = time, Value = DotNet });
+//                return Task.CompletedTask;
+//            }
         
  
-    }
-}
+//    }
+//}

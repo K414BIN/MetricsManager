@@ -93,7 +93,6 @@ namespace MetricsAgent.Controllers
         [HttpGet("DotNetMetrics/from/{fromTime}/to/{toTime}")]
         public  GetAllDotNetMetricsRequest GetDotNetMetrics([FromRoute] long fromTime, [FromRoute] long toTime)
         { 
-
             _logger.Log(LogLevel.Information, "Requested between time {0} - {1} sec.", fromTime.FromUnixTimeMs(), toTime.FromUnixTimeMs());
             return new GetAllDotNetMetricsRequest
             {

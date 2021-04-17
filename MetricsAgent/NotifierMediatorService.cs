@@ -16,7 +16,9 @@ namespace MetricsAgent
 
         public void Notify()
         {
-            _notifiers.ToList().ForEach(x => x.Notify());
+            _notifiers.Where(x => x.CanRun()).ToList().ForEach(x => x.Notify());
+          //  _notifiers.ToList().ForEach(x => x.Notify());
+
         }
     }
 }

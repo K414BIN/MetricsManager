@@ -26,8 +26,10 @@ namespace MetricsManager
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddHttpClient();
-                 services.AddHttpClient<IMetricsAgentClient, MetricsAgentClient>().AddTransientHttpErrorPolicy(p => p.WaitAndRetryAsync(3, _ => TimeSpan.FromMilliseconds(5000)));
+            services.AddScoped<IAgentsRepository, AgentsRepository>();
+           // services.AddHttpClient();
+           // services.AddControllers();
+          //       services.AddHttpClient<IMetricsAgentClient, MetricsAgentClient>().AddTransientHttpErrorPolicy(p => p.WaitAndRetryAsync(3, _ => TimeSpan.FromMilliseconds(5000)));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

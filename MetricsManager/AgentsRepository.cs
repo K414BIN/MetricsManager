@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc.TagHelpers;
 
 namespace MetricsManager
 {
-    public class AgentsRepository : IAgentRepository<AgentInfo>
+    public class AgentsRepository : IAgentsRepository
     {
         private string ConnectionString = SQLSettings.ConnectionString;
 
