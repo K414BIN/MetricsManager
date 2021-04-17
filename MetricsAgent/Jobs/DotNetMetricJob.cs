@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using MetricsAgent.DAL.Interfaces;
 using MetricsAgent.DAL.Models;
 using Quartz;
+using System.Collections.Generic;
 
 namespace MetricsAgent.Jobs
 {
@@ -17,7 +18,7 @@ namespace MetricsAgent.Jobs
             public DotNetMetricJob(IServiceProvider provider)
             {
                 _provider = provider;
-                _repository = _provider.GetService<IDotNetMetricsRepository>();
+        //        _repository = _provider.GetService<IDotNetMetricsRepository>();
                 _DotNetCounter = new PerformanceCounter("DotNetGarbageHeap", "% Usage", "_Total");
             }
 

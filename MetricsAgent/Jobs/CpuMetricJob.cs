@@ -21,7 +21,7 @@ namespace MetricsAgent.Jobs
         public CpuMetricJob(IServiceProvider provider)
         {
             _provider = provider;
-            _repository = _provider.GetService<ICpuMetricsRepository>();
+         //   _repository = _provider.GetService<ICpuMetricsRepository>();
            _cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
         }
 

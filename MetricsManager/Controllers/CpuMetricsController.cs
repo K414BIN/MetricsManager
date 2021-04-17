@@ -1,9 +1,11 @@
 ﻿using System;
 using Core;
-using MetricsAgent.Client;
-using MetricsAgent.Requests;
+using MetricsManager.Client;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MetricsAgent.Requests;
+using System.Net.Http;
+using System.Text.Json;
 
 namespace MetricsManager.Controllers
 {
@@ -41,21 +43,28 @@ namespace MetricsManager.Controllers
             return Ok();
         }
 
+      
         [HttpGet("agent/{agentId}/from/{fromTime}/to/{toTime}")]
-        public IActionResult  GetMetricsCpuFromAgent([FromRoute] int agentId, [FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
+        public IActionResult GetMetricsFromAgent([FromRoute] int agentId, [FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
         {
-            // логируем, что мы пошли в соседний сервис
-            _logger.LogInformation($"starting new request to metrics agent");
-            // обращение в сервис
-            var metrics = MetricsAgentClient.GetCpuMetrics(new GetAllCpuMetricsRequest
+            var request = new HttpRequestMessage(HttpMethod.Get,
+                "http://localhost:50343/api/cpumetrics/from/1/to/999999");
+            request.Headers.Add("Accept", "application/vnd.github.v3+json");
+            var client = clientFactory.CreateClient();
+            HttpResponseMessage response = client.SendAsync(request).Result;
+            if (response.IsSuccessStatusCode)
             {
-                FromTime = fromTime,
-                ToTime = toTime
-            });
-    
-            // возвращаем ответ
-            return Ok(metrics);
+                using var responseStream =  response.Content.ReadAsStreamAsync().Result;
+                var metricsResponse  =  JsonSerializer.DeserializeAsync
+                    <CpuMetricsResponse>(responseStream).Result;
+            }
+            else
+            {
+                // ошибка при получении ответа
+            }
+            return Ok();
         }
+
 
     }
 }

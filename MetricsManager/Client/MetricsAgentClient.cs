@@ -4,17 +4,16 @@ using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
-using MetricsAgent.Requests;
-using MetricsAgent.Responses;
+using MetricsManager.Requests;
+using MetricsManager.Responses;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
 
-namespace MetricsAgent.Client
+namespace MetricsManager.Client
 {
-    public class MetricsAgentClient : IMetricsAgentClient
-    {
-        private readonly HttpClient _httpClient;
+    public class MetricsAgentClient
+    {   private readonly HttpClient _httpClient;
         private readonly ILogger _logger;
 
         public MetricsAgentClient(HttpClient httpClient, ILogger logger)
@@ -127,8 +126,5 @@ namespace MetricsAgent.Client
 
             return null;
         }
-
     }
 }
-    
-

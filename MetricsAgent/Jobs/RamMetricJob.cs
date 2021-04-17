@@ -22,7 +22,7 @@ namespace MetricsAgent.Jobs
             public RamMetricJob(IServiceProvider provider)
             {
                 _provider = provider;
-                _repository = _provider.GetService<IRamMetricsRepository>();
+             //   _repository = _provider.GetService<IRamMetricsRepository>();
                 _ramCounter = new PerformanceCounter("Memory", "Available MBytes");
             }
 

@@ -11,17 +11,11 @@ namespace MetricsManagerTests
     public class HddControllerUnitTests
         {
             private HddMetricsController controller;
-      
-        
-       //     private readonly ICpuMetricsRepository _repository;
-
             private readonly ILogger<HddMetricsController> _logger;
-         //   private readonly IMapper _mapper;
-
+        
             public HddControllerUnitTests()
             {
-
-                controller = new HddMetricsController(_logger);
+             controller = new HddMetricsController(_logger);
             }
 
             [Fact]
