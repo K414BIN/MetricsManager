@@ -1,8 +1,9 @@
-﻿using MetricsAgent.Models;
+﻿using MetricsAgent.DAL.Models;
+using MetricsAgent.Models;
 
 namespace MetricsAgent.Requests
 {
-    public class CpuMetricCreateRequest : CpuMetricDto
+    public class CpuMetricCreateRequest : CpuMetric
     {
     }
 }

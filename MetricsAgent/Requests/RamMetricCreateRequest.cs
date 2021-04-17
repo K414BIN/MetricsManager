@@ -4,7 +4,7 @@ using MetricsAgent.Models;
 
 namespace MetricsAgent.Requests
 {
-    public class RamMetricCreateRequest :  RamMetricDto
+    public class RamMetricCreateRequest :  RamMetric
     {
     }
 }

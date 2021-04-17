@@ -12,15 +12,11 @@ namespace MetricsManagerTests
     public class CpuControllerUnitTests
     {
         private CpuMetricsController controller;
-    //    private readonly Mock<ICpuMetricsRepository> _mock;
-   //     private  Mock<ILogger<CpuMetricsControllerUnitTests>> _mocklogger;
         private readonly ILogger<CpuMetricsController> _logger;
 
         public CpuControllerUnitTests()
         {
-        //    _mock = new Mock<ICpuMetricsRepository>();
-          //  _mocklogger = new Mock<ILogger<CpuControllerUnitTests>>();
-            controller = new CpuMetricsController(_logger);
+          controller = new CpuMetricsController(_logger);
         }
 
         [Fact]
