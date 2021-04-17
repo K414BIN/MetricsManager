@@ -2261,6 +2261,7 @@
           "Core": "1.0.0",
           "MetricsAgent": "1.0.0",
           "Microsoft.Extensions.DependencyInjection": "5.0.1",
+          "Microsoft.Extensions.Http.Polly": "5.0.1",
           "NLog": "4.7.9",
           "NLog.Web.AspNetCore": "4.12.0",
           "System.Data.SQLite.Core": "1.0.113.7"
