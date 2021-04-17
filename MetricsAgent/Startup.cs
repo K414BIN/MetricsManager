@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using MetricsAgent.Client;
 using MetricsAgent.DAL.Interfaces;
 using MetricsAgent.DAL.Repositories;
 using MetricsAgent.Jobs;
@@ -39,7 +38,7 @@ namespace MetricsAgent
             var mapper = mapperConfiguration.CreateMapper();
             services.AddSingleton(mapper);
             services.AddHttpClient(); 
-            services.AddHttpClient<IMetricsAgentClient, MetricsAgentClient>().AddTransientHttpErrorPolicy(p => p.WaitAndRetryAsync(3, _ => TimeSpan.FromMilliseconds(5000)));
+//services.AddHttpClient<IMetricsAgentClient, MetricsAgentClient>().AddTransientHttpErrorPolicy(p => p.WaitAndRetryAsync(3, _ => TimeSpan.FromMilliseconds(5000)));
             services.AddHostedService<QuartzHostedService>();
             services.AddScoped<ICpuMetricsRepository,CpuMetricsRepository>();
             services.AddScoped<IDotNetMetricsRepository,DotNetMetricsRepository>();

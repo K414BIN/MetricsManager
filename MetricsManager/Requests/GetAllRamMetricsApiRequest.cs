@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MetricsAgent.Requests
+namespace MetricsManager.Requests
 {
    public class GetAllRamMetricsApiRequest
     {

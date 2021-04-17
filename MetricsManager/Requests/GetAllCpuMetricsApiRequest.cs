@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace MetricsAgent.Requests
+namespace MetricsManager.Requests
 {
-   public class GetAllDotNetMetricsApiRequest
+   public class GetAllCpuMetricsApiRequest
     {
         public Uri AgentAddress { get; set; }
         public TimeSpan FromTime { get; set; }

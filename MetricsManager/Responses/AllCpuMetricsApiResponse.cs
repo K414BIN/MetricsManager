@@ -1,4 +1,4 @@
-﻿namespace MetricsAgent.Responses
+﻿namespace MetricsManager.Responses
 {
     public class AllCpuMetricsApiResponse
     {
