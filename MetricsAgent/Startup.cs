@@ -6,6 +6,7 @@ using AutoMapper;
 using Core.Interfaces;
 using MetricsAgent.DAL.Interfaces;
 using MetricsAgent.DAL.Repositories;
+using MetricsAgent.Jobs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -41,18 +42,17 @@ namespace MetricsAgent
             services.AddTransient<INotifierMediatorService, NotifierMediatorService>();
 //services.AddHttpClient<IMetricsAgentClient, MetricsAgentClient>().AddTransientHttpErrorPolicy(p => p.WaitAndRetryAsync(3, _ => TimeSpan.FromMilliseconds(5000)));
             services.AddHostedService<QuartzHostedService>();
-            services.AddScoped<ICpuMetricsRepository,CpuMetricsRepository>();
-            services.AddScoped<IDotNetMetricsRepository,DotNetMetricsRepository>();
-            services.AddScoped<IHddMetricsRepository,HddMetricsRepository>();
-            services.AddScoped<IRamMetricsRepository, RamMetricsRepository>();
-            services.AddScoped<INetworkMetricsRepository, NetworkMetricsRepository>();
+            services.AddSingleton<ICpuMetricsRepository,CpuMetricsRepository>();
+            services.AddSingleton<IDotNetMetricsRepository,DotNetMetricsRepository>();
+            services.AddSingleton<IHddMetricsRepository,HddMetricsRepository>();
+            services.AddSingleton<IRamMetricsRepository, RamMetricsRepository>();
+            services.AddSingleton<INetworkMetricsRepository, NetworkMetricsRepository>();
             services.AddSingleton<IJobFactory, SingletonJobFactory>();
             services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();
-// добавляем нашу задачу
-            //services.AddSingleton<CpuMetricJob>();
-            //services.AddSingleton(new JobSchedule(
-            //    jobType: typeof(CpuMetricJob),
-            //    cronExpression: "0/5 * * * * ?"));
+            services.AddSingleton<CpuMetricJob>();
+            services.AddSingleton(new JobSchedule(
+                jobType: typeof(CpuMetricJob),
+                cronExpression: "0/5 * * * * ?"));
             ////****************************************************
             //services.AddSingleton<NetworkMetricJob>();
             //services.AddSingleton(new JobSchedule(
@@ -73,7 +73,6 @@ namespace MetricsAgent
             //services.AddSingleton(new JobSchedule(
             //    jobType: typeof(RamMetricJob),
             //    cronExpression: "0/5 * * * * ?"));
-
 
         }
 

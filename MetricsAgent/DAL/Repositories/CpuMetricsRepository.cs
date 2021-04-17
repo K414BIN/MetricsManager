@@ -18,12 +18,17 @@ namespace MetricsAgent.DAL.Repositories
         {
             // добавляем парсилку типа TimeSpan в качестве подсказки для SQLite
             SqlMapper.AddTypeHandler(new TimeSpanHandler());
+
         }
 
         public void Create(CpuMetric item)
         {
             using (var connection = new SQLiteConnection(ConnectionString))
             {
+               // connection.ExecuteScalar("CREATE TABLE IF NOT EXISTS cpumetrics (`id` INTEGER  ,'value' INTEGER, 'time' INT64, PRIMARY KEY(`id`)", null);
+                 //connection.Execute(
+                 //   @"CREATE TABLE IF NOT EXISTS cpumetrics (`id` INTEGER  ,'value' INTEGER, 'time' INT64, PRIMARY KEY(`id`)", param: null,null,null,null);
+                
                 //  запрос на вставку данных с плейсхолдерами для параметров
                 connection.Execute("INSERT INTO cpumetrics(value, time) VALUES(@value, @time)", 
                     // анонимный объект с параметрами запроса

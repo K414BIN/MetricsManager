@@ -6,7 +6,7 @@ namespace Core.Interfaces
     {
         T GetAgent(int id);
         IList<T> GetAll();
-        IList<T> GetFirst();
+         T GetFirst();
         IList<T> GetLast();
         void Create(T item);
         void Update(T item);

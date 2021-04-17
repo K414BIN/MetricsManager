@@ -45,12 +45,15 @@ namespace MetricsManager
             }
         }
 
-        public IList<AgentInfo> GetFirst()
+        public AgentInfo GetFirst()
         {
+            AgentInfo vAgentInfo;
             using (var connection = new SQLiteConnection(ConnectionString))
             {
-                return connection.Query<AgentInfo>("SELECT * FROM agents ORDER BY id ASC LIMIT 1 ").ToList();
+               vAgentInfo= (AgentInfo)connection.QueryFirst<AgentInfo>("SELECT * FROM agents");
             }
+
+            return (vAgentInfo);
         }
 
         public void Delete(int agentId)

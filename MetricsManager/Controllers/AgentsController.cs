@@ -15,7 +15,7 @@ namespace MetricsManager.Controllers
     [ApiController]
     public class AgentsController : ControllerBase
     {
-        private readonly IAgentRepositoryAgentsRepository _repository;
+        private readonly IAgentsRepository _repository;
         public AgentsController(IHttpClientFactory httpClientFactory)
         {
             httpClientFactory.CreateClient();
@@ -26,16 +26,16 @@ namespace MetricsManager.Controllers
         //    return new RestClient(connectionString, _httpClientFactory.CreateClient());
         //}
 
-        public bool TestAgentInDb(int id, Func<(AgentInfo, bool)> checkAgentInfo)
-        {
-            var agent = _repository.GetAgent(id);
-            return checkAgentInfo(agent);
-        }
+        //public bool TestAgentInDb(int id, Func<(AgentInfo, bool)> checkAgentInfo)
+        //{
+        //    var agent = _repository.GetAgent(id);
+        //    return checkAgentInfo(agent);
+        //}
 
         [HttpPost("register")]
         public IActionResult RegisterAgent([FromBody] AgentInfo agentInfo)
         {
-            TestAgentInDb(agentInfo.AgentId, agentInfo => agentInfo.AgentAddress != null);
+         //   TestAgentInDb(agentInfo.AgentId, agentInfo => agentInfo.AgentAddress != null);
             var list = new List<int>();
             list.RemoveAll(item => item == 1);
             return Ok();

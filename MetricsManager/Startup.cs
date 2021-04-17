@@ -26,7 +26,7 @@ namespace MetricsManager
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddScoped<IAgentsRepository, AgentsRepository>();
+            services.AddSingleton<IAgentsRepository, AgentsRepository>();
            // services.AddHttpClient();
            // services.AddControllers();
           //       services.AddHttpClient<IMetricsAgentClient, MetricsAgentClient>().AddTransientHttpErrorPolicy(p => p.WaitAndRetryAsync(3, _ => TimeSpan.FromMilliseconds(5000)));
