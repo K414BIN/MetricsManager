@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using MetricsAgent.DAL.Interfaces;
 using MetricsAgent.DAL.Models;
 using Quartz;
+using System.Collections.Generic;
 
 namespace MetricsAgent.Jobs
 {

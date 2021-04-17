@@ -11,18 +11,20 @@ using MetricsAgent.Responses;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using ServiceStack.Text;
 
 namespace MetricsAgent.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class RamMetricsController : ControllerBase
-    { 
+    {
         private readonly IRamMetricsRepository _repository;
         private readonly ILogger<RamMetricsController> _logger;
         private readonly IMapper _mapper;
 
-        public RamMetricsController(ILogger<RamMetricsController> logger, IRamMetricsRepository repository, IMapper mapper)
+        public RamMetricsController(ILogger<RamMetricsController> logger, IRamMetricsRepository repository,
+            IMapper mapper)
         {
             _mapper = mapper;
             _logger = logger;
@@ -30,63 +32,74 @@ namespace MetricsAgent.Controllers
             _logger.LogInformation("Start RamMetricsController");
         }
 
-
-        [HttpGet("available/{memoryingb}")]
-        public IActionResult GetMetricsAvailabeMemory([FromRoute] int memoryInGB)
+        [HttpGet("RamMetrics/from/{fromTime}/to/{toTime}")]
+        public GetAllRamMetricsRequest GetRamMetrics([FromRoute] long fromTime, [FromRoute] long toTime)
         {
-            return Ok();
-        }
-
-        [HttpPost("create")]
-        public IActionResult Create([FromBody] RamMetricCreateRequest request)
-        {
-            _repository.Create(new RamMetric
+            _logger.Log(LogLevel.Information, "Requested between time {0} - {1} sec.", fromTime.FromUnixTimeMs(), toTime.FromUnixTimeMs());
+            return new GetAllRamMetricsRequest
             {
-               Value  = request.Value
-            });
-
-            return Ok();
-        }
-
-        [HttpGet("all")]
-        public IActionResult GetAll()
-        {
-            _logger.LogInformation($"GetAll");
-            var metrics = _repository.GetAll();
-
-            var response = new AllMetricsResponse<RamMetricDto>()
-            {
-                Metrics = new List<RamMetricDto>()
+                FromTime = TimeSpan.FromSeconds(fromTime),
+                ToTime = TimeSpan.FromSeconds(fromTime)
             };
-
-            foreach (var metric in metrics)
-            {
-                response.Metrics.Add(_mapper.Map<RamMetricDto>(metric));
-            }
-
-            return Ok(response);
-            
         }
 
-        [HttpDelete("delete/{id}")]
-        public IActionResult Delete([FromRoute] int id)
-        {
-            _repository.Delete(id);
-            return Ok();
-        }
+        //    [HttpGet("available/{memoryingb}")]
+        //    public IActionResult GetMetricsAvailabeMemory([FromRoute] int memoryInGB)
+        //    {
+        //        return Ok();
+        //    }
 
-        [HttpPut("update")]
-        public IActionResult Update([FromBody] RamMetric request)
-        {
-            _repository.Update(request);
-            return Ok();
-        }
+        //    [HttpPost("create")]
+        //    public IActionResult Create([FromBody] RamMetricCreateRequest request)
+        //    {
+        //        _repository.Create(new RamMetric
+        //        {
+        //           Value  = request.Value
+        //        });
 
-        [HttpGet("getbyid/{id}")]
-        public IActionResult GetById([FromRoute] int id)
-        {
-           _repository.GetById(id);
-            return Ok();
-        }
+        //        return Ok();
+        //    }
+
+        //    [HttpGet("all")]
+        //    public IActionResult GetAll()
+        //    {
+        //        _logger.LogInformation($"GetAll");
+        //        var metrics = _repository.GetAll();
+
+        //        var response = new AllMetricsResponse<RamMetricDto>()
+        //        {
+        //            Metrics = new List<RamMetricDto>()
+        //        };
+
+        //        foreach (var metric in metrics)
+        //        {
+        //            response.Metrics.Add(_mapper.Map<RamMetricDto>(metric));
+        //        }
+
+        //        return Ok(response);
+
+        //    }
+
+        //    [HttpDelete("delete/{id}")]
+        //    public IActionResult Delete([FromRoute] int id)
+        //    {
+        //        _repository.Delete(id);
+        //        return Ok();
+        //    }
+
+        //    [HttpPut("update")]
+        //    public IActionResult Update([FromBody] RamMetric request)
+        //    {
+        //        _repository.Update(request);
+        //        return Ok();
+        //    }
+
+        //    [HttpGet("getbyid/{id}")]
+        //    public IActionResult GetById([FromRoute] int id)
+        //    {
+        //       _repository.GetById(id);
+        //        return Ok();
+        //    }
+      
     }
 }
