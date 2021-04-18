@@ -18,7 +18,7 @@ namespace MetricsAgent.DAL.Repositories
         {
             // добавляем парсилку типа TimeSpan в качестве подсказки для SQLite
             SqlMapper.AddTypeHandler(new TimeSpanHandler());
-
+         
         }
 
         public void Create(CpuMetric item)
@@ -61,7 +61,7 @@ namespace MetricsAgent.DAL.Repositories
             {
                 connection.Execute("UPDATE cpumetrics SET value = @value, time = @time WHERE id=@id",
                     new
-                    {
+                    {   
                         value = item.Value,
                         time = item.Time.TotalSeconds,
                         id = item.Id
