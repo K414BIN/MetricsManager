@@ -1,0 +1,16 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=353d3b69_002Dad0e_002D4179_002D870f_002D918885d51044/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetMetricsFromAgent_ReturnsOk" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::A8097329-2FB3-4C7A-8CE8-5D73D243C755::.NETCoreApp,Version=v3.1::MetricsManagerTests.CpuControllerUnitTests.GetMetricsFromAgent_ReturnsOk&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=7bcfb910_002D18c0_002D4b45_002D856a_002Da6543ee36332/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="HddControllerUnitTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::A8097329-2FB3-4C7A-8CE8-5D73D243C755::.NETCoreApp,Version=v3.1::MetricsManagerTests.HddControllerUnitTests&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c26aac4d_002D06df_002D4555_002D98a8_002D1899611ec797/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="DotNetControllerUnitTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::A8097329-2FB3-4C7A-8CE8-5D73D243C755::.NETCoreApp,Version=v3.1::MetricsManagerTests.DotNetControllerUnitTests&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

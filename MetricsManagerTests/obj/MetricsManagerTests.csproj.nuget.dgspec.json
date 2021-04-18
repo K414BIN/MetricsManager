@@ -1,97 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\akradioman3\\source\\repos\\MetricsManagerTests\\MetricsManagerTests.csproj": {}
+    "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\MetricsManagerTests\\MetricsManagerTests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\akradioman3\\source\\repos\\MetricsManagerTests\\MetricsManagerTests.csproj": {
+    "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\akradioman3\\source\\repos\\MetricsManagerTests\\MetricsManagerTests.csproj",
-        "projectName": "MetricsManagerTests",
-        "projectPath": "C:\\Users\\akradioman3\\source\\repos\\MetricsManagerTests\\MetricsManagerTests.csproj",
+        "projectUniqueName": "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\Core\\Core.csproj",
+        "projectName": "Core",
+        "projectPath": "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\Core\\Core.csproj",
         "packagesPath": "C:\\Users\\akradioman3\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\akradioman3\\source\\repos\\MetricsManagerTests\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\akradioman3\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "netcoreapp3.1"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
-            "projectReferences": {
-              "C:\\Users\\akradioman3\\source\\repos\\MetricsManager\\MetricsManager.csproj": {
-                "projectPath": "C:\\Users\\akradioman3\\source\\repos\\MetricsManager\\MetricsManager.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
-          "dependencies": {
-            "Microsoft.NET.Test.Sdk": {
-              "target": "Package",
-              "version": "[16.7.1, )"
-            },
-            "coverlet.collector": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[1.3.0, )"
-            },
-            "xunit": {
-              "target": "Package",
-              "version": "[2.4.1, )"
-            },
-            "xunit.runner.visualstudio": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[2.4.3, )"
-            }
-          },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "C:\\Users\\akradioman3\\source\\repos\\MetricsManager\\MetricsManager.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\akradioman3\\source\\repos\\MetricsManager\\MetricsManager.csproj",
-        "projectName": "MetricsManager",
-        "projectPath": "C:\\Users\\akradioman3\\source\\repos\\MetricsManager\\MetricsManager.csproj",
-        "packagesPath": "C:\\Users\\akradioman3\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\akradioman3\\source\\repos\\MetricsManager\\obj\\",
+        "outputPath": "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\akradioman3\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -130,6 +50,110 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\MetricsAgent\\MetricsAgent.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\MetricsAgent\\MetricsAgent.csproj",
+        "projectName": "MetricsAgent",
+        "projectPath": "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\MetricsAgent\\MetricsAgent.csproj",
+        "packagesPath": "C:\\Users\\akradioman3\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\MetricsAgent\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\akradioman3\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\Core\\Core.csproj": {
+                "projectPath": "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\Core\\Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[10.1.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.1.1, )"
+            },
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.0.78, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "Microsoft.Extensions.Http.Polly": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "NLog": {
+              "target": "Package",
+              "version": "[4.7.9, )"
+            },
+            "NLog.Web.AspNetCore": {
+              "target": "Package",
+              "version": "[4.12.0, )"
+            },
+            "Quartz": {
+              "target": "Package",
+              "version": "[3.3.2, )"
+            },
+            "ServiceStack.Text": {
+              "target": "Package",
+              "version": "[5.10.4, )"
+            },
+            "System.Data.SQLite.Core": {
+              "target": "Package",
+              "version": "[1.0.113.7, )"
+            },
+            "System.Diagnostics.PerformanceCounter": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
             },
@@ -137,7 +161,177 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\MetricsManagerTests\\MetricsManagerTests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\MetricsManagerTests\\MetricsManagerTests.csproj",
+        "projectName": "MetricsManagerTests",
+        "projectPath": "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\MetricsManagerTests\\MetricsManagerTests.csproj",
+        "packagesPath": "C:\\Users\\akradioman3\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\MetricsManagerTests\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\akradioman3\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\MetricsManager\\MetricsManager.csproj": {
+                "projectPath": "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\MetricsManager\\MetricsManager.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[16.7.1, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.16.1, )"
+            },
+            "coverlet.collector": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.3.0, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.4.1, )"
+            },
+            "xunit.runner.visualstudio": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.4.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\MetricsManager\\MetricsManager.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\MetricsManager\\MetricsManager.csproj",
+        "projectName": "MetricsManager",
+        "projectPath": "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\MetricsManager\\MetricsManager.csproj",
+        "packagesPath": "C:\\Users\\akradioman3\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\MetricsManager\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\akradioman3\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\Core\\Core.csproj": {
+                "projectPath": "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\Core\\Core.csproj"
+              },
+              "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\MetricsAgent\\MetricsAgent.csproj": {
+                "projectPath": "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\MetricsAgent\\MetricsAgent.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "Microsoft.Extensions.Http.Polly": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "NLog": {
+              "target": "Package",
+              "version": "[4.7.9, )"
+            },
+            "NLog.Web.AspNetCore": {
+              "target": "Package",
+              "version": "[4.12.0, )"
+            },
+            "System.Data.SQLite.Core": {
+              "target": "Package",
+              "version": "[1.0.113.7, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }
