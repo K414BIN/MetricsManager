@@ -15,7 +15,8 @@ using ServiceStack.Text;
 
 namespace MetricsAgent.Controllers
 {
-    [Route("api/[controller]")]
+    
+    [Route("api/metrics/ram")]
     [ApiController]
     public class RamMetricsController : ControllerBase
     {

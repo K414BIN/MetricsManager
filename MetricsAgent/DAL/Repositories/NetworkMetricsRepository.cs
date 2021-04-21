@@ -24,6 +24,7 @@ namespace MetricsAgent.DAL.Repositories
         {
             using (var connection = new SQLiteConnection(ConnectionString))
             {
+                connection.Execute(@"CREATE TABLE IF NOT EXISTS  networkmetrics (id INTEGER PRIMARY KEY, value INT, time INT64)");
                 //  запрос на вставку данных с плейсхолдерами для параметров
                 connection.Execute("INSERT INTO networkmetrics(value, time) VALUES(@value, @time)", 
                     // анонимный объект с параметрами запроса
