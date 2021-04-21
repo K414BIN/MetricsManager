@@ -1,7 +1,6 @@
 ﻿using Core.Interfaces;
-using MetricsAgent.DAL.Models;
 
-namespace MetricsManager
+namespace MetricsManager.Interfaces
 {
     public interface IAgentsRepository : IAgentRepository<AgentInfo>
     {

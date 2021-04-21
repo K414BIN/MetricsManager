@@ -117,7 +117,7 @@ namespace MetricsManager.Client
                 HttpResponseMessage response = _httpClient.SendAsync(HttpRequest).Result;
 
                 using var responseStream = response.Content.ReadAsStreamAsync().Result;
-                return JsonSerializer.DeserializeAsync<AllDotNetMetricsApiResponse>(responseStream).Result;
+                return JsonSerializer.DeserializeAsync<AllDotNetMetricsApiResponse>(responseStream, new JsonSerializerOptions{PropertyNameCaseInsensitive = true}).Result;
             }
             catch (Exception ex)
             {

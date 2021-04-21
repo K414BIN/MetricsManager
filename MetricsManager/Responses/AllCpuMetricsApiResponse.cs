@@ -1,6 +1,9 @@
-﻿namespace MetricsManager.Responses
+﻿using MetricsManager.Models;
+
+namespace MetricsManager.Responses
 {
-    public class AllCpuMetricsApiResponse
+    public class AllCpuMetricsApiResponse : ApiResponse<CpuMetrics>
     {
+        
     }
 }
