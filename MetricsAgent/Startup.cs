@@ -16,9 +16,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Polly;
+using Core;
 using Quartz;
 using Quartz.Impl;
 using Quartz.Spi;
+using FluentMigrator.Runner;
+using System.Data.SQLite;
 
 namespace MetricsAgent
 {
@@ -30,14 +33,21 @@ namespace MetricsAgent
         }
 
         public IConfiguration Configuration { get; }
+        
+        private readonly string _connectionString = SQLSettings.ConnectionString;
+
+        private void ConfigureSqlLiteConnection(IServiceCollection services)
+        { 
+            var connection = new SQLiteConnection(_connectionString);
+            connection.Open();
+            services.AddSingleton(_connectionString);
+        }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            var mapperConfiguration = new MapperConfiguration(mp => mp.AddProfile(new MapperProfile()));
-            var mapper = mapperConfiguration.CreateMapper();
-            services.AddSingleton(mapper);
+            ConfigureSqlLiteConnection(services);
             services.AddHttpClient(); 
             services.AddTransient<INotifierMediatorService, NotifierMediatorService>();
 //services.AddHttpClient<IMetricsAgentClient, MetricsAgentClient>().AddTransientHttpErrorPolicy(p => p.WaitAndRetryAsync(3, _ => TimeSpan.FromMilliseconds(5000)));
@@ -72,12 +82,26 @@ namespace MetricsAgent
             //services.AddSingleton<RamMetricJob>();
             //services.AddSingleton(new JobSchedule(
             //    jobType: typeof(RamMetricJob),
-            //    cronExpression: "0/5 * * * * ?"));
-
+            //    cronExpression: "0/5 * * * * ?"));      ////****************************************************
+            var mapperConfiguration = new MapperConfiguration(mp => mp.AddProfile(new MapperProfile()));
+            var mapper = mapperConfiguration.CreateMapper();
+            services.AddSingleton(mapper);
+            ////****************************************************
+            services.AddFluentMigratorCore()
+                .ConfigureRunner(rb => rb
+                    // добавляем поддержку SQLite 
+                    .AddSQLite()
+                    // устанавливаем строку подключения
+                    .WithGlobalConnectionString(_connectionString)
+      
+                    // подсказываем где искать классы с миграциями
+                    .ScanIn(typeof(Startup).Assembly).For.Migrations()
+                ).AddLogging(lb => lb
+                    .AddFluentMigratorConsole());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,IMigrationRunner migrationRunner)
         {
             if (env.IsDevelopment())
             {
@@ -89,7 +113,7 @@ namespace MetricsAgent
             app.UseRouting();
 
             app.UseAuthorization();
-
+            migrationRunner.MigrateUp();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

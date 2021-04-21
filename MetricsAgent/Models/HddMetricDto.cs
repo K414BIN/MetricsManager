@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace MetricsAgent.Models
 {
     public class HddMetricDto
@@ -7,6 +9,6 @@ namespace MetricsAgent.Models
 
         public int Value { get; set; }
 
-
+        public DateTimeOffset Time { get; set; }
     }
 }

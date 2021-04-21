@@ -110,6 +110,18 @@
               "target": "Package",
               "version": "[2.0.78, )"
             },
+            "FluentMigrator": {
+              "target": "Package",
+              "version": "[3.2.15, )"
+            },
+            "FluentMigrator.Runner": {
+              "target": "Package",
+              "version": "[3.2.15, )"
+            },
+            "FluentMigrator.Runner.SQLite": {
+              "target": "Package",
+              "version": "[3.2.15, )"
+            },
             "Microsoft.Extensions.DependencyInjection": {
               "target": "Package",
               "version": "[5.0.1, )"

@@ -3,7 +3,7 @@
 
     public enum Tables
     {
-        CpuMetric,
+        CpuMetric ,
         DotNetMetric,
         HddMetric,
         NetworkMetric,
