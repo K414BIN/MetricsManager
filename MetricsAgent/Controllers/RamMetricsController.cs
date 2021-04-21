@@ -44,63 +44,24 @@ namespace MetricsAgent.Controllers
             };
         }
 
-        //    [HttpGet("available/{memoryingb}")]
-        //    public IActionResult GetMetricsAvailabeMemory([FromRoute] int memoryInGB)
-        //    {
-        //        return Ok();
-        //    }
-
-        //    [HttpPost("create")]
-        //    public IActionResult Create([FromBody] RamMetricCreateRequest request)
-        //    {
-        //        _repository.Create(new RamMetric
-        //        {
-        //           Value  = request.Value
-        //        });
-
-        //        return Ok();
-        //    }
-
-        //    [HttpGet("all")]
-        //    public IActionResult GetAll()
-        //    {
-        //        _logger.LogInformation($"GetAll");
-        //        var metrics = _repository.GetAll();
-
-        //        var response = new AllMetricsResponse<RamMetricDto>()
-        //        {
-        //            Metrics = new List<RamMetricDto>()
-        //        };
-
-        //        foreach (var metric in metrics)
-        //        {
-        //            response.Metrics.Add(_mapper.Map<RamMetricDto>(metric));
-        //        }
-
-        //        return Ok(response);
-
-        //    }
-
-        //    [HttpDelete("delete/{id}")]
-        //    public IActionResult Delete([FromRoute] int id)
-        //    {
-        //        _repository.Delete(id);
-        //        return Ok();
-        //    }
-
-        //    [HttpPut("update")]
-        //    public IActionResult Update([FromBody] RamMetric request)
-        //    {
-        //        _repository.Update(request);
-        //        return Ok();
-        //    }
-
-        //    [HttpGet("getbyid/{id}")]
-        //    public IActionResult GetById([FromRoute] int id)
-        //    {
-        //       _repository.GetById(id);
-        //        return Ok();
-        //    }
+        [HttpGet("from/{fromTime}/to/{toTime}")]
+        public IActionResult GetRamMetricsTimeInterval ([FromRoute] DateTimeOffset fromTime, [FromRoute] DateTimeOffset toTime)
+        {
+            _logger.LogInformation($"GetRamMetricsTimeInterval - From time: {fromTime}; To time: {toTime}");
       
+            var metrics = _repository.GetAll();
+            var response = new AllMetricsResponse<RamMetricDto>()
+            {
+                Metrics = new List<RamMetricDto>()
+
+            };
+            foreach (var metric in metrics)
+            {
+                response.Metrics.Add(_mapper.Map<RamMetricDto>(metric));
+            }
+
+            return Ok(response);
+        }
+
     }
 }

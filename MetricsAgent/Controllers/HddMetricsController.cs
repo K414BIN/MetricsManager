@@ -43,62 +43,22 @@ namespace MetricsAgent.Controllers
             };
         }
 
-        //[HttpGet("all")]
-        //public IActionResult GetAll()
-        //{
-        //    _logger.LogInformation($"GetAll");
-        //    IList<HddMetric> metrics = _repository.GetAll();
-        
-        //    var response = new AllMetricsResponse<HddMetricDto>()
-        //    {
-        //        Metrics = new List<HddMetricDto>()
+        [HttpGet("from/{fromTime}/to/{toTime}")]
+        public IActionResult GetHddMetricsTimeInterval ([FromRoute] DateTimeOffset fromTime, [FromRoute] DateTimeOffset toTime)
+        {
+            _logger.LogInformation($"GetHddMetricsTimeInterval - From time: {fromTime}; To time: {toTime}");
+            //    List<CpuMetric> metrics = _repository.GetByTimePeriod(fromTime, toTime);
+            var metrics = _repository.GetAll();
+            var response = new AllMetricsResponse<HddMetricDto>()
+            {
+                Metrics = new List<HddMetricDto>()
+            };
 
-        //    };
-        //    foreach (var metric in metrics)
-        //    {
-        //        response.Metrics.Add(_mapper.Map<HddMetricDto>(metric));
-        //    }
-
-        //    return Ok(response);
-        //}
-        
-        //[HttpDelete("delete/{id}")]
-        //public IActionResult Delete([FromRoute] int id)
-        //{
-        //    _repository.Delete(id);
-        //    return Ok();
-        //}
-
-        //[HttpPut("update")]
-        //public IActionResult Update([FromBody] HddMetric request)
-        //{
-        //    _repository.Update(request);
-        //    return Ok();
-        //}
-
-        //[HttpGet("getbyid/{id}")]
-        //public IActionResult GetById([FromRoute] int id)
-        //{
-        //    _repository.GetById(id);
-        //    return Ok();
-        //}
-        
-        //[HttpPost("create")]
-        //public IActionResult Create([FromBody] HddMetricCreateRequest request)
-        //{
-        //    _repository.Create(new HddMetric
-        //    {
-        //        Value  = request.Value
-        //    });
-
-        //    return Ok();
-        //}
-        
-        //[HttpGet("hdd/left")]
-        //public IActionResult GetHddSizeLeft()
-        //{
-        //    _logger.LogInformation($"GetHddSizeLeft:");
-        //    return Ok();
-        //}
+            foreach (var metric in metrics)
+            {
+                response.Metrics.Add(_mapper.Map<HddMetricDto>(metric));
+            }
+            return Ok(response);
+        }
     }
 }
