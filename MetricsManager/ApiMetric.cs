@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MetricsManager
 {
-    public class ApiMetric
+    public class ApiMetric<T> where T : class
     {     
         public int id { get; set; }
         public int agentid { get; set; }

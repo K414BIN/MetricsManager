@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MetricsManager.Models
 {
-    public class CpuMetrics
+    public class CpuMetrics : ApiMetric<CpuMetrics>
     {
     }
 }

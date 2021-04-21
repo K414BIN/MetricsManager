@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using MetricsAgent.Requests;
 using System.Net.Http;
 using System.Text.Json;
+using MetricsManager.Responses;
 
 namespace MetricsManager.Controllers
 {
