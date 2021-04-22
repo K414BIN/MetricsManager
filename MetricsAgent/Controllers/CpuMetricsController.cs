@@ -46,16 +46,16 @@ namespace MetricsAgent.Controllers
             return Ok();
         }
 
-        [HttpGet("from/{fromTime}/to/{toTime}")]
-        public  GetAllCpuMetricsRequest GetCpuMetrics([FromRoute] long fromTime, [FromRoute] long toTime)
-        {
-            _logger.Log(LogLevel.Information, "Requested between time {0} - {1} sec.", fromTime.FromUnixTimeMs(), toTime.FromUnixTimeMs());
-            return new GetAllCpuMetricsRequest
-            {
-                FromTime = TimeSpan.FromSeconds(fromTime),
-                ToTime = TimeSpan.FromSeconds(fromTime)
-            };
-        }
+        //[HttpGet("/from/{fromTime}/to/{toTime}")]
+        //public  GetAllCpuMetricsRequest GetCpuMetrics([FromRoute] long fromTime, [FromRoute] long toTime)
+        //{
+        //    _logger.Log(LogLevel.Information, "Requested between time {0} - {1} sec.", fromTime.FromUnixTimeMs(), toTime.FromUnixTimeMs());
+        //    return new GetAllCpuMetricsRequest
+        //    {
+        //        FromTime = TimeSpan.FromSeconds(fromTime),
+        //        ToTime = TimeSpan.FromSeconds(fromTime)
+        //    };
+        //}
 
         [HttpGet("from/{fromTime}/to/{toTime}")]
         public IActionResult GetCpuMetricsTimeInterval([FromRoute] DateTimeOffset fromTime, [FromRoute] DateTimeOffset toTime)
