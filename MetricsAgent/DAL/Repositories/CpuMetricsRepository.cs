@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Linq;
+using System.Web;
 using Core;
 using Dapper;
 using MetricsAgent.DAL.Interfaces;
@@ -66,7 +68,8 @@ namespace MetricsAgent.DAL.Repositories
                     });
             }
         }
-
+        
+       
         public IList<CpuMetric> GetAll()
         {
             using (var connection = new SQLiteConnection(ConnectionString))
@@ -74,7 +77,7 @@ namespace MetricsAgent.DAL.Repositories
                 // читаем при помощи Query и в шаблон подставляем тип данных
                 // объект которого Dapper сам и заполнит его поля
                 // в соответсвии с названиями колонок
-                return connection.Query<CpuMetric>("SELECT Id, Time, Value FROM cpumetrics").ToList();
+                return connection.Query<CpuMetric>("SELECT * FROM cpumetrics").ToList();
             }
         }
 
@@ -82,7 +85,7 @@ namespace MetricsAgent.DAL.Repositories
         {
             using (var connection = new SQLiteConnection(ConnectionString))
             {
-                return connection.QuerySingle<CpuMetric>("SELECT Id, Time, Value FROM cpumetrics WHERE id=@id",
+                return connection.QuerySingle<CpuMetric>("SELECT * FROM cpumetrics WHERE id=@id",
                     new {id = id});
             }
         }

@@ -16,7 +16,7 @@ using ServiceStack.Text;
 namespace MetricsAgent.Controllers
 {
     
-    [Route("api/metrics/dotnet")]
+    [Route("api/[controller]")]
     [ApiController]
     public class DotNetMetricsController : ControllerBase
     {
@@ -33,7 +33,7 @@ namespace MetricsAgent.Controllers
         }
         
 
-        [HttpGet("DotNetMetrics/from/{fromTime}/to/{toTime}")]
+        [HttpGet("from/{fromTime}/to/{toTime}")]
         public  GetAllDotNetMetricsRequest GetDotNetMetrics([FromRoute] long fromTime, [FromRoute] long toTime)
         { 
             _logger.Log(LogLevel.Information, "Requested between time {0} - {1} sec.", fromTime.FromUnixTimeMs(), toTime.FromUnixTimeMs());
@@ -44,22 +44,22 @@ namespace MetricsAgent.Controllers
             };
         }
 
-        [HttpGet("from/{fromTime}/to/{toTime}")]
-        public IActionResult GetDotNetMetricsTimeInterval ([FromRoute] DateTimeOffset fromTime, [FromRoute] DateTimeOffset toTime)
-        {
-            _logger.LogInformation($"GetDotNetMetricsTimeInterval - From time: {fromTime}; To time: {toTime}");
-            //    List<CpuMetric> metrics = _repository.GetByTimePeriod(fromTime, toTime);
-            var metrics = _repository.GetAll();
-            var response = new AllMetricsResponse<DotNetMetricDto>()
-            {
-                Metrics = new List<DotNetMetricDto>()
-            };
+        //[HttpGet("from/{fromTime}/to/{toTime}")]
+        //public IActionResult GetDotNetMetricsTimeInterval ([FromRoute] DateTimeOffset fromTime, [FromRoute] DateTimeOffset toTime)
+        //{
+        //    _logger.LogInformation($"GetDotNetMetricsTimeInterval - From time: {fromTime}; To time: {toTime}");
+        //    //    List<CpuMetric> metrics = _repository.GetByTimePeriod(fromTime, toTime);
+        //    var metrics = _repository.GetAll();
+        //    var response = new AllMetricsResponse<DotNetMetricDto>()
+        //    {
+        //        Metrics = new List<DotNetMetricDto>()
+        //    };
 
-            foreach (var metric in metrics)
-            {
-                response.Metrics.Add(_mapper.Map<DotNetMetricDto>(metric));
-            }
-            return Ok(response);
-        }
+        //    foreach (var metric in metrics)
+        //    {
+        //        response.Metrics.Add(_mapper.Map<DotNetMetricDto>(metric));
+        //    }
+        //    return Ok(response);
+        //}
     }
 }

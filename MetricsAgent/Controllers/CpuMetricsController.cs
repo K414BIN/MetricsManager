@@ -16,7 +16,8 @@ using ServiceStack.Text;
 
 namespace MetricsAgent.Controllers
 {
-    [Route("api/metrics/cpu")]
+   
+    [Route("api/[controller]")]
     [ApiController]
     public class CpuMetricsController : ControllerBase
     {
@@ -26,6 +27,10 @@ namespace MetricsAgent.Controllers
 
         public CpuMetricsController(ILogger<CpuMetricsController> logger, ICpuMetricsRepository repository, IMapper mapper)
         {
+         //   var config = new MapperConfiguration(cfg => cfg.CreateMap<CpuMetric, CpuMetricDto>());
+            //var mapper = config.CreateMapper();
+
+
             _mapper = mapper;
             _logger = logger;
             _repository = repository;
@@ -41,7 +46,7 @@ namespace MetricsAgent.Controllers
             return Ok();
         }
 
-        [HttpGet("cpumetrics/from/{fromTime}/to/{toTime}")]
+        [HttpGet("from/{fromTime}/to/{toTime}")]
         public  GetAllCpuMetricsRequest GetCpuMetrics([FromRoute] long fromTime, [FromRoute] long toTime)
         {
             _logger.Log(LogLevel.Information, "Requested between time {0} - {1} sec.", fromTime.FromUnixTimeMs(), toTime.FromUnixTimeMs());
@@ -51,12 +56,13 @@ namespace MetricsAgent.Controllers
                 ToTime = TimeSpan.FromSeconds(fromTime)
             };
         }
+
         [HttpGet("from/{fromTime}/to/{toTime}")]
-        public IActionResult GetCpuMetricsTimeInterval ([FromRoute] DateTimeOffset fromTime, [FromRoute] DateTimeOffset toTime)
+        public IActionResult GetCpuMetricsTimeInterval([FromRoute] DateTimeOffset fromTime, [FromRoute] DateTimeOffset toTime)
         {
             _logger.LogInformation($"GetCpuMetricsTimeInterval - From time: {fromTime}; To time: {toTime}");
-            //    List<CpuMetric> metrics = _repository.GetByTimePeriod(fromTime, toTime);
-            var metrics = _repository.GetAll();
+              List<CpuMetric> metrics = _repository.GetByTimePeriod(fromTime, toTime);
+           // var metrics = _repository.GetAll();
             var response = new AllMetricsResponse<CpuMetricDto>()
             {
                 Metrics = new List<CpuMetricDto>()

@@ -1,14 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "yQWDdD9D05NvFjVmKHFbBPBbfBW4/Py0C2SXgDjXPauhG+bCX4g3xAU4GTgtDeajSzSB7QPwK7PQXLjhV3/e/w==",
+  "dgSpecHash": "Cq6KRJ2JUUKgxulY7VaqB+DhUTUJfibWGKTpK20uxc8g9/KSU5sfPkNC5Qdd2opi3xsrT2Uq0rwLXE/JHIdcPg==",
   "success": true,
   "projectFilePath": "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\MetricsAgentTests\\MetricsAgentTests.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\akradioman3\\.nuget\\packages\\autofixture\\4.17.0\\autofixture.4.17.0.nupkg.sha512",
     "C:\\Users\\akradioman3\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\akradioman3\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
     "C:\\Users\\akradioman3\\.nuget\\packages\\castle.core\\4.4.0\\castle.core.4.4.0.nupkg.sha512",
     "C:\\Users\\akradioman3\\.nuget\\packages\\coverlet.collector\\1.3.0\\coverlet.collector.1.3.0.nupkg.sha512",
     "C:\\Users\\akradioman3\\.nuget\\packages\\dapper\\2.0.78\\dapper.2.0.78.nupkg.sha512",
+    "C:\\Users\\akradioman3\\.nuget\\packages\\fare\\2.1.1\\fare.2.1.1.nupkg.sha512",
     "C:\\Users\\akradioman3\\.nuget\\packages\\fluentmigrator\\3.2.15\\fluentmigrator.3.2.15.nupkg.sha512",
     "C:\\Users\\akradioman3\\.nuget\\packages\\fluentmigrator.abstractions\\3.2.15\\fluentmigrator.abstractions.3.2.15.nupkg.sha512",
     "C:\\Users\\akradioman3\\.nuget\\packages\\fluentmigrator.extensions.oracle\\3.2.15\\fluentmigrator.extensions.oracle.3.2.15.nupkg.sha512",

@@ -9,6 +9,11 @@
     &lt;TestId&gt;xUnit::A8097329-2FB3-4C7A-8CE8-5D73D243C755::.NETCoreApp,Version=v3.1::MetricsManagerTests.HddControllerUnitTests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=aecaa938_002Dcc1e_002D41e3_002Dbe0d_002D81cdc13a059c/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Call_GetCpuMetricsTimeInterval_From_Controller" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::9AA121BD-ED78-4855-BE7F-B72C966C9C68::.NETCoreApp,Version=v3.1::MetricsAgentTests.CpuMetricsControllerUnitTests.Call_GetCpuMetricsTimeInterval_From_Controller&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c26aac4d_002D06df_002D4555_002D98a8_002D1899611ec797/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="DotNetControllerUnitTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;xUnit::A8097329-2FB3-4C7A-8CE8-5D73D243C755::.NETCoreApp,Version=v3.1::MetricsManagerTests.DotNetControllerUnitTests&lt;/TestId&gt;&#xD;

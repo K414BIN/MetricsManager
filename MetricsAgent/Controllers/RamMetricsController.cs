@@ -15,8 +15,7 @@ using ServiceStack.Text;
 
 namespace MetricsAgent.Controllers
 {
-    
-    [Route("api/metrics/ram")]
+    [Route("api/[controller]")]
     [ApiController]
     public class RamMetricsController : ControllerBase
     {
@@ -33,7 +32,7 @@ namespace MetricsAgent.Controllers
             _logger.LogInformation("Start RamMetricsController");
         }
 
-        [HttpGet("RamMetrics/from/{fromTime}/to/{toTime}")]
+        [HttpGet("from/{fromTime}/to/{toTime}")]
         public GetAllRamMetricsRequest GetRamMetrics([FromRoute] long fromTime, [FromRoute] long toTime)
         {
             _logger.Log(LogLevel.Information, "Requested between time {0} - {1} sec.", fromTime.FromUnixTimeMs(), toTime.FromUnixTimeMs());
@@ -44,24 +43,24 @@ namespace MetricsAgent.Controllers
             };
         }
 
-        [HttpGet("from/{fromTime}/to/{toTime}")]
-        public IActionResult GetRamMetricsTimeInterval ([FromRoute] DateTimeOffset fromTime, [FromRoute] DateTimeOffset toTime)
-        {
-            _logger.LogInformation($"GetRamMetricsTimeInterval - From time: {fromTime}; To time: {toTime}");
+        //[HttpGet("from/{fromTime}/to/{toTime}")]
+        //public IActionResult GetRamMetricsTimeInterval ([FromRoute] DateTimeOffset fromTime, [FromRoute] DateTimeOffset toTime)
+        //{
+        //    _logger.LogInformation($"GetRamMetricsTimeInterval - From time: {fromTime}; To time: {toTime}");
       
-            var metrics = _repository.GetAll();
-            var response = new AllMetricsResponse<RamMetricDto>()
-            {
-                Metrics = new List<RamMetricDto>()
+        //    var metrics = _repository.GetAll();
+        //    var response = new AllMetricsResponse<RamMetricDto>()
+        //    {
+        //        Metrics = new List<RamMetricDto>()
 
-            };
-            foreach (var metric in metrics)
-            {
-                response.Metrics.Add(_mapper.Map<RamMetricDto>(metric));
-            }
+        //    };
+        //    foreach (var metric in metrics)
+        //    {
+        //        response.Metrics.Add(_mapper.Map<RamMetricDto>(metric));
+        //    }
 
-            return Ok(response);
-        }
+        //    return Ok(response);
+        //}
 
     }
 }
