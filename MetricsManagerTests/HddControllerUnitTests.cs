@@ -22,11 +22,14 @@ namespace MetricsManagerTests
             public void GetMetricsFromAgent_ReturnsOk()
             {
                 //Arrange
+           
                 var agentId = 1;
-                var Memory = 4;
+                var fromTime = TimeSpan.FromSeconds(0);
+                var toTime = TimeSpan.FromSeconds(100);
+        
 
                 //Act
-                var result = controller.GetMetricsFreeLeftMemoryFromAgent(agentId, Memory);
+                var result = controller.GetMetricsFromAgent(agentId, fromTime, toTime);
                 _logger.Log(LogLevel.Information, "Test result {0} ", result);
                 // Assert
                 _ = Assert.IsAssignableFrom<IActionResult>(result);

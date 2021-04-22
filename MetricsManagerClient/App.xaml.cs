@@ -14,4 +14,5 @@ namespace MetricsManagerClient
     public partial class App : Application
     {
     }
+
 }
