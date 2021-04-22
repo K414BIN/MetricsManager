@@ -43,24 +43,24 @@ namespace MetricsAgent.Controllers
             };
         }
 
-        //[HttpGet("from/{fromTime}/to/{toTime}")]
-        //public IActionResult GetRamMetricsTimeInterval ([FromRoute] DateTimeOffset fromTime, [FromRoute] DateTimeOffset toTime)
-        //{
-        //    _logger.LogInformation($"GetRamMetricsTimeInterval - From time: {fromTime}; To time: {toTime}");
-      
-        //    var metrics = _repository.GetAll();
-        //    var response = new AllMetricsResponse<RamMetricDto>()
-        //    {
-        //        Metrics = new List<RamMetricDto>()
+        [HttpGet("/from/{fromTime}/to/{toTime}")]
+        public IActionResult GetRamMetricsTimeInterval([FromRoute] DateTimeOffset fromTime, [FromRoute] DateTimeOffset toTime)
+        {
+            _logger.LogInformation($"GetRamMetricsTimeInterval - From time: {fromTime}; To time: {toTime}");
+            List<RamMetric> metrics = _repository.GetByTimePeriod(fromTime, toTime);
+           // var metrics = _repository.GetAll();
+            var response = new AllMetricsResponse<RamMetricDto>()
+            {
+                Metrics = new List<RamMetricDto>()
 
-        //    };
-        //    foreach (var metric in metrics)
-        //    {
-        //        response.Metrics.Add(_mapper.Map<RamMetricDto>(metric));
-        //    }
+            };
+            foreach (var metric in metrics)
+            {
+                response.Metrics.Add(_mapper.Map<RamMetricDto>(metric));
+            }
 
-        //    return Ok(response);
-        //}
+            return Ok(response);
+        }
 
     }
 }

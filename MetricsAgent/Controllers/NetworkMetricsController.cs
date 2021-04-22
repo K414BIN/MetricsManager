@@ -42,24 +42,24 @@ namespace MetricsAgent.Controllers
             };
         }
 
-        //[HttpGet("from/{fromTime}/to/{toTime}")]
-        //public IActionResult GetNetworkMetricsTimeInterval ([FromRoute] DateTimeOffset fromTime, [FromRoute] DateTimeOffset toTime)
-        //{
-        //    _logger.LogInformation($"GetNetworkMetricsTimeInterval - From time: {fromTime}; To time: {toTime}");
-          
-        //    var metrics = _repository.GetAll();
-        //    var response = new AllMetricsResponse<NetworkMetricDto>()
-        //    {
-        //        Metrics = new List<NetworkMetricDto>()
+        [HttpGet("from/{fromTime}/to/{toTime}")]
+        public IActionResult GetNetworkMetricsTimeInterval([FromRoute] DateTimeOffset fromTime, [FromRoute] DateTimeOffset toTime)
+        {
+            _logger.LogInformation($"GetNetworkMetricsTimeInterval - From time: {fromTime}; To time: {toTime}");
+            List<NetworkMetric> metrics = _repository.GetByTimePeriod(fromTime, toTime);
+            //var metrics = _repository.GetAll();
+            var response = new AllMetricsResponse<NetworkMetricDto>()
+            {
+                Metrics = new List<NetworkMetricDto>()
 
-        //    };
-        //    foreach (var metric in metrics)
-        //    {
-        //        response.Metrics.Add(_mapper.Map<NetworkMetricDto>(metric));
-        //    }
+            };
+            foreach (var metric in metrics)
+            {
+                response.Metrics.Add(_mapper.Map<NetworkMetricDto>(metric));
+            }
 
-        //    return Ok(response);
-        //}
-        
+            return Ok(response);
+        }
+
     }
 }

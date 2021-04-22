@@ -44,22 +44,22 @@ namespace MetricsAgent.Controllers
             };
         }
 
-        //[HttpGet("from/{fromTime}/to/{toTime}")]
-        //public IActionResult GetDotNetMetricsTimeInterval ([FromRoute] DateTimeOffset fromTime, [FromRoute] DateTimeOffset toTime)
-        //{
-        //    _logger.LogInformation($"GetDotNetMetricsTimeInterval - From time: {fromTime}; To time: {toTime}");
-        //    //    List<CpuMetric> metrics = _repository.GetByTimePeriod(fromTime, toTime);
-        //    var metrics = _repository.GetAll();
-        //    var response = new AllMetricsResponse<DotNetMetricDto>()
-        //    {
-        //        Metrics = new List<DotNetMetricDto>()
-        //    };
+        [HttpGet("/from/{fromTime}/to/{toTime}")]
+        public IActionResult GetDotNetMetricsTimeInterval([FromRoute] DateTimeOffset fromTime, [FromRoute] DateTimeOffset toTime)
+        {
+            _logger.LogInformation($"GetDotNetMetricsTimeInterval - From time: {fromTime}; To time: {toTime}");
+              List<DotNetMetric> metrics = _repository.GetByTimePeriod(fromTime, toTime);
+            //     var metrics = _repository.GetAll();
+            var response = new AllMetricsResponse<DotNetMetricDto>()
+            {
+                Metrics = new List<DotNetMetricDto>()
+            };
 
-        //    foreach (var metric in metrics)
-        //    {
-        //        response.Metrics.Add(_mapper.Map<DotNetMetricDto>(metric));
-        //    }
-        //    return Ok(response);
-        //}
+            foreach (var metric in metrics)
+            {
+                response.Metrics.Add(_mapper.Map<DotNetMetricDto>(metric));
+            }
+            return Ok(response);
+        }
     }
 }
