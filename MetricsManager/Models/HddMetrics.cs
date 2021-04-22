@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MetricsManager.Models
 {
-    public class NetworkMetrics : ApiMetric<NetworkMetrics>
+    public class HddMetrics : ApiMetric
     {
     }
 }

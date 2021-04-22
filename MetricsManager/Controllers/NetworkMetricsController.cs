@@ -1,10 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+using Core;
+using MetricsManager.Client;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Net.Http;
+using System.Text.Json;
+using MetricsManager.Responses;
+using NLog;
 
 namespace MetricsManager.Controllers
 {
@@ -14,25 +16,40 @@ namespace MetricsManager.Controllers
     {
         private readonly ILogger<NetworkMetricsController> _logger;
 
-      
         public NetworkMetricsController(ILogger<NetworkMetricsController> logger)
         {
             _logger = logger;
             _logger.LogDebug(1, "NLog встроен в NetworkMetricsController");
         }
 
-        [HttpGet("from/{fromTime}/to/{toTime}")]
-        public IActionResult GetMetricsNetwork([FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
+        [HttpGet("agent/{agentId}/from/{fromTime}/to/{toTime}")]
+        public IActionResult GetMetricsFromAgent([FromRoute] int agentId, [FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
         {
-            _logger.Log(LogLevel.Information, "Requested between time {0} - {1} sec.",fromTime.TotalSeconds, toTime.TotalSeconds);
+            var request = new HttpRequestMessage(HttpMethod.Get,
+                "http://localhost:51684/api/NetworkMetrics/from/1/to/999999");
+
+            _logger.LogInformation(2,"Request {0} ", request);
+
+            request.Headers.Add("Accept", "application/vnd.github.v3+json");
+            //var client = clientFactory.CreateClient();
+            var client =new HttpClient();
+            //
+            HttpResponseMessage response = client.SendAsync(request).Result;
+
+            _logger.LogInformation(3,"Response {0} ", response);
+
+            if (response.IsSuccessStatusCode)
+            {
+                using var responseStream = response.Content.ReadAsStreamAsync().Result;
+                var metricsResponse = JsonSerializer.DeserializeAsync
+                    <AllNetworkMetricsApiResponse>(responseStream).Result;
+            }
+            else
+            {
+                // ошибка при получении ответа
+            }
             return Ok();
         }
-
-        [HttpGet("agent/{agentId}/from/{fromTime}/to/{toTime}")]
-        public IActionResult GetMetricsNetworkFromAgent([FromRoute] int agentId, [FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime)
-        {
-            _logger.Log(LogLevel.Information, "Requested agent: {0} between time {1} - {2} sec.",agentId, fromTime.TotalSeconds, toTime.TotalSeconds);
-               return Ok();
-        }
     }
+    
 }

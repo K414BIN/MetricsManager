@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MetricsManager
+namespace MetricsManager.Models
 {
-    public class ApiMetric<T> where T : class
+    public class ApiMetric
     {     
         public int id { get; set; }
         public int agentid { get; set; }

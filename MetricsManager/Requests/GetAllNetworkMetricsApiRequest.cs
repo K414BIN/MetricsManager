@@ -2,10 +2,8 @@
 
 namespace MetricsManager.Requests
 {
-   public class GetAllNetworkMetricsApiRequest
+   public class GetAllNetworkMetricsApiRequest :AllApiRequest
     {
-        public TimeSpan FromTime { get; set; }
-        public TimeSpan ToTime { get; set; }
-        public Uri   ClientBaseAddress{ get; set; }
+      
     }
 }

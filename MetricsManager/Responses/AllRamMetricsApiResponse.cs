@@ -1,6 +1,8 @@
-﻿namespace MetricsManager.Responses
+﻿using MetricsManager.Models;
+
+namespace MetricsManager.Responses
 {
-    public class AllRamMetricsApiResponse
+    public class AllRamMetricsApiResponse :ApiResponse<RamMetrics>
     {
     }
 }

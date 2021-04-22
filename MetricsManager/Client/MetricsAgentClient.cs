@@ -30,7 +30,7 @@ namespace MetricsManager.Client
                 $"{request.ClientBaseAddress}/api/hddmetrics/from/{fromParameter}/to/{toParameter}");
             try
             {
-                HttpResponseMessage response = _httpClient.SendAsync(HttpRequest).Result;
+                HttpResponseMessage response = _httpClient.SendAsync(httpRequest).Result;
 
                 using var responseStream = response.Content.ReadAsStreamAsync().Result;
                 return JsonSerializer.DeserializeAsync<AllHddMetricsApiResponse>(responseStream).Result;
@@ -51,7 +51,7 @@ namespace MetricsManager.Client
                 $"{request.ClientBaseAddress}/api/cpumetrics/from/{fromParameter}/to/{toParameter}");
             try
             {
-                HttpResponseMessage response = _httpClient.SendAsync(HttpRequest).Result;
+                HttpResponseMessage response = _httpClient.SendAsync(httpRequest).Result;
 
                 using var responseStream = response.Content.ReadAsStreamAsync().Result;
                 return JsonSerializer.DeserializeAsync<AllCpuMetricsApiResponse>(responseStream).Result;
@@ -72,7 +72,7 @@ namespace MetricsManager.Client
                 $"{request.ClientBaseAddress}/api/rammetrics/from/{fromParameter}/to/{toParameter}");
             try
             {
-                HttpResponseMessage response = _httpClient.SendAsync(HttpRequest).Result;
+                HttpResponseMessage response = _httpClient.SendAsync(httpRequest).Result;
 
                 using var responseStream = response.Content.ReadAsStreamAsync().Result;
                 return JsonSerializer.DeserializeAsync<AllRamMetricsApiResponse>(responseStream).Result;
@@ -93,7 +93,7 @@ namespace MetricsManager.Client
                 $"{request.ClientBaseAddress}/api/networkmetrics/from/{fromParameter}/to/{toParameter}");
             try
             {
-                HttpResponseMessage response = _httpClient.SendAsync(HttpRequest).Result;
+                HttpResponseMessage response = _httpClient.SendAsync(httpRequest).Result;
 
                 using var responseStream = response.Content.ReadAsStreamAsync().Result;
                 return JsonSerializer.DeserializeAsync<AllNetworkMetricsApiResponse>(responseStream).Result;
@@ -114,7 +114,7 @@ namespace MetricsManager.Client
                 $"{request.ClientBaseAddress}/api/dotnetmetrics/from/{fromParameter}/to/{toParameter}");
             try
             {
-                HttpResponseMessage response = _httpClient.SendAsync(HttpRequest).Result;
+                HttpResponseMessage response = _httpClient.SendAsync(httpRequest).Result;
 
                 using var responseStream = response.Content.ReadAsStreamAsync().Result;
                 return JsonSerializer.DeserializeAsync<AllDotNetMetricsApiResponse>(responseStream, new JsonSerializerOptions{PropertyNameCaseInsensitive = true}).Result;

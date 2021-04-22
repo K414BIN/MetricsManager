@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Cq6KRJ2JUUKgxulY7VaqB+DhUTUJfibWGKTpK20uxc8g9/KSU5sfPkNC5Qdd2opi3xsrT2Uq0rwLXE/JHIdcPg==",
+  "dgSpecHash": "GLPdRXBI7V2vzjn2vDZeE4FsZin/eCZAa1bZMbH9jS0J3cHC7rbxPau7eFaRnYFZ6EMkmqOpVM8P7TOUVUzKJA==",
   "success": true,
   "projectFilePath": "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\MetricsAgentTests\\MetricsAgentTests.csproj",
   "expectedPackageFiles": [
@@ -79,7 +79,7 @@
     "C:\\Users\\akradioman3\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\akradioman3\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\akradioman3\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
-    "C:\\Users\\akradioman3\\.nuget\\packages\\servicestack.text\\5.10.4\\servicestack.text.5.10.4.nupkg.sha512",
+    "C:\\Users\\akradioman3\\.nuget\\packages\\servicestack.text\\5.11.0\\servicestack.text.5.11.0.nupkg.sha512",
     "C:\\Users\\akradioman3\\.nuget\\packages\\stub.system.data.sqlite.core.netstandard\\1.0.113.2\\stub.system.data.sqlite.core.netstandard.1.0.113.2.nupkg.sha512",
     "C:\\Users\\akradioman3\\.nuget\\packages\\system.appcontext\\4.3.0\\system.appcontext.4.3.0.nupkg.sha512",
     "C:\\Users\\akradioman3\\.nuget\\packages\\system.buffers\\4.3.0\\system.buffers.4.3.0.nupkg.sha512",

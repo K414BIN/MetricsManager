@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace MetricsManager.Models
 {
-    public class HddMetrics : ApiMetric<HddMetrics>
+ 
+    public class DotNetMetrics : ApiMetric
     {
     }
 }

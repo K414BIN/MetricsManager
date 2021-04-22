@@ -1166,7 +1166,7 @@
           }
         }
       },
-      "ServiceStack.Text/5.10.4": {
+      "ServiceStack.Text/5.11.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.5.0",
@@ -2617,7 +2617,7 @@
           "NLog": "4.7.9",
           "NLog.Web.AspNetCore": "4.12.0",
           "Quartz": "3.3.2",
-          "ServiceStack.Text": "5.10.4",
+          "ServiceStack.Text": "5.11.0",
           "System.Data.SQLite.Core": "1.0.113.7",
           "System.Diagnostics.PerformanceCounter": "5.0.1"
         },
@@ -2635,12 +2635,20 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
+          "AutoMapper": "10.1.1",
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": "8.1.1",
           "Core": "1.0.0",
+          "Dapper": "2.0.78",
+          "FluentMigrator": "3.2.15",
+          "FluentMigrator.Runner": "3.2.15",
+          "FluentMigrator.Runner.SQLite": "3.2.15",
           "MetricsAgent": "1.0.0",
           "Microsoft.Extensions.DependencyInjection": "5.0.1",
           "Microsoft.Extensions.Http.Polly": "5.0.1",
           "NLog": "4.7.9",
           "NLog.Web.AspNetCore": "4.12.0",
+          "Quartz": "3.3.2",
+          "ServiceStack.Text": "5.11.0",
           "System.Data.SQLite.Core": "1.0.113.7"
         },
         "compile": {
@@ -4262,10 +4270,10 @@
         "version.txt"
       ]
     },
-    "ServiceStack.Text/5.10.4": {
-      "sha512": "w9/OKpW1QSPIvgnCeDTHKwyIsb0MV9FHGxULSHTz/NT9ONTDMp5/us3DqhXVAypd5p6FmhRnDWRkXAtf3kQ3kQ==",
+    "ServiceStack.Text/5.11.0": {
+      "sha512": "dwB1u2sKBESgPWmgNmwBq7J0ImBcEwvAb87PEfAi2xVsrTrS+Oj+GUr3es7W2QaY/HPLr0nwunjFagnrW/zoFQ==",
       "type": "package",
-      "path": "servicestack.text/5.10.4",
+      "path": "servicestack.text/5.11.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -4275,7 +4283,7 @@
         "lib/netcoreapp2.1/ServiceStack.Text.xml",
         "lib/netstandard2.0/ServiceStack.Text.dll",
         "lib/netstandard2.0/ServiceStack.Text.xml",
-        "servicestack.text.5.10.4.nupkg.sha512",
+        "servicestack.text.5.11.0.nupkg.sha512",
         "servicestack.text.nuspec"
       ]
     },
