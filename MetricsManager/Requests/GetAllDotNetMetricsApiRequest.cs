@@ -2,10 +2,8 @@
 
 namespace MetricsManager.Requests
 {
-   public class GetAllDotNetMetricsApiRequest
+   public class GetAllDotNetMetricsApiRequest : AllApiRequest
     {
-        public Uri ClientBaseAddress { get; set; }
-        public TimeSpan FromTime { get; set; }
-        public TimeSpan ToTime { get; set; }
+      
     }
 }

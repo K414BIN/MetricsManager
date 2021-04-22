@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\akradioman3\\source\\repos\\MetricsAgentTests\\MetricsAgentTests.csproj": {}
+    "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\MetricsAgentTests\\MetricsAgentTests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\akradioman3\\source\\repos\\Core\\Core.csproj": {
+    "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\akradioman3\\source\\repos\\Core\\Core.csproj",
+        "projectUniqueName": "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\Core\\Core.csproj",
         "projectName": "Core",
-        "projectPath": "C:\\Users\\akradioman3\\source\\repos\\Core\\Core.csproj",
+        "projectPath": "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\Core\\Core.csproj",
         "packagesPath": "C:\\Users\\akradioman3\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\akradioman3\\source\\repos\\Core\\obj\\",
+        "outputPath": "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\akradioman3\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -54,18 +54,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\akradioman3\\source\\repos\\MetricsAgentTests\\MetricsAgentTests.csproj": {
+    "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\MetricsAgentTests\\MetricsAgentTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\akradioman3\\source\\repos\\MetricsAgentTests\\MetricsAgentTests.csproj",
+        "projectUniqueName": "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\MetricsAgentTests\\MetricsAgentTests.csproj",
         "projectName": "MetricsAgentTests",
-        "projectPath": "C:\\Users\\akradioman3\\source\\repos\\MetricsAgentTests\\MetricsAgentTests.csproj",
+        "projectPath": "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\MetricsAgentTests\\MetricsAgentTests.csproj",
         "packagesPath": "C:\\Users\\akradioman3\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\akradioman3\\source\\repos\\MetricsAgentTests\\obj\\",
+        "outputPath": "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\MetricsAgentTests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\akradioman3\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -82,8 +82,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\akradioman3\\source\\repos\\MetricsAgent\\MetricsAgent.csproj": {
-                "projectPath": "C:\\Users\\akradioman3\\source\\repos\\MetricsAgent\\MetricsAgent.csproj"
+              "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\MetricsAgent\\MetricsAgent.csproj": {
+                "projectPath": "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\MetricsAgent\\MetricsAgent.csproj"
               }
             }
           }
@@ -98,6 +98,10 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "AutoFixture": {
+              "target": "Package",
+              "version": "[4.17.0, )"
+            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[16.7.1, )"
@@ -138,18 +142,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\akradioman3\\source\\repos\\MetricsAgent\\MetricsAgent.csproj": {
+    "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\MetricsAgent\\MetricsAgent.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\akradioman3\\source\\repos\\MetricsAgent\\MetricsAgent.csproj",
+        "projectUniqueName": "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\MetricsAgent\\MetricsAgent.csproj",
         "projectName": "MetricsAgent",
-        "projectPath": "C:\\Users\\akradioman3\\source\\repos\\MetricsAgent\\MetricsAgent.csproj",
+        "projectPath": "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\MetricsAgent\\MetricsAgent.csproj",
         "packagesPath": "C:\\Users\\akradioman3\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\akradioman3\\source\\repos\\MetricsAgent\\obj\\",
+        "outputPath": "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\MetricsAgent\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\akradioman3\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -166,8 +170,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\akradioman3\\source\\repos\\Core\\Core.csproj": {
-                "projectPath": "C:\\Users\\akradioman3\\source\\repos\\Core\\Core.csproj"
+              "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\Core\\Core.csproj": {
+                "projectPath": "C:\\Users\\akradioman3\\source\\repos3\\MetricsManager\\Core\\Core.csproj"
               }
             }
           }
@@ -194,6 +198,18 @@
               "target": "Package",
               "version": "[2.0.78, )"
             },
+            "FluentMigrator": {
+              "target": "Package",
+              "version": "[3.2.15, )"
+            },
+            "FluentMigrator.Runner": {
+              "target": "Package",
+              "version": "[3.2.15, )"
+            },
+            "FluentMigrator.Runner.SQLite": {
+              "target": "Package",
+              "version": "[3.2.15, )"
+            },
             "Microsoft.Extensions.DependencyInjection": {
               "target": "Package",
               "version": "[5.0.1, )"
@@ -216,7 +232,7 @@
             },
             "ServiceStack.Text": {
               "target": "Package",
-              "version": "[5.10.4, )"
+              "version": "[5.11.0, )"
             },
             "System.Data.SQLite.Core": {
               "target": "Package",
@@ -245,7 +261,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -25,10 +25,10 @@ namespace MetricsManagerTests
             var agentId = 1;
             var fromTime = TimeSpan.FromSeconds(0);
             var toTime = TimeSpan.FromSeconds(100);
-            var Errors = 4;
+          
 
             //Act
-            var result = controller.GetMetricsErrorsCountFromAgent(agentId, fromTime, toTime, Errors);
+            var result = controller.GetMetricsFromAgent(agentId, fromTime, toTime);
             _logger.Log(LogLevel.Information, "Test result {0} ", result);
             // Assert
             _ = Assert.IsAssignableFrom<IActionResult>(result);

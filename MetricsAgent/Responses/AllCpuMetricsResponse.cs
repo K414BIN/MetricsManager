@@ -2,7 +2,9 @@
 
 namespace MetricsAgent.Responses
 {
-    public class AllCpuMetricsResponse : AllMetricsResponse<CpuMetricDto>
-    {
+    public class AllCpuMetricsResponse 
+    { 
+        public long FromTime { get; set; }
+        public long ToTime { get; set; }
     }
 }

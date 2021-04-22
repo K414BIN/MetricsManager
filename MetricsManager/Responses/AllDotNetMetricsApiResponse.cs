@@ -1,6 +1,8 @@
-﻿namespace MetricsManager.Responses
+﻿using MetricsManager.Models;
+
+namespace MetricsManager.Responses
 {
-    public class AllDotNetMetricsApiResponse
+    public class AllDotNetMetricsApiResponse : ApiResponse<DotNetMetrics>
     {
     }
 }

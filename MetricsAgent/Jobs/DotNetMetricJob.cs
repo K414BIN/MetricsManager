@@ -1,36 +1,42 @@
-﻿using System;
+﻿using MetricsAgent.DAL.Interfaces;
+using MetricsAgent.DAL.Models;
+using Microsoft.Extensions.DependencyInjection;
+using Quartz;
+using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using MetricsAgent.DAL.Interfaces;
-using MetricsAgent.DAL.Models;
-using Quartz;
-using System.Collections.Generic;
+using MetricsAgent.DAL.Repositories;
+using Microsoft.Extensions.Logging;
 
 namespace MetricsAgent.Jobs
 {
+    [DisallowConcurrentExecution]
     public class DotNetMetricJob : IJob
     {
-      
-            private readonly IServiceProvider _provider;
-            private IDotNetMetricsRepository _repository;
-            private PerformanceCounter _DotNetCounter;
 
-            public DotNetMetricJob(IServiceProvider provider)
-            {
-                _provider = provider;
-        //        _repository = _provider.GetService<IDotNetMetricsRepository>();
-                _DotNetCounter = new PerformanceCounter("DotNetGarbageHeap", "% Usage", "_Total");
-            }
+        private readonly ILogger<DotNetMetricJob> _logger;
+        private IDotNetMetricsRepository _repository;
+        private PerformanceCounter _DotNetCounter;
 
-            public Task Execute(IJobExecutionContext context)
-            {
-                var time = TimeSpan.FromSeconds(DateTimeOffset.UtcNow.ToUnixTimeSeconds());
-                var DotNet= Convert.ToInt32(_DotNetCounter.NextValue());
-                
-                _repository.Create(new DotNetMetric { Time = time, Value = DotNet });
-                return Task.CompletedTask;
-            }
-        
- 
+
+        public DotNetMetricJob(ILogger<DotNetMetricJob> logger)
+        {
+            _repository = new DotNetMetricsRepository();
+            _logger = logger;
+            _logger.LogInformation("Start DotNetMetricJob");
+            _DotNetCounter = new PerformanceCounter(".NET CLR Memory", "# Bytes in all Heaps", "_Global_");
+        }
+
+        public Task Execute(IJobExecutionContext context)
+        {
+
+            var DotNet = Convert.ToInt32(_DotNetCounter.NextValue());
+            var time = TimeSpan.FromSeconds(DateTimeOffset.UtcNow.ToUnixTimeSeconds());
+            _repository.Create(new DotNetMetric {Time = time, Value = DotNet});
+            _logger.Log(LogLevel.Information, "Pull job: {0} # bytes in all Heaps on time {1}  sec.",DotNet,time);
+            return Task.CompletedTask;
+        }
+
+
     }
 }

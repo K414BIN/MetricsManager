@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Core.Interfaces;
 using MetricsAgent.DAL.Interfaces;
 using MetricsAgent.DAL.Repositories;
 using MetricsAgent.Jobs;
@@ -15,9 +16,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Polly;
+using Core;
 using Quartz;
 using Quartz.Impl;
 using Quartz.Spi;
+using FluentMigrator.Runner;
+using System.Data.SQLite;
 
 namespace MetricsAgent
 {
@@ -29,55 +33,76 @@ namespace MetricsAgent
         }
 
         public IConfiguration Configuration { get; }
+        
+        private readonly string _connectionString = SQLSettings.ConnectionString;
+
+        private void ConfigureSqlLiteConnection(IServiceCollection services)
+        { 
+            var connection = new SQLiteConnection(_connectionString);
+            connection.Open();
+            services.AddSingleton(_connectionString);
+        }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            var mapperConfiguration = new MapperConfiguration(mp => mp.AddProfile(new MapperProfile()));
-            var mapper = mapperConfiguration.CreateMapper();
-            services.AddSingleton(mapper);
+            ConfigureSqlLiteConnection(services);
             services.AddHttpClient(); 
+            services.AddTransient<INotifierMediatorService, NotifierMediatorService>();
 //services.AddHttpClient<IMetricsAgentClient, MetricsAgentClient>().AddTransientHttpErrorPolicy(p => p.WaitAndRetryAsync(3, _ => TimeSpan.FromMilliseconds(5000)));
             services.AddHostedService<QuartzHostedService>();
-            services.AddScoped<ICpuMetricsRepository,CpuMetricsRepository>();
-            services.AddScoped<IDotNetMetricsRepository,DotNetMetricsRepository>();
-            services.AddScoped<IHddMetricsRepository,HddMetricsRepository>();
-            services.AddScoped<IRamMetricsRepository, RamMetricsRepository>();
-            services.AddScoped<INetworkMetricsRepository, NetworkMetricsRepository>();
+            services.AddSingleton<ICpuMetricsRepository,CpuMetricsRepository>();
+            services.AddSingleton<IDotNetMetricsRepository,DotNetMetricsRepository>();
+            services.AddSingleton<IHddMetricsRepository,HddMetricsRepository>();
+            services.AddSingleton<IRamMetricsRepository, RamMetricsRepository>();
+            services.AddSingleton<INetworkMetricsRepository, NetworkMetricsRepository>();
             services.AddSingleton<IJobFactory, SingletonJobFactory>();
             services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();
-// добавляем нашу задачу
             services.AddSingleton<CpuMetricJob>();
             services.AddSingleton(new JobSchedule(
                 jobType: typeof(CpuMetricJob),
                 cronExpression: "0/5 * * * * ?"));
-            //****************************************************
+            ////****************************************************
             services.AddSingleton<NetworkMetricJob>();
             services.AddSingleton(new JobSchedule(
                 jobType: typeof(NetworkMetricJob),
                 cronExpression: "0/5 * * * * ?"));
-            //****************************************************
+            ////****************************************************
             services.AddSingleton<DotNetMetricJob>();
             services.AddSingleton(new JobSchedule(
                 jobType: typeof(DotNetMetricJob),
                 cronExpression: "0/5 * * * * ?"));
-            //****************************************************
+            ////****************************************************
             services.AddSingleton<HddMetricJob>();
             services.AddSingleton(new JobSchedule(
                 jobType: typeof(HddMetricJob),
                 cronExpression: "0/5 * * * * ?"));
-            //****************************************************
+            ////****************************************************
             services.AddSingleton<RamMetricJob>();
             services.AddSingleton(new JobSchedule(
                 jobType: typeof(RamMetricJob),
                 cronExpression: "0/5 * * * * ?"));
-
-
+            // ////****************************************************
+            var mapperConfiguration = new MapperConfiguration(mp => mp.AddProfile(new MapperProfile()));
+            var mapper = mapperConfiguration.CreateMapper();
+            services.AddSingleton(mapper);
+            ////****************************************************
+            services.AddFluentMigratorCore()
+                .ConfigureRunner(rb => rb
+                    // добавляем поддержку SQLite 
+                    .AddSQLite()
+                    // устанавливаем строку подключения
+                    .WithGlobalConnectionString(_connectionString)
+      
+                    // подсказываем где искать классы с миграциями
+                    .ScanIn(typeof(Startup).Assembly).For.Migrations()
+                ).AddLogging(lb => lb
+                    .AddFluentMigratorConsole());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,IMigrationRunner migrationRunner)
         {
             if (env.IsDevelopment())
             {
@@ -89,7 +114,7 @@ namespace MetricsAgent
             app.UseRouting();
 
             app.UseAuthorization();
-
+            migrationRunner.MigrateUp();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

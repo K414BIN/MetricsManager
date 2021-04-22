@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Linq;
 using Core;
@@ -12,7 +13,9 @@ namespace MetricsAgent.DAL.Repositories
     {
         // строка подключения
         private readonly string ConnectionString = SQLSettings.ConnectionString;
-        
+
+        private string _tblname = "dotmetrics";
+
         // инжектируем соединение с базой данных в наш репозиторий через конструктор
         public DotNetMetricsRepository()
         {
@@ -22,10 +25,12 @@ namespace MetricsAgent.DAL.Repositories
 
         public void Create(DotNetMetric item)
         {
+            
             using (var connection = new SQLiteConnection(ConnectionString))
             {
+                connection.Execute($@"CREATE TABLE IF NOT EXISTS  {_tblname} (id INTEGER PRIMARY KEY, value INT, time INT64)");
                 //  запрос на вставку данных с плейсхолдерами для параметров
-                connection.Execute("INSERT INTO dotnetmetrics(value, time) VALUES(@value, @time)", 
+                connection.Execute($"INSERT INTO {_tblname}(value, time) VALUES(@value, @time)", 
                     // анонимный объект с параметрами запроса
                     new { 
                         // value подставится на место "@value" в строке запроса
@@ -38,14 +43,14 @@ namespace MetricsAgent.DAL.Repositories
             }
         }
 
-        public void Delete(int id)
+        public void Delete(int idIn)
         {
             using (var connection = new SQLiteConnection(ConnectionString))
             {
-                connection.Execute("DELETE FROM dotnetmetrics WHERE id=@id",
+                connection.Execute($"DELETE FROM {_tblname} WHERE id=@id",
                     new
                     {
-                        id = id
+                        id = idIn
                     });
             }
         }
@@ -54,16 +59,16 @@ namespace MetricsAgent.DAL.Repositories
         {
             using (var connection = new SQLiteConnection(ConnectionString))
             {
-                connection.Execute("UPDATE dotnetmetrics SET value = @value, time = @time WHERE id=@id",
+                connection.Execute($"UPDATE {_tblname} SET value = @value, time = @time WHERE id=@id",
                     new
-                    {
+                    {   
                         value = item.Value,
                         time = item.Time.TotalSeconds,
                         id = item.Id
                     });
             }
         }
-
+        
         public IList<DotNetMetric> GetAll()
         {
             using (var connection = new SQLiteConnection(ConnectionString))
@@ -71,7 +76,7 @@ namespace MetricsAgent.DAL.Repositories
                 // читаем при помощи Query и в шаблон подставляем тип данных
                 // объект которого Dapper сам и заполнит его поля
                 // в соответсвии с названиями колонок
-                return connection.Query<DotNetMetric>("SELECT Id, Time, Value FROM dotnetmetrics").ToList();
+                return connection.Query<DotNetMetric>($"SELECT * FROM {_tblname}").ToList();
             }
         }
 
@@ -79,8 +84,19 @@ namespace MetricsAgent.DAL.Repositories
         {
             using (var connection = new SQLiteConnection(ConnectionString))
             {
-                return connection.QuerySingle<DotNetMetric>("SELECT Id, Time, Value FROM dotnetmetrics WHERE id=@id",
+                return connection.QuerySingle<DotNetMetric>($"SELECT * FROM {_tblname} WHERE id=@id",
                     new {id = id});
+            }
+        }
+               
+        public List<DotNetMetric> GetByTimePeriod(DateTimeOffset fromTime, DateTimeOffset toTime)
+        {
+            long ftime = Convert.ToInt64(SQLSettings.UrlEncode(fromTime));
+            long ttime = Convert.ToInt64(SQLSettings.UrlEncode(toTime));
+            using (var connection = new SQLiteConnection(ConnectionString))
+            {
+                return connection.Query<DotNetMetric>($"SELECT * FROM {_tblname}  WHERE time>@fromTime AND time<@toTime",
+                    new {fromTime = ftime, toTime = ttime}).ToList();
             }
         }
     }

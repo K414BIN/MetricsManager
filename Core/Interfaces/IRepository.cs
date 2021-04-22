@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Core.Interfaces
 {
-  
         public interface IRepository<T> where T : class
         {
             IList<T> GetAll();
-
+            List<T> GetByTimePeriod( DateTimeOffset fromTime, DateTimeOffset toTime);
             T GetById(int id);
 
             void Create(T item);

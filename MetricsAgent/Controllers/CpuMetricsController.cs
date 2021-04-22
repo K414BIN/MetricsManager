@@ -16,7 +16,8 @@ using ServiceStack.Text;
 
 namespace MetricsAgent.Controllers
 {
-    [Route("api/metrics/cpu")]
+   
+    [Route("api/[controller]")]
     [ApiController]
     public class CpuMetricsController : ControllerBase
     {
@@ -26,75 +27,27 @@ namespace MetricsAgent.Controllers
 
         public CpuMetricsController(ILogger<CpuMetricsController> logger, ICpuMetricsRepository repository, IMapper mapper)
         {
+         //   var config = new MapperConfiguration(cfg => cfg.CreateMap<CpuMetric, CpuMetricDto>());
+            //var mapper = config.CreateMapper();
+
+
             _mapper = mapper;
             _logger = logger;
             _repository = repository;
             _logger.LogInformation("Start CpuMetricsController");
         }
 
-        //[HttpGet("from/{fromTime}/to/{toTime}/")]
-        //public IActionResult GetCpuMetricsTimeInterval([FromRoute] DateTimeOffset fromTime,
-        //    [FromRoute] DateTimeOffset toTime)
-        //{
-        //    _logger.LogInformation($"GetCpuMetricsTimeInterval - From time: {fromTime}; To time: {toTime}");
-        ////    List<CpuMetric> metrics = _repository.GetByTimePeriod(fromTime, toTime);
-        //    var metrics = _repository.GetAll();
-        //    var response = new AllMetricsResponse<CpuMetricDto>()
-        //    {
-        //        Metrics = new List<CpuMetricDto>()
 
-        //    };
-        //    foreach (var metric in metrics)
-        //    {
-        //        response.Metrics.Add(_mapper.Map<CpuMetricDto>(metric));
-        //    }
+        [HttpGet("from/{fromTime}/to/{toTime}/percentiles/{Percentile}")]
+        public IActionResult GetCpuMetricsByPercentileTimeInterval([FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime, [FromRoute] Percentile percentile)
+        {
+            _logger.LogInformation($"GetCpuMetricsByPercentileTimeInterval - From time : {fromTime};  To time: { toTime};  Percentile {percentile}");
 
-        //    return Ok(response);
-        //}
+            return Ok();
+        }
 
-        //[HttpGet("from/{fromTime}/to/{toTime}/percentiles/{Percentile}")]
-        //public IActionResult GetCpuMetricsByPercentileTimeInterval([FromRoute] TimeSpan fromTime, [FromRoute] TimeSpan toTime, [FromRoute] Percentile percentile)
-        //{
-        //    _logger.LogInformation($"GetCpuMetricsByPercentileTimeInterval - From time : {fromTime};  To time: { toTime};  Percentile {percentile}");
-
-        //    return Ok();
-        //}
-
-        //[HttpDelete("delete/{id}")]
-        //public IActionResult Delete([FromRoute] int id)
-        //{
-        //    _repository.Delete(id);
-        //    return Ok();
-        //}
-
-        //[HttpPut("update")]
-        //public IActionResult Update([FromBody] CpuMetric request)
-        //{
-        //    _repository.Update(request);
-        //    return Ok();
-        //}
-
-        //[HttpGet("getbyid/{id}")]
-        //public IActionResult GetById([FromRoute] int id)
-        //{
-        //    _repository.GetById(id);
-        //    return Ok();
-        //}
-
-        //[HttpPost("create")]
-        //public IActionResult Create([FromBody] CpuMetricCreateRequest request)
-        //{
-        //    _repository.Create(new CpuMetric
-        //    {
-        //        Time = request.Time,
-        //        Value = request.Value
-        //    });
-
-        //    return Ok();
-        //}
-
-        [HttpGet("cpumetrics/from/{fromTime}/to/{toTime}")]
-        public  GetAllCpuMetricsRequest GetCpuMetrics([FromRoute] long fromTime, [FromRoute] long toTime)
+        [HttpGet("from/{fromTime}/to/{toTime}")]
+        public GetAllCpuMetricsRequest GetCpuMetrics([FromRoute] long fromTime, [FromRoute] long toTime)
         {
             _logger.Log(LogLevel.Information, "Requested between time {0} - {1} sec.", fromTime.FromUnixTimeMs(), toTime.FromUnixTimeMs());
             return new GetAllCpuMetricsRequest
@@ -104,5 +57,22 @@ namespace MetricsAgent.Controllers
             };
         }
 
+        [HttpGet("/from/{fromTime}/to/{toTime}")]
+        public IActionResult GetCpuMetricsTimeInterval([FromRoute] DateTimeOffset fromTime, [FromRoute] DateTimeOffset toTime)
+        {
+            _logger.LogInformation($"GetCpuMetricsTimeInterval - From time: {fromTime}; To time: {toTime}");
+              List<CpuMetric> metrics = _repository.GetByTimePeriod(fromTime, toTime);
+           // var metrics = _repository.GetAll();
+            var response = new AllMetricsResponse<CpuMetricDto>()
+            {
+                Metrics = new List<CpuMetricDto>()
+            };
+            foreach (var metric in metrics)
+            {
+                response.Metrics.Add(_mapper.Map<CpuMetricDto>(metric));
+            }
+
+            return Ok(response);
+        }
     }
 }

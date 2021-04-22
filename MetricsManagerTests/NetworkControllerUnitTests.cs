@@ -27,8 +27,8 @@ namespace MetricsManagerTests
             var toTime = TimeSpan.FromSeconds(100);
  
             //Act
-            var result = controller.GetMetricsNetworkFromAgent(agentId, fromTime, toTime);
-            _logger.Log(LogLevel.Information, "Test result {0} ", result);
+            var result = controller.GetMetricsFromAgent(agentId, fromTime, toTime);
+           _logger.Log(LogLevel.Information, "Test result {0} ", result);
             // Assert
             _ = Assert.IsAssignableFrom<IActionResult>(result);
         }
